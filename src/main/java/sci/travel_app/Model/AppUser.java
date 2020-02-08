@@ -1,11 +1,25 @@
 package sci.travel_app.Model;
 
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+@Entity
 public class AppUser {
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    long id;
     private String userName;
     private String password;
     private String email;
-    //private int age;
+    @Enumerated(EnumType.STRING)
     private AppUserRole role;
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "date_created")
+    private Date created;
+    public List<Places> favoritePlaces = new ArrayList<>();
+
 
     public String getUserName() {
         return userName;
@@ -39,11 +53,19 @@ public class AppUser {
         this.role = role;
     }
 
-    /* public int getAge() {
-        return age;
+    public long getId() {
+        return id;
     }
 
-    public void setAge(int age) {
-        this.age = age;
-    }*/
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public Date getCreated() {
+        return created;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
 }

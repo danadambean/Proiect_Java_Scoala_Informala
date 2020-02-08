@@ -1,18 +1,31 @@
 package sci.travel_app.Model;
 
-public class Places {
+import javax.persistence.*;
+import java.util.Date;
 
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Entity
+@DiscriminatorColumn(name = "CATEGORY")
+public class Places {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    long id;
     private String city;
     private String county;
     private String address;
     private String coordinates;
-   // private int rating;
+    // private int rating;
     private String phoneNumber;
     private String email;
     private String description;
     //Places mainPic;
     //Places galleryPic;
-
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "date_created")
+    private Date created;
+    @OneToOne
+    @Column(name = "created_by")
+    private AppUser user;
 
     public String getCity() {
         return city;
