@@ -1,4 +1,6 @@
-package sci.travel_app.Model;
+package sci.travel_app.Model.Entities;
+
+import sci.travel_app.Model.Misc.AppUserRole;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -6,20 +8,36 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
+@Table(name = "USER")
 public class AppUser {
     @Id
+    @Column(name = "USER_ID")
     @GeneratedValue(strategy= GenerationType.AUTO)
     long id;
+    @Column(name = "USER_NAME", length=50, nullable = false)
     private String userName;
+    @Column(name = "PASSWORD", length=50, nullable = false)
     private String password;
+    @Column(name = "EMAIL", length=200, nullable = false)
     private String email;
     @Enumerated(EnumType.STRING)
+    @Column(name = "ROLE", nullable = false )
     private AppUserRole role;
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "date_created")
+    @Column(name = "DATE_CREATED")
     private Date created;
-    public List<Places> favoritePlaces = new ArrayList<>();
+    public List<Place> favoritePlaces = new ArrayList<>();
 
+
+    public AppUser() {
+
+    }
+    public AppUser(String userName, String password, String email, AppUserRole role) {
+        this.userName = userName;
+        this.password = password;
+        this.email = email;
+        this.role = role;
+    }
 
     public String getUserName() {
         return userName;
@@ -68,4 +86,6 @@ public class AppUser {
     public void setCreated(Date created) {
         this.created = created;
     }
+
+
 }

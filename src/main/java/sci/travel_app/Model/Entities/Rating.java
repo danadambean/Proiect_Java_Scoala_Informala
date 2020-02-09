@@ -1,23 +1,27 @@
-package sci.travel_app.Model;
+package sci.travel_app.Model.Entities;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@Table(name = "RATING")
 public class Rating {
     @Id
+    @Column(name = "RATING_ID")
     @GeneratedValue(strategy= GenerationType.AUTO)
     long id;
+    @Column(name = "STAR_RATING", nullable = false)
     private int starRating;
+    @Column(name = "COMMENT", nullable = false)
     private String comment;
     @OneToOne
-    @Column(name = "created_by")
+    @JoinColumn(name = "CREATED_BY")
     private AppUser user;
     @OneToOne
-    @Column(name = "rated_place")
-    private Places place;
+    @JoinColumn(name = "RATED_PLACE")
+    private Place place;
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "date_created")
+    @Column(name = "DATE_CREATED")
     private Date created;
 
     public int getStarRating() {
@@ -45,11 +49,11 @@ public class Rating {
         this.user = user;
     }
 
-    public Places getPlace() {
+    public Place getPlace() {
         return place;
     }
 
-    public void setPlace(Places place) {
+    public void setPlace(Place place) {
         this.place = place;
     }
 
@@ -60,4 +64,6 @@ public class Rating {
     public void setCreated(Date created) {
         this.created = created;
     }
+
+
 }

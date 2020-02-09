@@ -1,4 +1,4 @@
-package sci.travel_app.Model;
+package sci.travel_app.Model.Entities;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -6,21 +6,29 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
+@Table(name = "ITINERARY")
 public class Itinerary {
-
-    private String name;
+    @Id
+    @Column(name = "ITINERARY_ID")
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    long id;
+    @Column(name = "NAME", nullable = false)
+    private String name ;
+    @Column(name = "DESCRIPTION")
     private String description;
     @OneToOne
-    @Column(name = "created_by")
+    @JoinColumn(name = "CREATED_BY")
     private AppUser user;
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "date_created")
+    @Column(name = "DATE_CREATED")
     private Date created;
     @Temporal(TemporalType.DATE)
+    @Column(name = "DATE_START")
     private Date startDate;
     @Temporal(TemporalType.DATE)
+    @Column(name = "DATE_END")
     private Date endDate;
-    public  List<Places> unplannedPlaces = new ArrayList<>();
+    public  List<Place> unplannedPlaces = new ArrayList<>();
     public  List<DailySchedule> Schedule = new ArrayList<>();
     
 

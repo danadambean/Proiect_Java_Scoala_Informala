@@ -1,4 +1,4 @@
-package sci.travel_app.Model;
+package sci.travel_app.Model.Entities;
 
 import javax.persistence.*;
 import java.util.HashMap;
@@ -7,47 +7,40 @@ import java.util.Map;
 @Entity
 public class DailySchedule {
     @Id
+    @Column(name = "SCHEDULE_ID")
     @GeneratedValue(strategy = GenerationType.AUTO)
     long id;
     @OneToOne
-    @Column(name = "created_by")
+    @JoinColumn(name = "CREATED_BY")
     private AppUser user;
+    @OneToOne
+    @JoinColumn(name = "ITINERARY_ID")
+    private Itinerary itinerary;
+    @Column(name = "NAME")
     private String name;
     @ElementCollection
-    @MapKeyColumn(name = "hour")
-    @Column(name = "place")
+    @MapKeyColumn(name = "TIME_SLOT")
+    @Column(name = "PLACE")
     @CollectionTable(name = "DAY_MAPPING")
-    public Map<String, Places> day = new HashMap<>();
+    public Map<String, Place> day = new HashMap<>();
 
     public long getId() {
         return id;
     }
-
     public void setId(long id) {
         this.id = id;
     }
-
     public AppUser getUser() {
         return user;
     }
-
     public void setUser(AppUser user) {
         this.user = user;
     }
-
-    public Map<String, Places> getDay() {
-        return day;
-    }
-
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setDay(Map<String, Places> day) {
-        this.day = day;
-    }
 }

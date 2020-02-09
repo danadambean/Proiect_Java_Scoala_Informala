@@ -1,13 +1,15 @@
 package sci.travel_app.Repository;
 
 import org.springframework.data.repository.CrudRepository;
-import sci.travel_app.Model.Places;
+import org.springframework.stereotype.Repository;
+import sci.travel_app.Model.Entities.Place;
 
 import java.util.List;
 
-public interface PlacesRepository extends CrudRepository<Places, Long> {
-    List<Places> findByName(String name);
+@Repository
+public interface PlacesRepository extends CrudRepository<Place, Long> {
+    List<Place> findByName(String name);
 
-    Places findById(long id);
+    Place findById(long id);
 
 }

@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import sci.travel_app.Model.AppUser;
-import sci.travel_app.Model.AppUserRole;
+import sci.travel_app.Model.Entities.AppUser;
+import sci.travel_app.Model.Misc.AppUserRole;
 import sci.travel_app.Repository.AppUserRepository;
 
 public class AppUserController {
