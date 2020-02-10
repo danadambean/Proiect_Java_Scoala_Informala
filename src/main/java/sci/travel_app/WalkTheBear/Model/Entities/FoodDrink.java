@@ -1,6 +1,6 @@
-package sci.travel_app.Model.Entities;
+package sci.travel_app.WalkTheBear.Model.Entities;
 
-import sci.travel_app.Model.Misc.FoodDrinkSubCategory;
+import sci.travel_app.WalkTheBear.Model.Misc.FoodDrinkSubCategory;
 
 import javax.persistence.*;
 
@@ -13,17 +13,24 @@ public class FoodDrink extends Place {
     @Column(name = "WORK_HOURS")
     private String workingHours;
 
+    public FoodDrink(FoodDrinkSubCategory subcategory) {
+        Subcategory = subcategory;
+    }
+
+    public FoodDrink(String name, String city, String county, String address, String phoneNumber, String email, String description, AppUser user, FoodDrinkSubCategory subcategory) {
+        super(name, city, county, address, phoneNumber, email, description, user);
+        Subcategory = subcategory;
+    }
+
     public String getWorkingHours() {
         return workingHours;
     }
     public void setWorkingHours(String workingHours) {
         this.workingHours = workingHours;
     }
-
     public FoodDrinkSubCategory getSubcategory() {
         return Subcategory;
     }
-
     public void setSubcategory(FoodDrinkSubCategory subcategory) {
         Subcategory = subcategory;
     }

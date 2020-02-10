@@ -1,4 +1,4 @@
-package sci.travel_app.Model.Entities;
+package sci.travel_app.WalkTheBear.Model.Entities;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -24,10 +24,17 @@ public class Rating {
     @Column(name = "DATE_CREATED")
     private Date created;
 
+    public Rating(int starRating, String comment, AppUser user, Place place) {
+        this.starRating = starRating;
+        this.comment = comment;
+        this.user = user;
+        this.place = place;
+        this.created = new Date();
+    }
+
     public int getStarRating() {
         return starRating;
     }
-
     public void setStarRating(int starRating) {
         this.starRating = starRating;
     }
@@ -35,16 +42,13 @@ public class Rating {
     public String getComment() {
         return comment;
     }
-
     public void setComment(String comment) {
         this.comment = comment;
     }
 
-
     public AppUser getUser() {
         return user;
     }
-
     public void setUser(AppUser user) {
         this.user = user;
     }
@@ -52,7 +56,6 @@ public class Rating {
     public Place getPlace() {
         return place;
     }
-
     public void setPlace(Place place) {
         this.place = place;
     }
@@ -60,7 +63,6 @@ public class Rating {
     public Date getCreated() {
         return created;
     }
-
     public void setCreated(Date created) {
         this.created = created;
     }

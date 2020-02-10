@@ -1,4 +1,4 @@
-package sci.travel_app.Model.Entities;
+package sci.travel_app.WalkTheBear.Model.Entities;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -12,6 +12,8 @@ public class Place {
     @Column(name = "PLACE_ID")
     @GeneratedValue(strategy = GenerationType.AUTO)
     long id;
+    @Column(name = "NAME", nullable = false)
+    private String name;
     @Column(name = "COUNTY", nullable = false)
     private String county;
     @Column(name = "CITY", nullable = false)
@@ -35,10 +37,25 @@ public class Place {
     @JoinColumn(name = "created_by")
     private AppUser user;
 
+    public Place(){
+
+    }
+
+    public Place(String name, String city, String county, String address, String phoneNumber, String email, String description,AppUser user ) {
+        this.name = name;
+        this.city = city;
+        this.county = county;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.description = description;
+        this.created = new Date();
+        this.user = getUser();
+    }
+
     public long getId() {
         return id;
     }
-
     public void setId(long id) {
         this.id = id;
     }
@@ -46,7 +63,6 @@ public class Place {
     public String getCounty() {
         return county;
     }
-
     public void setCounty(String county) {
         this.county = county;
     }
@@ -54,7 +70,6 @@ public class Place {
     public String getCity() {
         return city;
     }
-
     public void setCity(String city) {
         this.city = city;
     }
@@ -62,7 +77,6 @@ public class Place {
     public String getAddress() {
         return address;
     }
-
     public void setAddress(String address) {
         this.address = address;
     }
@@ -70,7 +84,6 @@ public class Place {
     public String getCoordinates() {
         return coordinates;
     }
-
     public void setCoordinates(String coordinates) {
         this.coordinates = coordinates;
     }
@@ -78,7 +91,6 @@ public class Place {
     public String getPhoneNumber() {
         return phoneNumber;
     }
-
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
@@ -86,7 +98,6 @@ public class Place {
     public String getEmail() {
         return email;
     }
-
     public void setEmail(String email) {
         this.email = email;
     }
@@ -94,7 +105,6 @@ public class Place {
     public String getDescription() {
         return description;
     }
-
     public void setDescription(String description) {
         this.description = description;
     }
@@ -102,7 +112,6 @@ public class Place {
     public Date getCreated() {
         return created;
     }
-
     public void setCreated(Date created) {
         this.created = created;
     }
@@ -110,22 +119,8 @@ public class Place {
     public AppUser getUser() {
         return user;
     }
-
     public void setUser(AppUser user) {
         this.user = user;
     }
 
-    public Place(){
-
-    }
-
-    public Place(String city, String county, String address, String coordinates, String phoneNumber, String email, String description) {
-        this.city = city;
-        this.county = county;
-        this.address = address;
-        this.coordinates = coordinates;
-        this.phoneNumber = phoneNumber;
-        this.email = email;
-        this.description = description;
-    }
 }

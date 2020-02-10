@@ -1,4 +1,4 @@
-package sci.travel_app.Model.Entities;
+package sci.travel_app.WalkTheBear.Model.Entities;
 
 import javax.persistence.*;
 import java.util.HashMap;
@@ -11,7 +11,7 @@ public class DailySchedule {
     @GeneratedValue(strategy = GenerationType.AUTO)
     long id;
     @OneToOne
-    @JoinColumn(name = "CREATED_BY")
+    @JoinColumn(name = "CREATED_BY", nullable = false)
     private AppUser user;
     @OneToOne
     @JoinColumn(name = "ITINERARY_ID")
@@ -23,6 +23,15 @@ public class DailySchedule {
     @Column(name = "PLACE")
     @CollectionTable(name = "DAY_MAPPING")
     public Map<String, Place> day = new HashMap<>();
+
+    public DailySchedule(){}
+
+    public DailySchedule(AppUser user, Itinerary itinerary, String name, Map<String, Place> day) {
+        this.user = user;
+        this.itinerary = itinerary;
+        this.name = name;
+        this.day = new HashMap<>();
+    }
 
     public long getId() {
         return id;

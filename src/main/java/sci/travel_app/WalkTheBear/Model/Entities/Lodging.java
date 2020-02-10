@@ -1,6 +1,6 @@
-package sci.travel_app.Model.Entities;
+package sci.travel_app.WalkTheBear.Model.Entities;
 
-import sci.travel_app.Model.Misc.LodgingSubCategory;
+import sci.travel_app.WalkTheBear.Model.Misc.LodgingSubCategory;
 
 import javax.persistence.*;
 
@@ -13,18 +13,24 @@ public class Lodging extends Place {
     @Column(name = "WORK_HOURS")
     private String workingHours;
 
+    public Lodging(LodgingSubCategory subcategory) {
+        Subcategory = subcategory;
+    }
+
+    public Lodging(String name, String city, String county, String address, String phoneNumber, String email, String description, AppUser user, LodgingSubCategory subcategory) {
+        super(name, city, county, address, phoneNumber, email, description, user);
+        Subcategory = subcategory;
+    }
+
     public String getWorkingHours() {
         return workingHours;
     }
-
     public void setWorkingHours(String workingHours) {
         this.workingHours = workingHours;
     }
-
     public LodgingSubCategory getSubcategory() {
         return Subcategory;
     }
-
     public void setSubcategory(LodgingSubCategory subcategory) {
         Subcategory = subcategory;
     }

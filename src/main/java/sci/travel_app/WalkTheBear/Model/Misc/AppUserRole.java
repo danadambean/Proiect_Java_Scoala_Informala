@@ -1,4 +1,4 @@
-package sci.travel_app.Model.Misc;
+package sci.travel_app.WalkTheBear.Model.Misc;
 
 public enum AppUserRole {
     ADMIN(1), TRAVELER(2), HOST(3);

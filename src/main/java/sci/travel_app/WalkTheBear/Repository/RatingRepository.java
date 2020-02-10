@@ -1,8 +1,8 @@
-package sci.travel_app.Repository;
+package sci.travel_app.WalkTheBear.Repository;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-import sci.travel_app.Model.Entities.Place;
-import sci.travel_app.Model.Entities.Rating;
+import sci.travel_app.WalkTheBear.Model.Entities.Place;
+import sci.travel_app.WalkTheBear.Model.Entities.Rating;
 
 import java.util.List;
 

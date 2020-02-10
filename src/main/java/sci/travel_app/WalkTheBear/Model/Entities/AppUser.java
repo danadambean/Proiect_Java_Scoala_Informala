@@ -1,11 +1,9 @@
-package sci.travel_app.Model.Entities;
+package sci.travel_app.WalkTheBear.Model.Entities;
 
-import sci.travel_app.Model.Misc.AppUserRole;
+import sci.travel_app.WalkTheBear.Model.Misc.AppUserRole;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Table(name = "USER")
@@ -26,23 +24,22 @@ public class AppUser {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "DATE_CREATED")
     private Date created;
-    public List<Place> favoritePlaces = new ArrayList<>();
+//    public List<Place> favoritePlaces = new ArrayList<>();
 
 
     public AppUser() {
-
     }
     public AppUser(String userName, String password, String email, AppUserRole role) {
         this.userName = userName;
         this.password = password;
         this.email = email;
         this.role = role;
+        this.created = new Date();
     }
 
     public String getUserName() {
         return userName;
     }
-
     public void setUserName(String userName) {
         this.userName = userName;
     }
@@ -50,7 +47,6 @@ public class AppUser {
     public String getPassword() {
         return password;
     }
-
     public void setPassword(String password) {
         this.password = password;
     }
@@ -58,7 +54,6 @@ public class AppUser {
     public String getEmail() {
         return email;
     }
-
     public void setEmail(String email) {
         this.email = email;
     }
@@ -66,7 +61,6 @@ public class AppUser {
     public AppUserRole getRole() {
         return role;
     }
-
     public void setRole(AppUserRole role) {
         this.role = role;
     }
@@ -74,7 +68,6 @@ public class AppUser {
     public long getId() {
         return id;
     }
-
     public void setId(long id) {
         this.id = id;
     }
@@ -82,7 +75,6 @@ public class AppUser {
     public Date getCreated() {
         return created;
     }
-
     public void setCreated(Date created) {
         this.created = created;
     }

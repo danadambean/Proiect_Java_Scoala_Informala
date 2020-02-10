@@ -1,4 +1,4 @@
-package sci.travel_app.Model.Entities;
+package sci.travel_app.WalkTheBear.Model.Entities;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -28,9 +28,18 @@ public class Itinerary {
     @Temporal(TemporalType.DATE)
     @Column(name = "DATE_END")
     private Date endDate;
-    public  List<Place> unplannedPlaces = new ArrayList<>();
-    public  List<DailySchedule> Schedule = new ArrayList<>();
-    
+//    public  List<Place> unplannedPlaces = new ArrayList<>();
+//    public  List<DailySchedule> Schedule = new ArrayList<>();
+
+
+    public Itinerary(String name, String description, AppUser user, Date startDate, Date endDate) {
+        this.name = name;
+        this.description = description;
+        this.user = user;
+        this.created = new Date();
+        this.startDate = startDate;
+        this.endDate = endDate;
+    }
 
     public String getName() {
         return name;
@@ -66,9 +75,6 @@ public class Itinerary {
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
-
-
-
 
 
 }
