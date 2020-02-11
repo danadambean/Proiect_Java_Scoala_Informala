@@ -13,8 +13,7 @@ public class FoodDrink extends Place {
     @Column(name = "WORK_HOURS")
     private String workingHours;
 
-    public FoodDrink(FoodDrinkSubCategory subcategory) {
-        Subcategory = subcategory;
+    public FoodDrink() {
     }
 
     public FoodDrink(String name, String city, String county, String address, String phoneNumber, String email, String description, AppUser user, FoodDrinkSubCategory subcategory) {

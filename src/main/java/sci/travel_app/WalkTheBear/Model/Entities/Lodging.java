@@ -13,9 +13,7 @@ public class Lodging extends Place {
     @Column(name = "WORK_HOURS")
     private String workingHours;
 
-    public Lodging(LodgingSubCategory subcategory) {
-        Subcategory = subcategory;
-    }
+    public Lodging() {}
 
     public Lodging(String name, String city, String county, String address, String phoneNumber, String email, String description, AppUser user, LodgingSubCategory subcategory) {
         super(name, city, county, address, phoneNumber, email, description, user);

@@ -19,7 +19,7 @@ public class Favorite {
     private Place favPlace;
     @Column(name = "DATE_ADDED")
     private Date dateAdded;
-
+    public Favorite(){}
     public Favorite(AppUser user, Place favPlace) {
         this.user = user;
         this.favPlace = favPlace;

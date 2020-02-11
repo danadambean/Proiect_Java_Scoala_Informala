@@ -31,7 +31,7 @@ public class Itinerary {
 //    public  List<Place> unplannedPlaces = new ArrayList<>();
 //    public  List<DailySchedule> Schedule = new ArrayList<>();
 
-
+    public Itinerary(){}
     public Itinerary(String name, String description, AppUser user, Date startDate, Date endDate) {
         this.name = name;
         this.description = description;

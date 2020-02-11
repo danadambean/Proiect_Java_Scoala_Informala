@@ -24,6 +24,7 @@ public class Rating {
     @Column(name = "DATE_CREATED")
     private Date created;
 
+    public Rating(){}
     public Rating(int starRating, String comment, AppUser user, Place place) {
         this.starRating = starRating;
         this.comment = comment;
