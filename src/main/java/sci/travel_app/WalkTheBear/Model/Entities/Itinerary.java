@@ -1,16 +1,14 @@
-package sci.travel_app.WalkTheBear.Model.Entities;
+package sci.travel_app.WalkTheBear.model.Entities;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Table(name = "ITINERARY")
 public class Itinerary {
     @Id
     @Column(name = "ITINERARY_ID")
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     long id;
     @Column(name = "NAME", nullable = false)
     private String name ;

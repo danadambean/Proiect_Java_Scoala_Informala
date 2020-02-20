@@ -1,6 +1,6 @@
-package sci.travel_app.WalkTheBear.Model.Entities;
+package sci.travel_app.WalkTheBear.model.Entities;
 
-import sci.travel_app.WalkTheBear.Model.Misc.FoodDrinkSubCategory;
+import sci.travel_app.WalkTheBear.model.misc.FoodDrinkSubCategory;
 
 import javax.persistence.*;
 

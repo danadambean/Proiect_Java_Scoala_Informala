@@ -1,11 +1,15 @@
 <!DOCTYPE HTML>
-<html lang="en" xml:lang="en">
+<html lang="en" xml:lang="en"  xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="../static/CSS/site.css">
-    <script src="../static/JS/site.js" src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'>
-    </script>
+    <link rel="stylesheet" href="../static/CSS/home.css" th:href="@{/CSS/home.css}">
+
+
+    <link rel="stylesheet" href="../static/CSS/site.css" th:href="@{/CSS/site.css}"/>
+    <script src="../static/JS/site.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
     <title>My First HTML Page</title>
 </head>
 
@@ -19,20 +23,21 @@
 
     <!-- Tab content -->
     <div id="Login" class="tabcontent">
-        <form id="loginForm">
+        <form id="loginForm"  th:action="@{/site}" method="post">
 
-            <!-- <div class="imgcontainer"> -->
-            <!-- <img src="img_avatar2.png" alt="Avatar" class="avatar"> -->
-            <!-- </div> -->
+             <div class="imgcontainer">
+             <img src="img_avatar2.png" alt="Avatar" class="avatar">
+             </div>
 
             <div class="container">
-                <label for="uname"><b>Username</b></label>
-                <input type="text" placeholder="Enter Username" name="uname" required>
+                <label th:for="username"><b>Username</b></label>
+                <input type="text" placeholder="Enter Username" name="username" required>
 
-                <label for="psw"><b>Password</b></label>
-                <input type="password" placeholder="Enter Password" name="psw" required>
+                <label th:for="password"><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" name="password" required>
 
-                <button type="submit">Login</button>
+                <input type="submit" value="Sign In"/>
+
                 <label>
                     <input type="checkbox" checked="checked" name="remember"> Remember me
                 </label>
@@ -48,7 +53,7 @@
 
     <div id="Register" class="subtabcontent">
         <div id="register company" class="subtabcontent">
-            <form action="action_page.php" style="border:1px solid #ccc">
+            <form th:action="@{/site}"  method="post" style="border:1px solid #ccc">
 
                 <h1>Sign Up</h1>
                 <p>Please fill in this form to create an account.</p>
@@ -57,19 +62,19 @@
                 <input type="radio" name="accountType" value="Company"> Company<br>
                 <input type="radio" name="accountType" value="User"> User<br> -->
 
-                <label for="Username"><b>Username</b></label>
+                <label th:for="Username"><b>Username</b></label>
                 <input type="text" placeholder="Enter Username" name="username" required>
 
-                <label for="email"><b>Email</b></label>
+                <label th:for="email"><b>Email</b></label>
                 <input type="text" placeholder="Enter Email" name="email" required>
 
-                <label for="psw"><b>Password</b></label>
+                <label th:for="psw"><b>Password</b></label>
                 <input type="password" placeholder="Enter Password" name="psw" required>
 
-                <label for="psw-repeat"><b>Repeat Password</b></label>
+                <label th:for="psw-repeat"><b>Repeat Password</b></label>
                 <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
 
-                <label for="phoneNr"><b>Phone Number</b></label>
+                <label th:for="phoneNr"><b>Phone Number</b></label>
                 <input type="phoneNum" placeholder="Phone Number" name="phoneNum" required>
 
                 <label>

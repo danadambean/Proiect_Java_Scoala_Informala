@@ -1,4 +1,4 @@
-package sci.travel_app.WalkTheBear.Model.Entities;
+package sci.travel_app.WalkTheBear.model.Entities;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -8,7 +8,7 @@ import java.util.Date;
 public class Rating {
     @Id
     @Column(name = "RATING_ID")
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     long id;
     @Column(name = "STAR_RATING", nullable = false)
     private int starRating;

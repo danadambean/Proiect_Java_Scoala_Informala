@@ -1,4 +1,6 @@
-package sci.travel_app.WalkTheBear.Model.Misc;
+package sci.travel_app.WalkTheBear.model.misc;
+
+import java.util.Optional;
 
 public enum AppUserRole {
     ADMIN(1), TRAVELER(2), HOST(3);
@@ -8,8 +10,8 @@ public enum AppUserRole {
     this.order=order;
     }
 
-    @Override
-    public String toString() {
-        return this.toString();
+    public int getOrder() {
+        return order;
     }
+
 }

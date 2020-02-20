@@ -1,4 +1,4 @@
-package sci.travel_app.WalkTheBear.Model.Entities;
+package sci.travel_app.WalkTheBear.model.Entities;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -10,7 +10,7 @@ import java.util.Date;
 public class Place {
     @Id
     @Column(name = "PLACE_ID")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
     @Column(name = "NAME", nullable = false)
     private String name;

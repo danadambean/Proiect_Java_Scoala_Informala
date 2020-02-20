@@ -4,13 +4,12 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import sci.travel_app.WalkTheBear.Model.Entities.AppUser;
-import sci.travel_app.WalkTheBear.Model.Entities.Lodging;
-import sci.travel_app.WalkTheBear.Model.Entities.Place;
-import sci.travel_app.WalkTheBear.Model.Misc.AppUserRole;
-import sci.travel_app.WalkTheBear.Model.Misc.LodgingSubCategory;
-import sci.travel_app.WalkTheBear.Repository.AppUserRepository;
-import sci.travel_app.WalkTheBear.Repository.PlacesRepository;
+import sci.travel_app.WalkTheBear.model.Entities.AppUser;
+import sci.travel_app.WalkTheBear.model.Entities.Lodging;
+import sci.travel_app.WalkTheBear.model.misc.AppUserRole;
+import sci.travel_app.WalkTheBear.model.misc.LodgingSubCategory;
+import sci.travel_app.WalkTheBear.repository.AppUserRepository;
+import sci.travel_app.WalkTheBear.repository.PlacesRepository;
 
 @SpringBootApplication
 public class WalkTheBearApplication {

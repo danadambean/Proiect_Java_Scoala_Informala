@@ -1,8 +1,10 @@
-package sci.travel_app.WalkTheBear.Model.Entities;
+package sci.travel_app.WalkTheBear.model.Entities;
 
-import sci.travel_app.WalkTheBear.Model.Misc.AppUserRole;
+import org.springframework.security.core.GrantedAuthority;
+import sci.travel_app.WalkTheBear.model.misc.AppUserRole;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.Date;
 
 @Entity
@@ -10,7 +12,7 @@ import java.util.Date;
 public class AppUser {
     @Id
     @Column(name = "USER_ID")
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     long id;
     @Column(name = "USER_NAME", length=50, nullable = false)
     private String userName;
@@ -78,6 +80,5 @@ public class AppUser {
     public void setCreated(Date created) {
         this.created = created;
     }
-
 
 }
