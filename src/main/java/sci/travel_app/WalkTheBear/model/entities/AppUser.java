@@ -1,10 +1,8 @@
-package sci.travel_app.WalkTheBear.model.Entities;
+package sci.travel_app.WalkTheBear.model.entities;
 
-import org.springframework.security.core.GrantedAuthority;
 import sci.travel_app.WalkTheBear.model.misc.AppUserRole;
 
 import javax.persistence.*;
-import java.util.Collection;
 import java.util.Date;
 
 @Entity

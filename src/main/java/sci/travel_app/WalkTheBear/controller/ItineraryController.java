@@ -1,4 +1,4 @@
 package sci.travel_app.WalkTheBear.controller;
 
-public class Itinerary {
+public class ItineraryController {
 }

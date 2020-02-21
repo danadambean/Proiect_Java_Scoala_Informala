@@ -1,4 +1,4 @@
-package sci.travel_app.WalkTheBear.model.Entities;
+package sci.travel_app.WalkTheBear.model.entities;
 
 import javax.persistence.*;
 import java.util.Date;

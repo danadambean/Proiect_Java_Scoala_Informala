@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-import sci.travel_app.WalkTheBear.model.Entities.AppUser;
+import sci.travel_app.WalkTheBear.model.entities.AppUser;
 import sci.travel_app.WalkTheBear.model.misc.AppUserRole;
 import sci.travel_app.WalkTheBear.repository.AppUserRepository;
 
