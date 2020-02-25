@@ -27,17 +27,20 @@
                 <div class=form_element>
                     <label>Category</label>
                     <select id=category>
-                        <option value="attractions">Attractions</option>
-                        <option value="fooddrink">Food and Drink</option>
-                        <option value="lodging">Lodging</option>
+                            <option th:each="categoryOpt : ${T(sci.travel_app.WalkTheBear.model.misc.Category).values()}"
+                                    th:value="${categoryOpt}" th:text="${categoryOpt}"></option>
+                        </select>
+<!--                        <option value="attractions">Attractions</option>-->
+<!--                        <option value="fooddrink">Food and Drink</option>-->
+<!--                        <option value="lodging">Lodging</option>-->
                     </select></div>
                 <div class=form_element> 
                     <label>Sub - Category</label>
                     <select id=subcategory>
 <!--
-                        <option th:each="subcategoryOpt : ${T(sci.travel_app.WalkTheBear.model.misc.LodgingSubCategory).values()}" th:value="${subcategoryOpt}" th:text="${subcategoryOpt}"></option>
+                        <option th:each="subcategoryOpt : ${T(sci.travel_app.WalkTheBear.model.misc.Category).values()}" th:value="${subcategoryOpt}" th:text="${subcategoryOpt}"></option>
                         <option th:each="subcategoryOpt : ${T(sci.travel_app.WalkTheBear.model.misc.FoodDrinkSubCategory).values()}" th:value="${subcategoryOpt}" th:text="${subcategoryOpt}"></option>
-                        <option th:each="subcategoryOpt : ${T(sci.travel_app.WalkTheBear.model.misc.AttractionsSubCategory).values()}" th:value="${subcategoryOpt}" th:text="${subcategoryOpt}"></option>
+                        <option th:each="subcategoryOpt : ${T(sci.travel_app.WalkTheBear.model.misc.SubCategory).values()}" th:value="${subcategoryOpt}" th:text="${subcategoryOpt}"></option>
 -->
                     </select></div>
                 <div class=form_element>
@@ -51,6 +54,9 @@
                     <input type="text" maxlength="250"></div>
                 <div class=form_element>
                     <label>GPS coordinates</label>
+                    <input type="text" maxlength="250" ></div>
+                <div class=form_element>
+                    <label>Working hours</label>
                     <input type="text" maxlength="250" ></div>
                 <div class=form_element>
                     <label>Email</label>
