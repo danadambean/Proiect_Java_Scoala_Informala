@@ -6,14 +6,35 @@
     <title>
         <!-- Insert your title here -->
     </title>
-    <link rel="stylesheet" href="../static/CSS/placedetail.css">
+    <link rel="stylesheet" href="../static/css/placedetail.css" th:href="@{/css/placedetail.css}">
     <script></script>
 
 </head>
 
 <body>
+
     <!-- header start -->
-    <header></header>
+    <header>
+        <div class="top_nav">
+            <div class="searchbar"><input type="text" id="header_searchbar" placeholder="Search"></div>
+            <div class="top_nav_links">
+                <a href="">Login</a>
+                <a href="">Register</a>
+            </div>
+        </div>
+        <div id="main_title">
+            <h1>Page title</h1>
+        </div>
+        <div id=img_and_title_container>
+
+            <div class="hero_image_container"> <img id="hero" src="../static/images/placeholder.jpg" th:src="@{/images/placeholder.jpg}"> </div>
+        </div>
+        <div class=main_navigation>
+            <div class=main_nav_links id=nav_link1><a href="">Category 1</a> </div>
+            <div class=main_nav_links id=nav_link2><a href="">Category 2</a> </div>
+            <div class=main_nav_links id=nav_link3><a href="">Category 3</a> </div>
+        </div>
+    </header>
     <!-- header end -->
 
     <!-- main content start -->
@@ -22,11 +43,11 @@
         <div class=container id=main_content_column>
             <div class=container id=basic_info>
                 <div id=name>
-                    <h1>Place name</h1>
+                    <h2>Place name</h2>
                 </div>
                 <div id=thumbnail><img id=thumbnail_img src="../static/images/placeholder.jpg"></div>
                 <div id=address>
-                    <h2>Address: jdlfkjsdlkfdshfhsdfhsifsdf</h2>
+                    <h3>Address: jdlfkjsdlkfdshfhsdfhsifsdf</h3>
                 </div>
             </div>
             <div class=box id=gallery><img class=gallery src="../static/images/placeholder.jpg"><img class=gallery src="../static/images/placeholder.jpg"><img class=gallery src="../static/images/placeholder.jpg"></div>
@@ -53,23 +74,29 @@
     </div>
     <div class=container id=rating_container>
         <div class=box id=rating_box>
-            <h2>Add a review</h2>
+            <h3>Add a review</h3>
             <div id=place_rating>
                 <div id=star_rating_aggregated>
-                    <p>star placeholder</p>
+                    <p>****star placeholder</p>
                     <p>Rating</p>
                 </div>
             </div>
             <div id=your_rating>
                 <p>Your rating</p>
                 <div id=star_rating_vote>
-                    <p>star placeholder</p>
+                    <p>****star placeholder</p>
+                    <textarea rows="5" cols="50" maxlength="250"></textarea>
+                    <div id=buttons>
+                        <button type="submit">Submit</button>
+                        <button type="reset">Cancel</button>
+                    </div>
+
                 </div>
             </div>
 
         </div>
         <div class=box id=user_rating>
-            <h2>User reviews</h2>
+            <h3>User reviews</h3>
             <div class=rating_list>
                 <div class=rating_list_item>
                     <p>star placeholder</p>
@@ -99,4 +126,6 @@
     </footer>
     <!-- footer end -->
 
-</body></html>
+</body>
+
+</html>

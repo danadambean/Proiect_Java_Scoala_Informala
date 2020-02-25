@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title>
         <!-- Insert your title here -->
     </title>
-    <link rel="stylesheet" href="../static/CSS/home.css" th:href="@{/CSS/home.css}">
+    <link rel="stylesheet" href="../static/css/home.css" th:href="@{/css/home.css}">
 
 
     <script></script>
@@ -19,17 +19,17 @@
         <div class="top_nav">
             <div class="searchbar"><input type="text" id="header_searchbar" placeholder="Search"></div>
             <div class="top_nav_links">
-                <a href="">Login</a>
-                <a href="">Register</a>
+                 <a th:href="@{/login}">Login</a>
+                <a th:href="@{/register}">Register</a>
             </div>
         </div>
-         <div id="main_title">
+        <div id="main_title">
             <h1>Page title</h1>
         </div>
         <div id=img_and_title_container>
-       
-        <div class="hero_image_container"> <img id="hero1" src="../static/images/placeholder.jpg"><img id="hero2" src="../static/images/placeholder.jpg"><img id="hero3" src="../static/images/placeholder.jpg"><img id="hero4" src="../static/images/placeholder.jpg"></div>
-            </div>
+
+            <div class="hero_image_container"> <img id="hero1" src="../static/images/placeholder.jpg" th:src="@{/images/placeholder.jpg}"> <img id="hero2" src="../static/images/placeholder.jpg" th:src="@{/images/placeholder.jpg}"><img id="hero3" src="../static/images/placeholder.jpg" th:src="@{/images/placeholder.jpg}"><img id="hero4" src="../static/images/placeholder.jpg" th:src="@{/images/placeholder.jpg}"></div>
+        </div>
         <div class=main_navigation>
             <div class=main_nav_links id=nav_link1><a href="">Category 1</a> </div>
             <div class=main_nav_links id=nav_link2><a href="">Category 2</a> </div>
@@ -55,7 +55,7 @@
                         </div>
                         <div class="list_item"><img class="list_thumbnail" src="../static/images/placeholder.jpg">
                             <p>Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus.</p>
-                       </div>
+                        </div>
                         <div class="list_item"><img class="list_thumbnail" src="../static/images/placeholder.jpg">
                             <p>Phasellus viverra nulla ut metus varius laoreet. </p>
                         </div>
@@ -74,7 +74,7 @@
                         </div>
                         <div class="list_item"><img class="list_thumbnail" src="../static/images/placeholder.jpg">
                             <p>Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus.</p>
-                       </div>
+                        </div>
                         <div class="list_item"><img class="list_thumbnail" src="../static/images/placeholder.jpg">
                             <p>Phasellus viverra nulla ut metus varius laoreet. </p>
                         </div>
@@ -93,7 +93,7 @@
                         </div>
                         <div class="list_item"><img class="list_thumbnail" src="../static/images/placeholder.jpg">
                             <p>Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus.</p>
-                       </div>
+                        </div>
                         <div class="list_item"><img class="list_thumbnail" src="../static/images/placeholder.jpg">
                             <p>Phasellus viverra nulla ut metus varius laoreet. </p>
                         </div>
@@ -115,4 +115,6 @@
     </footer>
     <!-- footer end -->
 
-</body></html>
+</body>
+
+</html>

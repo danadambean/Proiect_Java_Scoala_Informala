@@ -1,5 +1,89 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head></head>
-<body></body>
+
+<head>
+    <meta charset="utf-8" />
+    <title>
+        <!-- Insert your title here -->
+    </title>
+    <link type="text/css" href="../static/css/addplace.css" th:href="@{/css/addplace.css}" rel="stylesheet">
+
+</head>
+
+<body>
+    <!-- header start -->
+
+    <!-- header end -->
+
+
+    <!-- main content start -->
+
+    <div class=container id=main_container>
+        <div id=name>
+            <h2>Add place</h2>
+        </div>
+        <div class=container id=form_container>
+            <form id=addplace >
+                <div class=form_element>
+                    <label>Category</label>
+                    <select id=category>
+                        <option value="attractions">Attractions</option>
+                        <option value="fooddrink">Food and Drink</option>
+                        <option value="lodging">Lodging</option>
+                    </select></div>
+                <div class=form_element> 
+                    <label>Sub - Category</label>
+                    <select id=subcategory>
+<!--
+                        <option th:each="subcategoryOpt : ${T(sci.travel_app.WalkTheBear.model.misc.LodgingSubCategory).values()}" th:value="${subcategoryOpt}" th:text="${subcategoryOpt}"></option>
+                        <option th:each="subcategoryOpt : ${T(sci.travel_app.WalkTheBear.model.misc.FoodDrinkSubCategory).values()}" th:value="${subcategoryOpt}" th:text="${subcategoryOpt}"></option>
+                        <option th:each="subcategoryOpt : ${T(sci.travel_app.WalkTheBear.model.misc.AttractionsSubCategory).values()}" th:value="${subcategoryOpt}" th:text="${subcategoryOpt}"></option>
+-->
+                    </select></div>
+                <div class=form_element>
+                    <label>Name</label>
+                    <input type="text" maxlength="50"></div>
+                <div class=form_element>
+                    <label>County</label>
+                    <input type="text" maxlength="50" ></div>
+                <div class=form_element>
+                    <label>City</label>
+                    <input type="text" maxlength="250"></div>
+                <div class=form_element>
+                    <label>GPS coordinates</label>
+                    <input type="text" maxlength="250" ></div>
+                <div class=form_element>
+                    <label>Email</label>
+                    <input type="text" maxlength="250" ></div>
+                <div class=form_element>
+                    <label>Telephone</label>
+                    <input type="text" maxlength="250"></div>
+                <div class=form_element>
+                    <label>Description</label>
+                    <textarea rows="5" cols="50" maxlength="250"></textarea></div>
+                <div class=form_element>
+                    <label>Upload main picture</label>
+                    <input type="file">
+                </div>
+                <div class=form_element>
+                    <label>Upload gallery picture</label>
+                    <input type="file">
+                </div>
+                <div id=buttons>
+                    <button type="submit">Submit</button>
+                    <button type="button">Cancel</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+    <!-- main content end -->
+
+
+    <!-- footer start -->
+
+    <!-- footer end -->
+</body>
+
 </html>
