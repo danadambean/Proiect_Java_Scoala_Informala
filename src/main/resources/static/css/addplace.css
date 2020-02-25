@@ -1,0 +1,56 @@
+body {
+    font-family: Helvetica, Arial, sans-serif;
+    background: linear-gradient(#C9F0D9, white);
+}
+
+/* _______________________________ header start _________________________________ */
+
+/* _______________________________ header end _________________________________ */
+
+/* _______________________________ main start _________________________________ */
+
+.container {}
+
+#main_container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    padding: 30px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+#name {}
+
+h2 {
+    font-size: 40px;
+}
+
+#form_container {
+    border: 1px solid gray;
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+}
+
+form {}
+
+.form_element {
+    margin-bottom: 20px;
+}
+
+.form_element label {
+    margin-right: 30px;
+}
+
+/* _______________________________ main end _________________________________ */
+
+/* _______________________________ footer start _________________________________ */
+footer {
+    background-color: cadetblue;
+    height: 100px;
+}
+
+/* _______________________________ footer end _________________________________ */
