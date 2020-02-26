@@ -26,23 +26,45 @@
             <form id=addplace >
                 <div class=form_element>
                     <label>Category</label>
-                    <select id=category>
+                    <select id=category name = category>
+<!--                        <select id=category th:field="*{category}">-->
                             <option th:each="categoryOpt : ${T(sci.travel_app.WalkTheBear.model.misc.Category).values()}"
-                                    th:value="${categoryOpt}" th:text="${categoryOpt}"></option>
+                                    th:value="${categoryOpt}" th:text="${categoryOpt.displayValue}"></option>
                         </select>
-<!--                        <option value="attractions">Attractions</option>-->
-<!--                        <option value="fooddrink">Food and Drink</option>-->
-<!--                        <option value="lodging">Lodging</option>-->
-                    </select></div>
-                <div class=form_element> 
+                </div>
+<!--                ignore this test code-->
+<!--                <div th:switch="${category}">-->
+<!--    <span th:case="${T(sci.travel_app.WalkTheBear.model.misc.Category).FOODDRINK}"-->
+<!--      style="color: red;">Alert</span>-->
+<!--    <span th:case="${T(sci.travel_app.WalkTheBear.model.misc.Category).ATTRACTIONS}"-->
+<!--      style="color: orange;">Warning</span>-->
+<!--    <span th:case="${T(sci.travel_app.WalkTheBear.model.misc.Category).LODGING}"-->
+<!--      style="color: yellow;">Caution</span>-->
+<!--</div>-->
+                
+                <div class=form_element th:switch="${category}">
                     <label>Sub - Category</label>
-                    <select id=subcategory>
-<!--
-                        <option th:each="subcategoryOpt : ${T(sci.travel_app.WalkTheBear.model.misc.Category).values()}" th:value="${subcategoryOpt}" th:text="${subcategoryOpt}"></option>
-                        <option th:each="subcategoryOpt : ${T(sci.travel_app.WalkTheBear.model.misc.FoodDrinkSubCategory).values()}" th:value="${subcategoryOpt}" th:text="${subcategoryOpt}"></option>
-                        <option th:each="subcategoryOpt : ${T(sci.travel_app.WalkTheBear.model.misc.SubCategory).values()}" th:value="${subcategoryOpt}" th:text="${subcategoryOpt}"></option>
--->
-                    </select></div>
+
+                 <select class=subcategory th:case="${T(sci.travel_app.WalkTheBear.model.misc.Category).FOODDRINK}" >
+                    <option th:value="${T(sci.travel_app.WalkTheBear.model.misc.SubCategory).BAR}"
+        th:text="${T(sci.travel_app.WalkTheBear.model.misc.SubCategory).BAR}"></option>
+                        <option th:value="${T(sci.travel_app.WalkTheBear.model.misc.SubCategory).RESTAURANT}"
+        th:text="${T(sci.travel_app.WalkTheBear.model.misc.SubCategory).RESTAURANT}"></option>
+                        </select> 
+                 <select class=subcategory th:case="'ATTRACTIONS'">
+                    <option th:value="${T(sci.travel_app.WalkTheBear.model.misc.SubCategory).PARK}" 
+        th:text="${T(sci.travel_app.WalkTheBear.model.misc.SubCategory).PARK}"></option>
+                        <option th:value="${T(sci.travel_app.WalkTheBear.model.misc.SubCategory).MUSEUM}" 
+        th:text="${T(sci.travel_app.WalkTheBear.model.misc.SubCategory).MUSEUM}"></option>
+                        </select> 
+            
+                 <select class=subcategory th:case="'Lodging'">
+                    <option th:value="${T(sci.travel_app.WalkTheBear.model.misc.SubCategory).HOTEL}" 
+        th:text="${T(sci.travel_app.WalkTheBear.model.misc.SubCategory).HOTEL}"></option>
+                        <option th:value="${T(sci.travel_app.WalkTheBear.model.misc.SubCategory).MOTEL}" 
+        th:text="${T(sci.travel_app.WalkTheBear.model.misc.SubCategory).MOTEL}"></option>
+                        </select> </div>
+                
                 <div class=form_element>
                     <label>Name</label>
                     <input type="text" maxlength="50"></div>

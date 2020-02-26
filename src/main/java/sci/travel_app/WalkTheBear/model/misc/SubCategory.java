@@ -1,12 +1,23 @@
 package sci.travel_app.WalkTheBear.model.misc;
 
 public enum SubCategory {
-    BAR, RESTAURANT, CAFE, FAST_FOOD, PASTRY_DESSERTS, PARK, MUSEUM, ZOO, LANDMARKS, HOTEL, MOTEL, HOSTEL, GUEST_HOUSE, CAMPING, CABIN
+    BAR ("Bar"), RESTAURANT("Restaurant"), CAFE ("Cafe"), FAST_FOOD ("Fast Food"), PASTRY_DESSERTS("Pastry & Desserts"), PARK ("Park"), MUSEUM("Museum"), ZOO ("Zoo"), LANDMARKS("Landmarks"), HOTEL("Hotel"), MOTEL("Motel"), HOSTEL("Hostel"), GUEST_HOUSE ("Guesthouse"), CAMPING ("Camping"), CABIN ("Cabin");
+
+
+    private final String displayValue;
+    SubCategory(String displayValue) {
+        this.displayValue = displayValue;
+    }
+    public String getDisplayValue() {
+        return displayValue;
+    }
 }
+
+
 //public enum FoodDrinkSubCategory {
 //            BAR, RESTAURANT, CAFE, FAST_FOOD, PASTRY_DESSERTS
 //}
-//public enum SubCategory {
+//public enum Attractions {
 //    PARK, MUSEUM, ZOO, LANDMARKS
 //}
 //public enum Category {

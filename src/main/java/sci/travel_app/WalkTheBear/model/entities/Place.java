@@ -6,10 +6,8 @@ import sci.travel_app.WalkTheBear.model.misc.SubCategory;
 import javax.persistence.*;
 import java.util.Date;
 
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Entity
 @Table(name = "PLACE")
-@DiscriminatorColumn(name = "CATEGORY")
 public class Place {
     @Id
     @Column(name = "PLACE_ID")
