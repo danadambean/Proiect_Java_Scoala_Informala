@@ -6,6 +6,7 @@ package sci.travel_app.WalkTheBear.repository;
         import sci.travel_app.WalkTheBear.model.entities.Itinerary;
 
         import java.util.List;
+        import java.util.Optional;
 
 @Repository
 public interface ItineraryRepository extends CrudRepository<Itinerary, Long> {
@@ -13,4 +14,5 @@ public interface ItineraryRepository extends CrudRepository<Itinerary, Long> {
 
     Itinerary findById(long id);
 
+    void delete(Itinerary itinerary);
 }
