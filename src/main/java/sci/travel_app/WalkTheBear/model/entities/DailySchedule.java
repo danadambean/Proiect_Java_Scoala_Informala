@@ -26,12 +26,15 @@ public class DailySchedule {
 
     public DailySchedule(){}
 
-    public DailySchedule(AppUser user, Itinerary itinerary, String name, Map<String, Place> day) {
+    public DailySchedule(String name) {
+    }
+    public DailySchedule(AppUser user, Itinerary itinerary, String name) {
         this.user = user;
         this.itinerary = itinerary;
         this.name = name;
         this.day = new HashMap<>();
     }
+
 
     public long getId() {
         return id;
