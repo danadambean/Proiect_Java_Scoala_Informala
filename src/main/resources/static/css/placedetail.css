@@ -1,4 +1,7 @@
-body {}
+body {
+    font-family: Helvetica, Arial, sans-serif;
+    background: linear-gradient(#C9F0D9, white);
+}
 
 /* _______________________________ header start _________________________________ */
 header {
@@ -123,18 +126,19 @@ h3 {
 #address {}
 
 .box {
-    padding: 20 px;
+    padding: 20px;
     border: 1px solid gray;
+    background-color: white;
 }
 
 #gallery {
-    max-width: 30vw;
+    max-width: 60vw;
     display: flex;
     flex-direction: row;
 }
 
 #gallery img {
-    width: 200px;
+    width: 20vw;
 
 }
 

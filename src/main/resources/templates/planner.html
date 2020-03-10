@@ -1,24 +1,123 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8"/>
+    <meta charset="utf-8" />
     <title>
         <!-- Insert your title here -->
     </title>
-    </head>
+    <link type="text/css" href="../static/css/planner.css" th:href="@{/css/planner.css}" rel="stylesheet">
+    <script>
+function allowDrop(ev) {
+  ev.preventDefault();
+}
+
+function drag(ev) {
+  ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) {
+  ev.preventDefault();
+  var data = ev.dataTransfer.getData("text");
+  ev.target.appendChild(document.getElementById(data));
+}
+</script>
+</head>
+
 <body>
-     <!-- header start -->
-    
+    <!-- header start -->
+
     <!-- header end -->
-    
-    
+
+
     <!-- main content start -->
-    
+    <div class=container id=main_container>
+        <div id=name>
+            <h2>Trip planner</h2>
+        </div>
+        <div id=link_container> <a href="tripmanager.html" th:href="@{/tripmanager}">Back to trip manager</a> </div>
+        <div class=container id=content>
+        <div class=box id=form>
+            <form>
+                <div id=info>
+                    <div class=form_element>
+                        <label th:for="name">Name</label>
+                        <input type="text" maxlength="50" required></div>
+                    <div class=form_element>
+                        <label th:for="description">Description</label>
+                        <textarea rows="5" cols="50" maxlength="250"></textarea>
+                    </div>
+                </div>
+
+                <div id=date_days>
+                    <div class=form_element>
+                        <label for="startdate">Start date:</label>
+                        <input type="date" id="startdate" name="birthday"></div>
+                    <div class=form_element>
+                        <div id=add_button> <img src="../static/images/button_plus.png" th:src="@{/images/button_plus.png}" alt="add button" height="60px" width="60px" href=""></div>
+                        <p>Days</p>
+                        <div id=remove_button> <img src="../static/images/button_minus.png" th:src="@{/images/button_minus.png}" alt="remove button" height="60px" width="60x" href=""></div>
+                    </div>
+                </div>
+                <div id=schedule_container>
+                    <div class=schedule>
+                        <h3>Day 1</h3>
+                        <div class=hour_container>
+                            <div class=hours>
+                                <p>08:00</p>
+                                <div class="drop" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                            </div>
+                            <div class=hours>
+                                <p>08:00</p>
+                                <div class="drop" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                            </div>
+                            <div class=hours>
+                                <p>08:00</p>
+                                <div class="drop" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                            </div>
+                            <div class=hours>
+                                <p>08:00</p>
+                                <div class="drop" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                            </div>
+                            <div class=hours>
+                                <p>08:00</p>
+                                <div class="drop" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                            </div>
+                            <div class=hours>
+                                <p>08:00</p>
+                                <div class="drop" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                            </div>
+                            <div class=hours>
+                                <p>08:00</p>
+                                <div class="drop" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id=buttons_container></div>
+            </form>
+
+        </div>
+
+        
+
+
+        <div class=box id=list>
+            <div id=places_list></div>
+            <div class="places_list_item" draggable="true" ondragstart="drag(event)"><p>placeholder</p></div>
+             <div class="places_list_item"></div>
+             <div class="places_list_item"></div>
+            <div id=controls_container>
+                <div id=x_button> <img src="../static/images/xbutton.png" th:src="@{/images/xbutton.png}" alt="remove from list button" height="40px" width="40px" href=""></div>
+            </div>
+
+        </div>
+    </div>
+    </div>
+
     <!-- main content end -->
 
 
     <!-- footer start -->
-    
+
     <!-- footer end -->
-    </body>
-</html>
+</body></html>
