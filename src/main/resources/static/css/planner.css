@@ -81,7 +81,13 @@ h3 {
 }
 
 .hours {
-    
+    display: flex;
+    flex-direction: row;
+}
+.drop{
+    background-color: darkcyan;
+    height: 60px;
+    width: 200px;
 }
 
 #buttons_container {

@@ -7,12 +7,13 @@
         <!-- Insert your title here -->
     </title>
     <link type="text/css" href="../static/css/manager.css" th:href="@{/css/manager.css}" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/fragments.css" th:href="@{/css/fragments.css}">
     <script></script>
 </head>
 
 <body>
     <!-- header start -->
-
+<div th:insert="fragments :: header"></div>
     <!-- header end -->
 
 
@@ -93,7 +94,7 @@
 
 
     <!-- footer start -->
-
+ <div th:insert="fragments :: footer"></div>
     <!-- footer end -->
 </body>
 

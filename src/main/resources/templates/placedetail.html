@@ -7,34 +7,17 @@
         <!-- Insert your title here -->
     </title>
     <link rel="stylesheet" href="../static/css/placedetail.css" th:href="@{/css/placedetail.css}">
+       <link rel="stylesheet" href="../static/css/fragments.css" th:href="@{/css/fragments.css}">
     <script></script>
 
 </head>
 
-<body>
+<body th:object="${place}">
 
     <!-- header start -->
-    <header>
-        <div class="top_nav">
-            <div class="searchbar"><input type="text" id="header_searchbar" placeholder="Search"></div>
-            <div class="top_nav_links">
-                <a href="">Login</a>
-                <a href="">Register</a>
-            </div>
-        </div>
-        <div id="main_title">
-            <h1>Page title</h1>
-        </div>
-        <div id=img_and_title_container>
 
-            <div class="hero_image_container"> <img id="hero" src="../static/images/placeholder.jpg" th:src="@{/images/placeholder.jpg}"> </div>
-        </div>
-        <div class=main_navigation>
-            <div class=main_nav_links id=nav_link1><a href="">Category 1</a> </div>
-            <div class=main_nav_links id=nav_link2><a href="">Category 2</a> </div>
-            <div class=main_nav_links id=nav_link3><a href="">Category 3</a> </div>
-        </div>
-    </header>
+      <div th:insert="fragments :: header"></div>
+    
     <!-- header end -->
 
     <!-- main content start -->
@@ -43,17 +26,18 @@
         <div class=container id=main_content_column>
             <div class=container id=basic_info>
                 <div id=name>
-                    <h2>Place name</h2>
+                    <h2 th:text="${place.name}">Place name</h2>
                 </div>
-                <div id=thumbnail><img id=thumbnail_img src="../static/images/placeholder.jpg"></div>
+                <div id=thumbnail><img id=thumbnail_img src="../static/images/placeholder.jpg" th:src="@{/images/placeholder.jpg}"></div>
                 <div id=address>
-                    <h3>Address: jdlfkjsdlkfdshfhsdfhsifsdf</h3>
+                    <h3 th:text="${place.address}">Address: jdlfkjsdlkfdshfhsdfhsifsdf</h3>
+                    <h4> <span th:text="${place.city}">oras</span> <span th:text="${place.county}">judet</span> <span th:text="${place.coordinates}">coordonate</span> </h4>
                 </div>
             </div>
-            <div class=box id=gallery><img class=gallery src="../static/images/placeholder.jpg"><img class=gallery src="../static/images/placeholder.jpg"><img class=gallery src="../static/images/placeholder.jpg"></div>
+            <div class=box id=gallery><img class=gallery src="../static/images/placeholder.jpg" th:src="@{/images/placeholder.jpg}"><img class=gallery src="../static/images/placeholder.jpg" th:src="@{/images/placeholder.jpg}"><img class=gallery src="../static/images/placeholder.jpg" th:src="@{/images/placeholder.jpg}"></div>
             <div class=box id=description>
                 <h3>Description</h3>
-                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium.</p>
+                <p th:text="${place.description}">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium.</p>
 
                 <p>Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,</p>
             </div>
@@ -62,9 +46,9 @@
         <div class=container id=additional_content_column>
             <div class=box id=contact>
                 <h3>Contact</h3>
-                <p>Lorem ipsum</p>
-                <p>Lorem ipsum</p>
-                <p>Lorem ipsum</p>
+                <p th:text="${place.description}">Number</p>
+                <p th:text="${place.email}">email</p>
+                <p th:text="${place.workingHours}">working hours</p>
             </div>
             <div class=box id=call_to_action>
                 <a href="">Add to trip</a>
@@ -121,11 +105,9 @@
 
 
     <!-- footer start -->
-    <footer>
-        <div class="footer_nav_links"> </div>
-    </footer>
+
+    <div th:insert="fragments :: footer"></div>
+    
     <!-- footer end -->
 
-</body>
-
-</html>
+</body></html>

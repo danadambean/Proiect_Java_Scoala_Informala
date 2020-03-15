@@ -48,10 +48,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/css/*","/js/*","/images/*").permitAll()
                 .antMatchers("/searchresults").permitAll()
                 .antMatchers("/register").permitAll()
-                //remove the following 3 after testing:
+                //remove the following 4 after testing:
                 .antMatchers("/tripmanager").permitAll()
                 .antMatchers("/placemanager").permitAll()
                 .antMatchers("/addplace").permitAll()
+                .antMatchers("/placedetail/*").permitAll()
+                .antMatchers("/placedetail*").permitAll()
+                .antMatchers("/placedetail").permitAll()
+                .antMatchers("/places").permitAll()
+                .antMatchers("/places/*").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
