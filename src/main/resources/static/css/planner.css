@@ -9,23 +9,105 @@ body {
 
 /* _______________________________ main start _________________________________ */
 
-.container {
-    
-}
-
 #main_container {
-   display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
       padding: 30px;
      margin-top: 30px;
      margin-bottom: 30px;
     margin-left: 50px;
     margin-right: 50px;
 }
+#content{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
 #name {}
 h2 {
     font-size: 40px;
+}
+.box {
+    padding: 20px;
+    border: 1px solid gray;
+    background-color: white;
+}
+#link_container {
+    
+}
+
+#form {
+   flex: 3; 
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+#info {
+    display: flex;
+    flex-direction: row;
+}
+
+.form_element {
+    
+}
+#date_days{
+     display: flex;
+    flex-direction: column;
+}
+
+label {
+    
+}
+
+p {
+    
+}
+
+#schedule_container {
+    
+}
+
+.schedule {
+    
+}
+
+h3 {
+    
+}
+
+.hour_container {
+    
+}
+
+.hours {
+    display: flex;
+    flex-direction: row;
+}
+.drop{
+    background-color: darkcyan;
+    height: 60px;
+    width: 200px;
+}
+
+#buttons_container {
+    
+}
+
+#list {
+   flex: 1;  
+}
+
+#places_list {
+    
+}
+
+.places_list_item {
+    
+}
+
+#controls_container {
+    
 }
 
 /* _______________________________ main end _________________________________ */

@@ -77,6 +77,18 @@ public class Place {
         this.subcategory = subcategory;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public SubCategory getSubcategory() {
+        return subcategory;
+    }
+
     public long getId() {
         return id;
     }

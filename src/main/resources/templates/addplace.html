@@ -7,12 +7,12 @@
         <!-- Insert your title here -->
     </title>
     <link type="text/css" href="../static/css/addplace.css" th:href="@{/css/addplace.css}" rel="stylesheet">
-
+<link rel="stylesheet" href="../static/css/fragments.css" th:href="@{/css/fragments.css}">
 </head>
 
 <body>
     <!-- header start -->
-
+ <div th:insert="fragments :: header"></div>
     <!-- header end -->
 
 
@@ -110,7 +110,7 @@
 
 
     <!-- footer start -->
-
+   <div th:insert="fragments :: footer"></div>
     <!-- footer end -->
 </body>
 
