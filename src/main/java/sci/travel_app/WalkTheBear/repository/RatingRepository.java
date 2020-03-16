@@ -1,6 +1,7 @@
 package sci.travel_app.WalkTheBear.repository;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
+import sci.travel_app.WalkTheBear.model.entities.AppUser;
 import sci.travel_app.WalkTheBear.model.entities.Place;
 import sci.travel_app.WalkTheBear.model.entities.Rating;
 
@@ -11,5 +12,5 @@ public interface RatingRepository extends CrudRepository<Rating, Long> {
     List<Rating> findByPlace(Place ratedPlace);
 
     Rating findById(long id);
-
+//    List<Rating> findbyUser(AppUser user);
 }
