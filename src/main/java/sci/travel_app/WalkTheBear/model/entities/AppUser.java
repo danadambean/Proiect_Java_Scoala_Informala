@@ -16,6 +16,8 @@ public class AppUser {
     private String userName;
     @Column(name = "PASSWORD", length=50, nullable = false)
     private String password;
+    @Transient
+    private String passwordConfirm;
     @Column(name = "EMAIL", length=200, nullable = false)
     private String email;
     @Enumerated(EnumType.STRING)
@@ -50,6 +52,8 @@ public class AppUser {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public String getPasswordConfirm() {return passwordConfirm;}
 
     public String getEmail() {
         return email;
