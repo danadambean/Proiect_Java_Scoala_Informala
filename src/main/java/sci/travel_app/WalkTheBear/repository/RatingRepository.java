@@ -9,8 +9,8 @@ import java.util.List;
 
 @Repository
 public interface RatingRepository extends CrudRepository<Rating, Long> {
-    List<Rating> findByPlace(Place ratedPlace);
 
+    List<Rating> findByPlace(Place ratedPlace);
     Rating findById(long id);
 //    List<Rating> findbyUser(AppUser user);
 }

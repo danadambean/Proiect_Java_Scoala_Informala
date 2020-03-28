@@ -10,7 +10,7 @@ public class PlaceService {
 
     //placeholder class
     @Autowired
-    private final PlacesRepository placesRepository;
+    private PlacesRepository placesRepository;
 
 
     public PlaceService(PlacesRepository placesRepository) {
@@ -20,6 +20,5 @@ public class PlaceService {
     public Place getPlaceById(long id){
         return  placesRepository.findById(id);
     }
-
 
 }
