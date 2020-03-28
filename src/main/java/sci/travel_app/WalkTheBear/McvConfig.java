@@ -18,6 +18,8 @@ public class McvConfig implements WebMvcConfigurer {
         registry.addViewController("/placemanager").setViewName("placemanager");
         registry.addViewController("/addplace").setViewName("addplace");
         registry.addViewController("/planner").setViewName("planner");
+        registry.addViewController("/placedetail").setViewName("placedetail");
+        registry.addViewController("/site").setViewName("site");
     }
 
 //    public void addResourceHandlers(ResourceHandlerRegistry registry) {

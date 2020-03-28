@@ -49,17 +49,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/searchresults").permitAll()
                 .antMatchers("/register").permitAll()
                 //remove the following 3 after testing:
-                .antMatchers("/tripmanager").permitAll()
-                .antMatchers("/placemanager").permitAll()
-                .antMatchers("/addplace").permitAll()
-                .anyRequest().authenticated()
-                .and()
-                .formLogin()
-                .loginPage("/login")
-                .permitAll()
-                .and()
-                .logout()
-                .permitAll();
+                .anyRequest().permitAll();
+//                .anyRequest().authenticated()
+//                .and()
+//                .formLogin()
+//                .loginPage("/login")
+//                .permitAll()
+//                .and()
+//                .logout()
+//                .permitAll();
 
     }
 }
