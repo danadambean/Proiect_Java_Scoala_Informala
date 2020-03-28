@@ -68,5 +68,11 @@ public class Rating {
         this.created = created;
     }
 
-
+    public long getId() {
+        return id;
+    }
+    public void setId(long id) {
+        this.id = id;
+    }
+    
 }

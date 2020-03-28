@@ -73,6 +73,10 @@ public class Place {
         this.category = category;
     }
 
+    public SubCategory getSubcategory() {
+        return subcategory;
+    }
+
     public void setSubcategory(SubCategory subcategory) {
         this.subcategory = subcategory;
     }
@@ -164,6 +168,14 @@ public class Place {
     }
     public void setUser(AppUser user) {
         this.user = user;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
 }
