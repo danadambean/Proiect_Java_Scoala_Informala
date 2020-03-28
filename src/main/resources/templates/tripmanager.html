@@ -7,12 +7,13 @@
         <!-- Insert your title here -->
     </title>
     <link type="text/css" href="../static/css/manager.css" th:href="@{/css/manager.css}" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/fragments.css" th:href="@{/css/fragments.css}">
     <script></script>
 </head>
 
 <body>
     <!-- header start -->
-
+<div th:insert="fragments :: header"></div>
     <!-- header end -->
 
 
@@ -23,7 +24,7 @@
         </div>
         <div class=row>
             <div class=element>
-                <div id=add_button> <img src="../static/images/button.png" th:src="@{/images/button.png}" alt="add button" height="100px" width="100px" href="">
+                <div id=add_button> <img src="../static/images/button.png" th:src="@{/images/button.png}" alt="add button" height="100px" width="100px" href="/planner" th:href="@{/planner}">
                 </div>
                 <div id=button_text>
                     <p>Add trip</p>
@@ -93,7 +94,7 @@
 
 
     <!-- footer start -->
-
+ <div th:insert="fragments :: footer"></div>
     <!-- footer end -->
 </body>
 

@@ -23,9 +23,6 @@ public class Itinerary {
     @Temporal(TemporalType.DATE)
     @Column(name = "DATE_START")
     private Date startDate;
-    @Temporal(TemporalType.DATE)
-    @Column(name = "DATE_END")
-    private Date endDate;
 //    public  List<Place> unplannedPlaces = new ArrayList<>();
 //    public  List<DailySchedule> Schedule = new ArrayList<>();
 
@@ -36,7 +33,6 @@ public class Itinerary {
         this.user = user;
         this.created = new Date();
         this.startDate = startDate;
-        this.endDate = endDate;
     }
 
     public String getName() {
@@ -67,12 +63,7 @@ public class Itinerary {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
-        return endDate;
-    }
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
-    }
+
 
 
 }

@@ -1,5 +1,13 @@
 package sci.travel_app.WalkTheBear.model.misc;
 
 public enum Category {
-    ATTRACTIONS, FOODDRINK, LODGING
+    ATTRACTIONS ("Tourist attractions"), FOODDRINK ("Food and drink"), LODGING("Lodging");
+
+    private final String displayValue;
+    Category(String displayValue) {
+        this.displayValue = displayValue;
+    }
+    public String getDisplayValue() {
+        return displayValue;
+    }
 }

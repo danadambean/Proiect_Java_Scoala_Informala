@@ -36,6 +36,15 @@ public class AppUserController {
         return "Saved";
     }
 
+//        @GetMapping(path = "/all")
+//        public @ResponseBody
+//        Iterable<AppUser> getAllUsers() {
+//            // This returns a JSON or XML with the users
+//
+//            return "adduser";
+//        }
+
+
     @GetMapping(value = "/greeting")
 
     public ModelAndView captureDetails() {
@@ -51,54 +60,5 @@ public class AppUserController {
         mav.addObject("theuser", theuser);
         return mav;
     }
-
-    //@Autowired
-    //private sci.travel_app.WalkTheBear.service.AppUserService appUserService;
-
-    //@Autowired
-    //private AppUserValidator appUserValidator;
-
-    //@RequestMapping("/")
-    //public String index() {
-       //return "index";
-    //}
-
-   /* @RequestMapping("/login")
-    public String login(Model model) {
-        model.addAttribute("classActiveLogin", true);
-        return "myAccount";
-    }
-*/
-   /* @GetMapping("/registration")
-    public String registration(Model model) {
-        model.addAttribute("register", new User());
-
-        return "registration";
-    }
-*/
-  /*  //1 attempt registration-- role??
-    @PostMapping("/registration")
-    public String registration(@ModelAttribute("registerUser") AppUser registerUser, BindingResult bindingResult) {
-        appUserValidator.validate(registerUser, bindingResult);
-
-        if (bindingResult.hasErrors()) {
-            return "registration";
-        }
-
-        appUserService.save(registerUser);
-
-        //  securityService.autoLogin(userForm.getUserName(), userForm.getPasswordConfirm());
-
-        return "redirect:/index";
-    }*/
-
-
-//        @GetMapping(path = "/all")
-//        public @ResponseBody
-//        Iterable<AppUser> getAllUsers() {
-//            // This returns a JSON or XML with the users
-//
-//            return "adduser";
-//        }
 
 }
