@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8">
@@ -28,14 +28,14 @@
 
     <div class=container id=main_content_column>
         <div class=container id=basic_info>
-           <!-- <div id=name>
+            <div id=name>
                 <h2 th:text="${place.name}">Place name</h2>
             </div>
             <div id=thumbnail><img id=thumbnail_img src="../static/images/placeholder.jpg" th:src="@{/images/placeholder.jpg}"></div>
             <div id=address>
                 <h3 th:text="${place.address}">Address: jdlfkjsdlkfdshfhsdfhsifsdf</h3>
                 <h4> <span th:text="${place.city}">oras</span> <span th:text="${place.county}">judet</span> <span th:text="${place.coordinates}">coordonate</span> </h4>
-            </div>-->
+            </div>
         </div>
         <div class=box id=gallery><img class=gallery src="../static/images/placeholder.jpg" th:src="@{/images/placeholder.jpg}"><img class=gallery src="../static/images/placeholder.jpg" th:src="@{/images/placeholder.jpg}"><img class=gallery src="../static/images/placeholder.jpg" th:src="@{/images/placeholder.jpg}"></div>
         <div class=box id=description>
@@ -49,9 +49,9 @@
     <div class=container id=additional_content_column>
         <div class=box id=contact>
             <h3>Contact</h3>
-           <!-- <p th:text="${place.description}">Number</p>
+            <p th:text="${place.description}">Number</p>
             <p th:text="${place.email}">email</p>
-            <p th:text="${place.workingHours}">working hours</p>-->
+            <p th:text="${place.workingHours}">working hours</p>
         </div>
         <div class=box id=call_to_action>
             <a href="">Add to trip</a>
@@ -91,6 +91,37 @@
             </div>
         </div>
 
+        </div>
+        <div class=box id=user_rating>
+            <h3>User reviews</h3>
+            <div class=rating_list th:switch="${rating}">
+                <h4 th:case="null">No ratings yet!</h4>
+                <div th:case="*">
+                    <table>
+                        <tr th:each="rating : ${places}"> // add friend
+                            <td th:text="${rating.starRating}"></td>
+                            <td th:text="${rating.comment}"></td>
+                        </tr>
+                    </table>
+
+<!--                <div class=rating_list_item th:each="rating : ${students}">-->
+<!--                    <p>star placeholder</p>-->
+<!--                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>-->
+<!--                </div>-->
+<!--                <div class=rating_list_item>-->
+<!--                    <p>star placeholder</p>-->
+<!--                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>-->
+<!--                </div>-->
+<!--                <div class=rating_list_item>-->
+<!--                    <p>star placeholder</p>-->
+<!--                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>-->
+<!--                </div> -->
+
+
+                </div>
+            </div>
+        </div>
+    </div>
     </div>
     <div class=box id=user_rating>
         <h3>User reviews</h3>

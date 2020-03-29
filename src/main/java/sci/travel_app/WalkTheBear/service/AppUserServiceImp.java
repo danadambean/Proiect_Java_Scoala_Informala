@@ -35,6 +35,13 @@ public class AppUserServiceImp implements AppUserService {
         }
         return appUser;
     }
+/////don't know what's up with this method
+    @Override
+    public AppUser findByUsername(String userName) {
+        return null;
+    }
+
+
     private Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
         for(AppUserRole role : AppUserRole.values()){
