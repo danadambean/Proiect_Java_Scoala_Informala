@@ -57,7 +57,10 @@ public class AppUserServiceImp implements AppUserService {
         }
         return new User(user.getEmail(), passwordEncoder.encode(user.getPassword()), getAuthorities());
     }
-
+    public AppUser findById(Long id){
+        AppUser user = appUserRepository.findById(id).get();
+        return user;
+    }
 
 //    @Override
 //    public AppUser findByUserName(String username) throws UsernameNotFoundException {
