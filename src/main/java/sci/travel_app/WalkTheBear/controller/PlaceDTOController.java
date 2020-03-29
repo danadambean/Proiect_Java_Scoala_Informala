@@ -7,14 +7,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import sci.travel_app.WalkTheBear.data_utils.dto.PlaceDTO;
 import sci.travel_app.WalkTheBear.model.entities.Place;
-import sci.travel_app.WalkTheBear.service.PlaceService;
+import sci.travel_app.WalkTheBear.service.PlacesServiceImp;
 import sci.travel_app.WalkTheBear.service.RatingService;
 
 @Controller
 public class PlaceDTOController {
 
     @Autowired
-    private PlaceService placeService;
+    private PlacesServiceImp placeService;
     @Autowired
     private RatingService ratingService;
     @Autowired

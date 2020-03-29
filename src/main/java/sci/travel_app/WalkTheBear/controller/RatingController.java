@@ -5,18 +5,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
-import sci.travel_app.WalkTheBear.model.entities.Place;
 import sci.travel_app.WalkTheBear.model.entities.Rating;
-import sci.travel_app.WalkTheBear.repository.AppUserRepository;
-import sci.travel_app.WalkTheBear.repository.PlacesRepository;
-import sci.travel_app.WalkTheBear.service.PlaceService;
 import sci.travel_app.WalkTheBear.service.RatingServiceImpl;
 
-import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 import java.util.logging.Logger;
 
 
