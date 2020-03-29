@@ -1,5 +1,6 @@
 package sci.travel_app.WalkTheBear.model.entities;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import sci.travel_app.WalkTheBear.model.misc.Category;
 import sci.travel_app.WalkTheBear.model.misc.SubCategory;
 
@@ -40,6 +41,7 @@ public class Place {
     //Place mainPic;
     //Place galleryPic;
     @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
     @Column(name = "date_created")
     private Date created;
     @OneToOne
@@ -73,22 +75,9 @@ public class Place {
         this.category = category;
     }
 
-    public SubCategory getSubcategory() {
-        return subcategory;
-    }
-
     public void setSubcategory(SubCategory subcategory) {
         this.subcategory = subcategory;
     }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
 
     public long getId() {
         return id;
@@ -167,6 +156,11 @@ public class Place {
         this.user = user;
     }
 
+    public String getName() {
+        return name;
+    }
 
-
+    public void setName(String name) {
+        this.name = name;
+    }
 }
