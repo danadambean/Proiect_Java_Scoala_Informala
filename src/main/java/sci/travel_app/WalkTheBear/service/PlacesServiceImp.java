@@ -48,7 +48,7 @@ public class PlacesServiceImp implements PlacesService {
 
     @Override
     public void addPlace(Place place) {
-        List<Place> list = placesRepository.findByName(place.getName());
+        List<Place> list = (List<Place>) placesRepository.findByName(place.getName());
             if (list.size() > 0) {
                 logger.log(Level.ERROR, "this place is already added ");
             } else {
@@ -64,4 +64,9 @@ public class PlacesServiceImp implements PlacesService {
     public void deletePlace(long placeId) {
         placesRepository.delete(getPlaceById(placeId));
     }
+
+   /* public List<Place> search(String keyword) {
+        return placesRepository.search(keyword);
+    } */
+
 }
