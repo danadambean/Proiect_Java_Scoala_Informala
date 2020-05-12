@@ -20,11 +20,11 @@
 
     <div class=container id=main_container>
         <div>
-            <h2>Add place</h2>
+            <h2>Add place admin</h2>
         </div>
         <div class=container id=form_container>
             <!--<form id=addplace > -->
-            <form action="#" th:action="@{/addplace}" method="post" th:object="${place}">
+            <form action="#" th:action="@{/addplaceadmin}" method="post" th:object="${place}">
                 <div class=form_element>
                     <label>Category</label>
                     <select id=category name=category>
