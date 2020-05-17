@@ -42,6 +42,21 @@ public class PlaceDTOController {
     }
 
 
+    @GetMapping(value="/places/{id}/addtotrip")
+    public String addToTrip(@PathVariable("id") long id, Model model) {
+
+
+        return "redirect:/places/" + id;
+    }
+
+
+    @GetMapping(value="/places/{id}/addtofavorites")
+    public String addToFavorites(@PathVariable("id") long id, Model model) {
+
+
+        return "redirect:/places/" + id;
+    }
+
     private PlaceDTO convertToDto(Place place) {
         return modelMapper.map(place, PlaceDTO.class);
     }
