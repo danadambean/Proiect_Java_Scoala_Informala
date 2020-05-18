@@ -30,15 +30,15 @@ public class DailyScheduleServiceUnitTest {
 
         // create a dailySchedule
         DailySchedule aMockSchedule = new DailySchedule();
-        aMockSchedule.setName("Salina Turda");
+        aMockSchedule.setName("Monday - program");
 
         // test adding the info
         when(scheduleRepository.save(any(DailySchedule.class))).thenReturn(aMockSchedule);
 
-        DailySchedule newPlace = scheduleService.addNewDay(null);
+        DailySchedule newDay = scheduleService.addNewDay(null);
 
         // verify if created
-        assertEquals("Salina Turda", newPlace.getName());
+        assertEquals("Monday - program", newDay.getName());
 
     }
 
