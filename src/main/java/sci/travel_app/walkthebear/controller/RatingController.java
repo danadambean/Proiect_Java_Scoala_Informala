@@ -4,10 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import sci.travel_app.walkthebear.model.entities.Place;
 import sci.travel_app.walkthebear.model.entities.Rating;
@@ -29,8 +26,8 @@ public class RatingController {
 
     private static final Logger log = Logger.getLogger(String.valueOf(RatingController.class));
 
-    @GetMapping(value="/placedetail/{id}")
-    public String newRating(@PathVariable("id") long id, Model model) {
+    @GetMapping(value="/placedetail/{pid}")
+    public String newRating(@PathVariable("pid") long id, Model model) {
         Place place = placeService.getPlaceById(id);
         model.addAttribute("place", place);
         Rating rating = new Rating();
@@ -42,8 +39,8 @@ public class RatingController {
     }
 
 
-    @PostMapping(value="/placedetail/{id}/sendReview")
-    public String sendRating(@PathVariable("id") long id, @ModelAttribute("rating") Rating rating, BindingResult result,
+    @PostMapping(value="/placedetail/{pid}/sendReview")
+    public String sendRating(@PathVariable("pid") long id, @ModelAttribute("rating") Rating rating, BindingResult result,
                              RedirectAttributes redirectAttributes)   {
 
         rating.setCreated(new Date());

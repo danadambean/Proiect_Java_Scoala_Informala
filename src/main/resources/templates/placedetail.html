@@ -72,7 +72,7 @@
             <p>Your rating</p>
             <div id=star_rating_vote>
                 <p>****star placeholder</p>
-                <form method="post" th:action="@{/placedetail/{id}/sendReview(id=${place.id})}" th:object="${rating}">
+                <form method="post" th:action="@{/placedetail/{pid}/sendReview(pid=${place.id})}" th:object="${rating}">
 
                     <input value="0" type="hidden" class="rating" data-glyphicon="0" data-min="0" data-max="5" data-step="1"
                            th:field="*{starRating}">
