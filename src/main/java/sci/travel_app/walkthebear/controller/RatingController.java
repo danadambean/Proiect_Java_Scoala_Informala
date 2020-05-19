@@ -14,6 +14,7 @@ import sci.travel_app.walkthebear.model.entities.Rating;
 import sci.travel_app.walkthebear.service.PlacesServiceImp;
 import sci.travel_app.walkthebear.service.RatingServiceImpl;
 
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -43,13 +44,13 @@ public class RatingController {
 
     @PostMapping(value="/placedetail/{id}/sendReview")
     public String sendRating(@PathVariable("id") long id, @ModelAttribute("rating") Rating rating, BindingResult result,
-                             RedirectAttributes redirectAttributes)
-    {
-        ratingService.create(rating, placeService.getPlaceById(id));
+                             RedirectAttributes redirectAttributes)   {
+
+        rating.setCreated(new Date());
+        rating.setPlace(placeService.getPlaceById(id));
+        ratingService.create(rating);
         redirectAttributes.addFlashAttribute("message", "Success");
         return "redirect:/placedetail/" + id;
     }
 
 }
-
-

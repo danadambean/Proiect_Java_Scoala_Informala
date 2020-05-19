@@ -31,10 +31,10 @@ public class RatingServiceImpl implements RatingService {
     }
 
     @Override
-     public Rating create(Rating rating, Place place) {
+     public Rating create(Rating rating) {
 
-            rating.setCreated(new Date());
-            rating.setPlace(place);
+        //rating.setCreated(new Date());
+        //rating.setPlace(place);
 
             return ratingRepository.save(rating);
         }

@@ -7,7 +7,7 @@ public interface RatingService {
 
     public Rating findById(long id);
 
-    public Rating create(Rating rating, Place place);
+    public Rating create(Rating rating);
 
 
 
