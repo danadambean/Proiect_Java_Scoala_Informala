@@ -22,19 +22,18 @@ public class RatingServiceIntegrationTest {
     public void addARating() {
 
         // create a rating
-        Rating arating =  new Rating();
+        Rating arating = new Rating();
         arating.setPlace(placeService.getPlaceById(1));
         arating.setStarRating(4);
         arating.setComment("frumos");
 
 
         // test adding the rating
-        Rating newRating = ratingService.create(arating);
+        Rating newRating = ratingService.create(arating, placeService.getPlaceById(1));
 
         // verify if created
 
         assertNotNull(newRating);
-        assertNotNull(newRating.getId());
         assertNotNull(newRating.getPlace());
         assertEquals("frumos", newRating.getComment());
 

@@ -57,7 +57,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/editprofile/").permitAll()
                 .antMatchers("/profileinfo").permitAll()
                 .antMatchers("/profilefavorites").permitAll()
-                .antMatchers("/profileratings").permitAll()
+                .antMatchers("/profileratings/**").permitAll()
                 .antMatchers("/editplaceadmin/{id}").permitAll()
                 .antMatchers("/edituseradmin/{id}").permitAll()
                 .antMatchers("/deleteplaceadmin/{id}").permitAll()

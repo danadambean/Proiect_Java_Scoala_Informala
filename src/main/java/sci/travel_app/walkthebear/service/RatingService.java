@@ -5,11 +5,13 @@ import sci.travel_app.walkthebear.model.entities.Rating;
 
 public interface RatingService {
 
-    public Rating findById(long id);
+    Rating findById(long id);
 
-    public Rating create(Rating rating);
+    Rating create(Rating rating, Place place);
 
+    void updateRating(long id);
 
+    void deleteRating(long id);
 
 }
 

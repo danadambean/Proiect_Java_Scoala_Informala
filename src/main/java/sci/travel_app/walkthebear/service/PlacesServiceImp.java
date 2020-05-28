@@ -65,6 +65,7 @@ public class PlacesServiceImp implements PlacesService {
 
     @Override
     public void deletePlace(long placeId) {
+
         placesRepository.delete(getPlaceById(placeId));
     }
 
@@ -107,7 +108,5 @@ public class PlacesServiceImp implements PlacesService {
 //        return  filteredPage;
 //
 //        }
-
-
 
 }
