@@ -58,6 +58,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/profileinfo").permitAll()
                 .antMatchers("/profilefavorites").permitAll()
                 .antMatchers("/profileratings").permitAll()
+                .antMatchers("/addplaceadmin").permitAll()
                 .antMatchers("/editplaceadmin/{id}").permitAll()
                 .antMatchers("/edituseradmin/{id}").permitAll()
                 .antMatchers("/deleteplaceadmin/{id}").permitAll()
@@ -69,9 +70,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/results/**").permitAll()
                 .antMatchers("/categories/**").permitAll()
                 .antMatchers("/planner/**").permitAll()
-
-
-
+                .antMatchers("/adminallplaces/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()

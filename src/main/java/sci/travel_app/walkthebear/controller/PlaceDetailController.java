@@ -21,7 +21,7 @@ import java.util.logging.Logger;
 
 
 @Controller
-public class RatingController {
+public class PlaceDetailController {
 
     @Autowired
     private RatingServiceImpl ratingService;
@@ -32,7 +32,7 @@ public class RatingController {
     @Autowired
     private UnplannedPlacesListService unplannedPlacesListService;
 
-    private static final Logger log = Logger.getLogger(String.valueOf(RatingController.class));
+    private static final Logger log = Logger.getLogger(String.valueOf(PlaceDetailController.class));
 
     @GetMapping(value="/placedetail/{id}")
     public String newRating(@PathVariable("id") long id, Model model) {
