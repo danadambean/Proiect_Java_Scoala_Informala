@@ -5,9 +5,12 @@ import org.apache.tomcat.jni.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+import sci.travel_app.walkthebear.model.entities.AppUser;
 import sci.travel_app.walkthebear.repository.AppUserRepository;
+
+import javax.validation.Valid;
 
 @Controller
 public class AppUserController {
@@ -46,5 +49,30 @@ public class AppUserController {
 
         return "registration";
 
+    }
+    @GetMapping("/adminuser")
+    public String showAdminUser(@RequestParam(value = "userSearch", required = false) String userName, Model model) {
+        model.addAttribute("userSearch", userRepository.findByUserName(userName));
+        return "adminuser";
+    }
+    @GetMapping("/edituseradmin/{id}")
+    public String showUpdateUserForm(@PathVariable("id") long id, Model model) {
+        AppUser user = userRepository.findById(id);
+        // .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+
+        model.addAttribute("user", user);
+        return "edituseradmin";
+    }
+    @PostMapping("/edituseradmin/{id}")
+    public String changeUser(@PathVariable("id") long id, @Valid AppUser user,
+                             BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            user.setId(id);
+            return "edituseradmin";
+        }
+
+        userRepository.save(user);
+        model.addAttribute("user",  userRepository.findAll());
+        return "adminuser";
     }
 }
