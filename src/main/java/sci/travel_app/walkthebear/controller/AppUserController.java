@@ -7,11 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import sci.travel_app.walkthebear.model.entities.AppUser;
 import sci.travel_app.walkthebear.repository.AppUserRepository;
 import sci.travel_app.walkthebear.service.AppUserServiceImp;
-
-import javax.validation.Valid;
 
 import javax.validation.Valid;
 
@@ -71,7 +70,7 @@ public class AppUserController {
 
    @PostMapping("/register")
     public String registerUserAccount(@ModelAttribute("user") @Valid AppUser appUser,
-                                      BindingResult result) {
+                                      BindingResult result, RedirectAttributes redirectAttributes) {
 
   //      AppUserDTO existingEmail = convertToDto(appUserServiceImp.findByEmail(appUserDTO.getEmail()));
    //     if (existingEmail != null) {
@@ -86,8 +85,10 @@ public class AppUserController {
         if (result.hasErrors()) {
             return "error";
         }
-       appUserServiceImp.save(appUser);
-       return "redirect:/okLoginRegister";
+
+        appUserServiceImp.save(appUser);
+        redirectAttributes.addFlashAttribute("message", "Success");
+        return "redirect:/register";
 
     }
     @GetMapping("/adminuser")

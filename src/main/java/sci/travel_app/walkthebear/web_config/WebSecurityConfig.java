@@ -20,6 +20,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
+
         return new BCryptPasswordEncoder();
     }
 
@@ -32,7 +33,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-       // PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+        // PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
         auth
                 .userDetailsService(appUserService)
                 .passwordEncoder(passwordEncoder());
@@ -45,7 +46,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/", "/index","/home").permitAll()
                 .antMatchers("/css/*","/js/*","/images/*").permitAll()
                 .antMatchers("/searchresults").permitAll()
-                .antMatchers("/register").permitAll()
+                .antMatchers("/register/**").permitAll()
                 //remove the following after testing:
                 .antMatchers("/tripmanager").permitAll()
                 .antMatchers("/tripmanager/*").permitAll()
@@ -59,6 +60,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/profilefavorites").permitAll()
                 .antMatchers("/profileratings").permitAll()
                 .antMatchers("/addplaceadmin").permitAll()
+                .antMatchers("/profileratings/**").permitAll()
                 .antMatchers("/editplaceadmin/{id}").permitAll()
                 .antMatchers("/edituseradmin/{id}").permitAll()
                 .antMatchers("/deleteplaceadmin/{id}").permitAll()
