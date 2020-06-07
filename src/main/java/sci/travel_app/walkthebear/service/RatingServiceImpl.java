@@ -18,7 +18,8 @@ public class RatingServiceImpl implements RatingService {
     @Autowired
     private PlacesRepository placesRepository;
 
-    public List<Rating> getAllRated() {
+    @Override
+    public List<Rating> findAll() {
 
         return ratingRepository.findAll();
     }

@@ -3,6 +3,8 @@ package sci.travel_app.walkthebear.service;
 import sci.travel_app.walkthebear.model.entities.Place;
 import sci.travel_app.walkthebear.model.entities.Rating;
 
+import java.util.List;
+
 public interface RatingService {
 
     Rating findById(long id);
@@ -12,6 +14,8 @@ public interface RatingService {
     void updateRating(long id);
 
     void deleteRating(long id);
+
+    List<Rating> findAll();
 
 }
 

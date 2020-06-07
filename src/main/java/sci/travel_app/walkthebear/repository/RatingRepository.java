@@ -19,4 +19,6 @@ public interface RatingRepository extends JpaRepository<Rating, Long> {
 
     Rating findById(long id);
 
+    List<Rating> findAll();
+
 }

@@ -56,11 +56,11 @@ public class RatingController {
         return "redirect:/placedetail/" + id;
     }
 
-  /*  @GetMapping("/profileratings")
+    @GetMapping("/profileratings")
     public String getAllRated(Model model) {
-        List<Rating> allRated = ratingService.getAllRated();
-        model.addAttribute("rating", allRated);
+        List<Rating> allRated = ratingService.findAll();
+        model.addAttribute("allRated", allRated);
         return "profileratings";
-    }*/
+    }
 
 }

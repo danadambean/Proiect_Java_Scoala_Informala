@@ -77,6 +77,9 @@
 </div>
 <div class=container id=rating_container>
     <div class=box id=rating_box>
+        <style scoped>
+           @import "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css";
+        </style>
         <h3>Add a review</h3>
         <div id=place_rating>
             <div id=star_rating_aggregated>
@@ -114,7 +117,9 @@
         <div class=rating_list>
             <table>
                 <tr th:each="rating : ${ratingList}">
-                    <td th:text="${rating.starRating}"></td>
+                    <td> <input type="number" class="rating" th:value="${rating.starRating}"
+                                readonly="true" data-show-clear="false" data-show-caption="false" data-size="xs">
+                    </td>
                     <td th:text="${rating.comment}"></td>
                 </tr>
             </table>
