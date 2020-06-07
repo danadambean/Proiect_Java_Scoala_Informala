@@ -6,14 +6,15 @@
     <title>
         <!-- Insert your title here -->
     </title>
-    <link type="text/css" href="../static/css/addplace.css" th:href="@{/css/addplace.css}" rel="stylesheet">
-<link rel="stylesheet" href="../static/css/fragments.css" th:href="@{/css/fragments.css}">
+    <link type="text/css" href="../static/css/manager.css" th:href="@{/css/manager.css}" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/fragments.css" th:href="@{/css/fragments.css}">
+<!--    <script type="text/javascript" th:src="@{resources/static/js/dropdownmenu.js}">-->
+<!--    </script>-->
 </head>
 
 <body>
-    <!-- header start -->
- <div th:insert="fragments :: header"></div>
-    <!-- header end -->
+<!-- header start -->
+<div th:insert="fragments :: header"></div>
 
 
     <!-- main content start -->
@@ -27,51 +28,39 @@
             <form action="#" th:action="@{/addplace}" method="post" th:object="${place}">
                 <div class=form_element>
                     <label>Category</label>
-                    <select id=category name=category>
-                        <!--                        <select id=category th:field="*{category}">-->
-                        <option th:each="categoryOpt : ${T(sci.travel_app.walkthebear.model.misc.Category).values()}"
-                                th:value="${categoryOpt}" th:text="${categoryOpt.displayValue}"></option>
-                    </select>
+<!--                    <div th:each="categoryOpt : ${T(sci.travel_app.walkthebear.model.misc.Category).values()}">-->
+<!--                        <div class="radio-button">-->
+<!--                            <input type="radio"  th:field="*{category}" th:value="${categoryOpt}" onclick="choice(this)" class="custom-control-input">-->
+<!--                            <label class="custom-control-label" th:for="${#ids.prev('category')}" th:text="${categoryOpt.displayValue}"  >Category</label>-->
+<!--                        </div>-->
                 </div>
-                <!--                ignore this test code-->
-                <!--                <div th:switch="${category}">-->
-                <!--    <span th:case="${T(sci.travel_app.walkthebear.model.misc.Category).FOODDRINK}"-->
-                <!--      style="color: red;">Alert</span>-->
-                <!--    <span th:case="${T(sci.travel_app.walkthebear.model.misc.Category).ATTRACTIONS}"-->
-                <!--      style="color: orange;">Warning</span>-->
-                <!--    <span th:case="${T(sci.travel_app.walkthebear.model.misc.Category).LODGING}"-->
-                <!--      style="color: yellow;">Caution</span>-->
-                <!--</div>-->
+                    <input type="radio" name="first" th:field="*{category}" th:value="${T(sci.travel_app.walkthebear.model.misc.Category).FOODDRINK}" th:onclick="choice(this)">Food and drink
+                    <input type="radio" name="first" th:field="*{category}" th:value="${T(sci.travel_app.walkthebear.model.misc.Category).ATTRACTIONS}" th:onclick="choice(this)">Tourist attractions
+                    <input type="radio" name="first" th:field="*{category}" th:value="${T(sci.travel_app.walkthebear.model.misc.Category).LODGING}" th:onclick="choice(this)">Lodging
+                    <br>
+                <div>
 
-                <!--<div class=form_element th:switch="${T(sci.travel_app.walkthebear.model.misc.Category)}">
-                    <label>Sub - Category</label>
-                    <select class=subcategory th:case="${T(sci.travel_app.walkthebear.model.misc.Category).FOODDRINK}" >
-                         <option th:value="${T(sci.travel_app.walkthebear.model.misc.SubCategory).BAR}"
-                                 th:text="${T(sci.travel_app.walkthebear.model.misc.SubCategory).BAR}"></option>
-                         <option th:value="${T(sci.travel_app.walkthebear.model.misc.SubCategory).RESTAURANT}"
-                                 th:text="${T(sci.travel_app.walkthebear.model.misc.SubCategory).RESTAURANT}"></option>
-                     </select>
-                     <select class=subcategory th:case="${T(sci.travel_app.walkthebear.model.misc.Category).ATTRACTIONS}">
-                         <option th:value="${T(sci.travel_app.walkthebear.model.misc.SubCategory).PARK}"
-                                 th:text="${T(sci.travel_app.walkthebear.model.misc.SubCategory).PARK}"></option>
-                         <option th:value="${T(sci.travel_app.walkthebear.model.misc.SubCategory).MUSEUM}"
-                                 th:text="${T(sci.travel_app.walkthebear.model.misc.SubCategory).MUSEUM}"></option>
-                     </select>
+<!--                </div>-->
+<!--                <input type="radio" name="first" th:field="*{category}" th:value="${T(sci.travel_app.walkthebear.model.misc.Category).FOODDRINK}"-->
+<!--                       th:onclick='change(["Bar", "Restaurant", "Cafe", "Fast Food", "Pastry & Desserts" ])'>Food and drink-->
+<!--                <input type="radio" name="first" th:field="*{category}" th:value="${T(sci.travel_app.walkthebear.model.misc.Category).ATTRACTIONS}"-->
+<!--                       th:onclick='change(["Park", "Museum", "Zoo", "Historical Landmarks & Architecture", "Natural Landmarks"])'>Tourist attractions-->
+<!--                <input type="radio" name="first" th:field="*{category}" th:value="${T(sci.travel_app.walkthebear.model.misc.Category).LODGING}"-->
+<!--                       th:onclick='change(["Hotel", "Motel", "Hostel", "Guesthouse", "Camping", "Cabin"])'>Lodging-->
+<!--                <br>-->
+                <div>
+                      <select id='second' th:field="*{subcategory}">
+                      </select>
+<!--                    <select id="drop-down" th:field="*{subcategory}"></select>-->
+                 </div>
 
-                     <select class=subcategory th:case="${T(sci.travel_app.walkthebear.model.misc.Category).LODGING}">
-                         <option th:value="${T(sci.travel_app.walkthebear.model.misc.SubCategory).HOTEL}"
-                                 th:text="${T(sci.travel_app.walkthebear.model.misc.SubCategory).HOTEL}"></option>
-                         <option th:value="${T(sci.travel_app.walkthebear.model.misc.SubCategory).MOTEL}"
-                                 th:text="${T(sci.travel_app.walkthebear.model.misc.SubCategory).MOTEL}"></option>
-                     </select> </div> -->
-                <div class=form_element>
-                    <label>Sub-Category</label>
-                    <select id=subcategory name=subcategory>
-                        <!--                        <select id=category th:field="*{category}">-->
-                        <option th:each="categoryOpt : ${T(sci.travel_app.walkthebear.model.misc.SubCategory).values()}"
-                                th:value="${categoryOpt}" th:text="${categoryOpt.displayValue}"></option>
-                    </select>
-                </div>
+<!--               <div class=form_element>-->
+<!--                    <label>Sub-Category</label>-->
+<!--                    <select id=subcategory name=subcategory>-->
+<!--                        <option th:each="categoryOpt : ${T(sci.travel_app.walkthebear.model.misc.SubCategory).values()}"-->
+<!--                                th:value="${categoryOpt}" th:text="${categoryOpt.displayValue}"></option>-->
+<!--                    </select>-->
+<!--                </div>-->
                 <div class=form_element>
                     <input type= "hidden" name="created" id="created"
                            th:value="${#dates.format(#dates.createNow() , 'dd/MM/yyyy HH:mm')}" />
@@ -135,7 +124,7 @@
                 </div>
                 <div id=buttons>
                     <button type="submit">Submit</button>
-                    <button type="button">Cancel</button>
+                    <button type="cancel">Cancel</button>
                 </div>
             </form>
         </div>
@@ -144,6 +133,51 @@
 
     <!-- main content end -->
 
+<script type="text/javascript" th:inline="javascript">
+
+function choice(t){
+	var a = ["BAR", "RESTAURANT", "CAFE", "FAST FOOD", "PASTRY DESSERTS"];
+	var b = ["PARK", "MUSEUM", "ZOO", "HISTORICAL LANDMARKS", "NATURAL LANDMARKS"];
+	var c = ["HOTEL", "MOTEL", "HOSTEL", "GUEST HOUSE", "CAMPING", "CABIN"];
+<!--    var a= [${T(sci.travel_app.walkthebear.model.misc.SubCategory).BAR.displayValue},-->
+<!--    ${T(sci.travel_app.walkthebear.model.misc.SubCategory).RESTAURANT.displayValue}];-->
+<!--    var b= [${T(sci.travel_app.walkthebear.model.misc.SubCategory).PARK},-->
+<!--    ${T(sci.travel_app.walkthebear.model.misc.SubCategory).MUSEUM}];-->
+<!--    var c= [${T(sci.travel_app.walkthebear.model.misc.SubCategory).HOTEL},-->
+<!--    ${T(sci.travel_app.walkthebear.model.misc.SubCategory).MOTEL}];-->
+	 s = document.getElementById('second');
+	var sl = s.options.length;
+	for(var i = sl-1; i >= 0 ; i--) { s.options[i] = null; }
+	if(t.value != 0){
+		var z;
+		switch (t.value) {
+<!--			 case /*[[${T(sci.travel_app.walkthebear.model.misc.Category).FOODDRINK}]]*/ : z = a; break-->
+<!--			 case /*[[${T(sci.travel_app.walkthebear.model.misc.Category).ATTRACTIONS}]]*/ : z = b; break;-->
+<!--			 case /*[[${T(sci.travel_app.walkthebear.model.misc.Category).LODGING}]]*/  : z = c; break;-->
+<!--			default : alert('Invalid entry'); break;-->
+            case "FOODDRINK": z = a; break
+			case "ATTRACTIONS" : z = b; break;
+			case "LODGING" : z = c; break;
+			default : alert('Invalid entry'); break;
+		}
+
+		var l = z.length;
+		for(i = 0; i < l; i++ ) { s.options[i] = new Option(z[i],z[i],false,false); }
+	}
+}
+
+</script>
+
+<!--<script type="text/javascript">-->
+
+<!--function change(arr) {-->
+<!--var el = document.getElementById('drop-down');-->
+<!--el.options.length = 0;-->
+<!--for(var i = 0; i< arr.length; i++ ) {-->
+<!--el.options[el.options.length] = new Option( arr[i], arr[i]);-->
+<!--}-->
+<!--}-->
+<!--</script>-->
 
     <!-- footer start -->
    <div th:insert="fragments :: footer"></div>

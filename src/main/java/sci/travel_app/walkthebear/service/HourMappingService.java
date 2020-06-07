@@ -14,6 +14,14 @@ public class HourMappingService {
     @Autowired
    private HourMappingRepository hourMappingRepository;
 
+
+public HourMapping getHour(long id){
+   return hourMappingRepository.findById(id);
+}
+
+public List<HourMapping> getAllHours(){
+    return hourMappingRepository.findAll();
+}
     public void createMapping(DailySchedule dailySchedule, String time, Place place){
         HourMapping slot = new HourMapping();
         slot.setDailySchedule(dailySchedule);
@@ -21,42 +29,27 @@ public class HourMappingService {
         slot.setTime(time);
         hourMappingRepository.save(slot);
     }
-    public void updateMapping(String time, Place place, HourMapping hourMapping){
-      if(hourMapping.getTime().equals(time)){
-          hourMapping.setPlace(place);
-          hourMappingRepository.save(hourMapping);
-      }
-      //else...some kind of invalid argument exception?
+
+    public void saveMapping(HourMapping hourMapping, DailySchedule dailySchedule){
+        hourMapping.setDailySchedule(dailySchedule);
+        hourMappingRepository.save(hourMapping);
+    }
+
+    public void updateMapping(HourMapping hourMapping, DailySchedule dailySchedule, long id){
+       HourMapping saveMe = hourMappingRepository.findById(id);
+        saveMe.setHourId(id);
+        saveMe.setTime(hourMapping.getTime());
+        saveMe.setPlace(hourMapping.getPlace());
+        saveMe.setDailySchedule(dailySchedule);
+        hourMappingRepository.save(saveMe);
     }
 
     public List<HourMapping> getFullDay(DailySchedule dailySchedule){
        return hourMappingRepository.findByDailySchedule(dailySchedule);
     }
-    public void createDefaultDay(DailySchedule dailySchedule){
-        createMapping(dailySchedule,"00:00" , null);
-        createMapping(dailySchedule,"01:00" , null);
-        createMapping(dailySchedule,"02:00" , null);
-        createMapping(dailySchedule,"03:00" , null);
-        createMapping(dailySchedule,"04:00" , null);
-        createMapping(dailySchedule,"05:00" , null);
-        createMapping(dailySchedule,"06:00" , null);
-        createMapping(dailySchedule,"07:00" , null);
-        createMapping(dailySchedule,"08:00" , null);
-        createMapping(dailySchedule,"09:00" , null);
-        createMapping(dailySchedule,"10:00" , null);
-        createMapping(dailySchedule,"11:00" , null);
-        createMapping(dailySchedule,"12:00" , null);
-        createMapping(dailySchedule,"13:00" , null);
-        createMapping(dailySchedule,"14:00" , null);
-        createMapping(dailySchedule,"15:00" , null);
-        createMapping(dailySchedule,"16:00" , null);
-        createMapping(dailySchedule,"17:00" , null);
-        createMapping(dailySchedule,"18:00" , null);
-        createMapping(dailySchedule,"19:00" , null);
-        createMapping(dailySchedule,"20:00" , null);
-        createMapping(dailySchedule,"21:00" , null);
-        createMapping(dailySchedule,"22:00" , null);
-        createMapping(dailySchedule,"23:00" , null);
+
+    public void deleteOne(HourMapping hourMapping){
+    hourMappingRepository.delete(hourMapping);
     }
 
     public void deleteAll(DailySchedule dailySchedule){
@@ -66,8 +59,16 @@ public class HourMappingService {
 //            hourMappingRepository.delete(axed);}
         }
 
-    public void saveAll(DailySchedule dailySchedule){
+    public void saveFullDay(DailySchedule dailySchedule){
         List<HourMapping> allHours = getFullDay(dailySchedule);
         hourMappingRepository.saveAll(allHours);
     }
+   public void saveAll(List<HourMapping> list, DailySchedule dailySchedule){
+       for (HourMapping hour : list) {
+           long id = hour.getHourId();
+           HourMapping saveMe = hourMappingRepository.findById(id);
+           saveMe.setDailySchedule(dailySchedule);
+           hourMappingRepository.save(saveMe);
+       }
+   }
 }

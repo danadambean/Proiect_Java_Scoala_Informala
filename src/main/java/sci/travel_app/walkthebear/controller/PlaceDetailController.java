@@ -11,22 +11,28 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import sci.travel_app.walkthebear.model.entities.Place;
 import sci.travel_app.walkthebear.model.entities.Rating;
+import sci.travel_app.walkthebear.service.FavoritesServiceImpl;
 import sci.travel_app.walkthebear.service.PlacesServiceImp;
 import sci.travel_app.walkthebear.service.RatingServiceImpl;
+import sci.travel_app.walkthebear.service.UnplannedPlacesListService;
 
 import java.util.List;
 import java.util.logging.Logger;
 
 
 @Controller
-public class RatingController {
+public class PlaceDetailController {
 
     @Autowired
     private RatingServiceImpl ratingService;
     @Autowired
     private PlacesServiceImp placeService;
+    @Autowired
+    private FavoritesServiceImpl favoritesService;
+    @Autowired
+    private UnplannedPlacesListService unplannedPlacesListService;
 
-    private static final Logger log = Logger.getLogger(String.valueOf(RatingController.class));
+    private static final Logger log = Logger.getLogger(String.valueOf(PlaceDetailController.class));
 
 
     @GetMapping(value = "/placedetail/{pid}")
@@ -43,6 +49,8 @@ public class RatingController {
         double placeAverageRating = (ratingList.stream().mapToDouble(Rating::getStarRating).sum() / ratingList.stream().count());
         model.addAttribute("placeAverageRating", placeAverageRating);
 
+        model.addAttribute("isAddedToFav", favoritesService.isAdded2(placeService.getPlaceById(id)));
+        model.addAttribute("isAddedToList", unplannedPlacesListService.isAdded(placeService.getPlaceById(id), null));
         return "placedetail";
     }
 
@@ -56,6 +64,32 @@ public class RatingController {
         return "redirect:/placedetail/" + id;
     }
 
+    @GetMapping(value="/placedetail/{id}/addtofavorites")
+    public String addToFavorites(@PathVariable("id") long id, Model model) {
+     favoritesService.addToFavorites(placeService.getPlaceById(id));
+        return "redirect:/placedetail/" + id;
+    }
+    @GetMapping(value="/placedetail/{id}/removefromfavorites")
+    public String removeFromFavorites(@PathVariable("id") long id, Model model) {
+        favoritesService.removeFavorite(placeService.getPlaceById(id), null);
+        return "redirect:/placedetail/" + id;
+    }
+
+
+    @GetMapping(value="/placedetail/{id}/addtolist")
+    public String addToUnplannedPlaces(@PathVariable("id") long id, Model model) {
+     if(unplannedPlacesListService.getAll().isEmpty()){
+         unplannedPlacesListService.createList(null);
+     }
+        unplannedPlacesListService.addToList(placeService.getPlaceById(id), unplannedPlacesListService.findByUser(null));
+        return "redirect:/placedetail/" + id;
+    }
+    @GetMapping(value="/placedetail/{id}/removefromlist")
+    public String removeFromUnplannedPlaces(@PathVariable("id") long id, Model model) {
+       unplannedPlacesListService.removeFromList(placeService.getPlaceById(id), unplannedPlacesListService.findByUser(null));
+        return "redirect:/placedetail/" + id;
+    }
+    }
     @GetMapping("/profileratings")
     public String getAllRated(Model model) {
         List<Rating> allRated = ratingService.findAll();

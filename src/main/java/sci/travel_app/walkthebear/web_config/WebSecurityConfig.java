@@ -43,8 +43,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/", "/index").permitAll()
-                .antMatchers("/css/*", "/js/*", "/images/*").permitAll()
+                .antMatchers("/", "/index","/home").permitAll()
+                .antMatchers("/css/*","/js/*","/images/*").permitAll()
                 .antMatchers("/searchresults").permitAll()
                 .antMatchers("/register/**").permitAll()
                 //remove the following after testing:
@@ -58,6 +58,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/editprofile/").permitAll()
                 .antMatchers("/profileinfo").permitAll()
                 .antMatchers("/profilefavorites").permitAll()
+                .antMatchers("/profileratings").permitAll()
+                .antMatchers("/addplaceadmin").permitAll()
                 .antMatchers("/profileratings/**").permitAll()
                 .antMatchers("/editplaceadmin/{id}").permitAll()
                 .antMatchers("/edituseradmin/{id}").permitAll()
@@ -70,8 +72,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/results/**").permitAll()
                 .antMatchers("/categories/**").permitAll()
                 .antMatchers("/planner/**").permitAll()
-
-
+                .antMatchers("/adminallplaces/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()

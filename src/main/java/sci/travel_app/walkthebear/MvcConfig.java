@@ -9,15 +9,16 @@ public class MvcConfig implements WebMvcConfigurer {
 
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/index").setViewName("index");
+        registry.addViewController("/home").setViewName("index");
         registry.addViewController("/").setViewName("index");
         registry.addViewController("/login").setViewName("login");
         registry.addViewController("/register").setViewName("register");
         registry.addViewController("/searchresults").setViewName("searchresults");
         registry.addViewController("/tripmanager").setViewName("tripmanager");
         registry.addViewController("/placemanager").setViewName("placemanager");
-        registry.addViewController("/placedetail").setViewName("placedetail");
         registry.addViewController("/placedetail/").setViewName("placedetail");
         registry.addViewController("/addplace").setViewName("addplace");
+        registry.addViewController("/addplaceadmin").setViewName("addplaceadmin");
         registry.addViewController("/planner").setViewName("planner");
         registry.addViewController("/placedetail").setViewName("placedetail");
         registry.addViewController("/site").setViewName("site");
@@ -25,6 +26,13 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.addViewController("/profileinfo").setViewName("profileinfo");
         registry.addViewController("/profilefavorites").setViewName("profilefavorites");
         registry.addViewController("/profileratings").setViewName("profileratings");
+        registry.addViewController("/adminplace").setViewName("adminplace");
+        registry.addViewController("/editplaceadmin/{id}").setViewName("editplaceadmin");
+        registry.addViewController("/deleteplaceadmin/{id}").setViewName("deleteplaceadmin");
+        registry.addViewController("/adminuser").setViewName("adminuser");
+        registry.addViewController("/edituseradmin/{id}").setViewName("edituseradmin");
+        registry.addViewController("/deleteplaceadmin/{id}").setViewName("deleteplaceadmin");
+        registry.addViewController("/adminallplaces").setViewName("adminallplaces");
     }
 
 //    public void addResourceHandlers(ResourceHandlerRegistry registry) {
