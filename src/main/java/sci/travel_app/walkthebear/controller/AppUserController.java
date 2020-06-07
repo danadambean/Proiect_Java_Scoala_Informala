@@ -86,16 +86,18 @@ public class AppUserController {
         if (result.hasErrors()) {
             return "error";
         }
+       appUserServiceImp.save(appUser);
+       return "redirect:/okLoginRegister";
 
     }
     @GetMapping("/adminuser")
     public String showAdminUser(@RequestParam(value = "userSearch", required = false) String userName, Model model) {
-        model.addAttribute("userSearch", userRepository.findByUserName(userName));
+        model.addAttribute("userSearch", appUserRepository.findByUserName(userName));
         return "adminuser";
     }
     @GetMapping("/edituseradmin/{id}")
     public String showUpdateUserForm(@PathVariable("id") long id, Model model) {
-        AppUser user = userRepository.findById(id);
+        AppUser user = appUserRepository.findById(id);
         // .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
 
         model.addAttribute("user", user);
@@ -109,11 +111,10 @@ public class AppUserController {
             return "edituseradmin";
         }
 
-        userRepository.save(user);
-        model.addAttribute("user",  userRepository.findAll());
+        appUserRepository.save(user);
+        model.addAttribute("user",  appUserRepository.findAll());
         return "adminuser";
-        appUserServiceImp.save(appUser);
-        return "redirect:/okLoginRegister";
+
     }
 
 

@@ -83,12 +83,7 @@ public class PlaceController {
         redirectAttributes.addFlashAttribute("message", "Place saved!");
         return "redirect:placemanager";
     }
-    @GetMapping("/view")
-    public String showPlace(Model model, String placeName) {
-        model.addAttribute("place", placesService.getPlaceByName(placeName));
-        return "searchresults";
-    }
-    /*@GetMapping("/adminplace")
+     /*@GetMapping("/adminplace")
      public String showAdminPlace(Model model, String placeName) {
          model.addAttribute("placeSearch", placesService.getPlaceByName(placeName));
          return "adminplace";
