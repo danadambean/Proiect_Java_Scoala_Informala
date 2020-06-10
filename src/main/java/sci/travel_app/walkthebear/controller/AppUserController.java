@@ -33,7 +33,7 @@ public class AppUserController {
 
 
     @GetMapping( value = "/login" )
-    public String login( Model model ) {
+    public String login(Model model) {
         model.addAttribute( new AppUser() );
         return "login";
     }
@@ -49,17 +49,19 @@ public class AppUserController {
         return "okLoginRegister";
     }
 
-    @RequestMapping( value = "/login", method = RequestMethod.POST )
-        public String performLogin(
-                @ModelAttribute( "appUser" ) AppUser appUser, BindingResult result ) {
+/*  @PostMapping ( value = "/login")
+    public String performLogin(
+            @ModelAttribute( "appUser" ) AppUser appUser, BindingResult result) {
 
-            AppUser user = appUserRepository
-                    .findByUserNameAndPassword( appUser.getUserName(), appUser.getPassword() );
+        AppUser user = appUserRepository
+                .findByUserNameAndPassword( appUser.getUserName(), appUser.getPassword() );
+
             if ( user == null ) {
                 return "redirect:/incorrectLogin";
             }
-            return "redirect:/okLoginRegister";
-        }
+
+        return "redirect:/login";
+    }*/
 
 
     @GetMapping("/register")
@@ -69,7 +71,7 @@ public class AppUserController {
     }
 
    @PostMapping("/register")
-    public String registerUserAccount(@ModelAttribute("user") @Valid AppUser appUser,
+    public String registerUserAccount(@ModelAttribute("appUser") @Valid AppUser appUser,
                                       BindingResult result, RedirectAttributes redirectAttributes) {
 
   //      AppUserDTO existingEmail = convertToDto(appUserServiceImp.findByEmail(appUserDTO.getEmail()));
@@ -118,16 +120,4 @@ public class AppUserController {
 
     }
 
-
-    }
-
-
-
-
-
-
-
-
-
-
-
+}

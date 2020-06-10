@@ -1,6 +1,5 @@
 package sci.travel_app.walkthebear.controller;
 
-import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,10 +14,7 @@ import sci.travel_app.walkthebear.model.entities.Place;
 import sci.travel_app.walkthebear.model.misc.Category;
 import sci.travel_app.walkthebear.service.PlacesServiceImp;
 
-
 import javax.validation.Valid;
-
-;
 
 @Controller
 public class PlaceController {

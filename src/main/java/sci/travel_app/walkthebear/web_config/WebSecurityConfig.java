@@ -12,6 +12,7 @@ import sci.travel_app.walkthebear.service.AppUserService;
 
 @Configuration
 @EnableWebSecurity
+
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -34,6 +35,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         // PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+        System.out.println("configureglobal called");
         auth
                 .userDetailsService(appUserService)
                 .passwordEncoder(passwordEncoder());
@@ -46,37 +48,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/", "/index","/home").permitAll()
                 .antMatchers("/css/*","/js/*","/images/*").permitAll()
                 .antMatchers("/searchresults").permitAll()
-                .antMatchers("/register/**").permitAll()
+                .antMatchers("/register").permitAll()
                 //remove the following after testing:
-                .antMatchers("/tripmanager").permitAll()
-                .antMatchers("/tripmanager/*").permitAll()
-                .antMatchers("/tripmanager/*/*").permitAll()
-                .antMatchers("/placemanager").permitAll()
-                .antMatchers("/addplace").permitAll()
-                .antMatchers("/placedetail/**").permitAll()
-                .antMatchers("/places/**").permitAll()
-                .antMatchers("/editprofile/").permitAll()
-                .antMatchers("/profileinfo").permitAll()
-                .antMatchers("/profilefavorites").permitAll()
-                .antMatchers("/profileratings").permitAll()
-                .antMatchers("/addplaceadmin").permitAll()
-                .antMatchers("/profileratings/**").permitAll()
-                .antMatchers("/editplaceadmin/{id}").permitAll()
-                .antMatchers("/edituseradmin/{id}").permitAll()
-                .antMatchers("/deleteplaceadmin/{id}").permitAll()
-                .antMatchers("/deleteuseradmin/{id}").permitAll()
-                .antMatchers("/profilefavorites").permitAll()
-                .antMatchers("/profileratings").permitAll()
-                .antMatchers("/adminplace").permitAll()
-                .antMatchers("/adminuser").permitAll()
-                .antMatchers("/results/**").permitAll()
-                .antMatchers("/categories/**").permitAll()
-                .antMatchers("/planner/**").permitAll()
-                .antMatchers("/adminallplaces/**").permitAll()
+
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login")
+                .usernameParameter("userName")
+                //.passwordParameter("password")
                 .permitAll()
                 .and()
                 .logout()

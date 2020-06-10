@@ -45,11 +45,12 @@ public class AppUserServiceImp implements AppUserService {
         return appUser;
     }
 
+
     /////don't know what's up with this method
-    @Override
+  /*
     public AppUser findByUsername(String userName) {
-        return null;
-    }
+        return appUserRepository.findByUserName(userName);
+    }*/
 
 
     private Collection<? extends GrantedAuthority> getAuthorities() {
@@ -66,7 +67,8 @@ public class AppUserServiceImp implements AppUserService {
         if (user == null) {
             throw new UsernameNotFoundException("Invalid username or password");
         }
-        return new User(user.getEmail(), passwordEncoder.encode(user.getPassword()), getAuthorities());
+
+        return new User(user.getUserName(), user.getPassword(), getAuthorities());
     }
 
     public AppUser findById(Long id) {
