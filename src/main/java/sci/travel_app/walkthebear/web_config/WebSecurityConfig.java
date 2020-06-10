@@ -3,21 +3,27 @@ package sci.travel_app.walkthebear.web_config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import sci.travel_app.walkthebear.service.AppUserService;
+import sci.travel_app.walkthebear.service.AppUserServiceImp;
 
 @Configuration
 @EnableWebSecurity
-
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private AppUserService appUserService;
 
+    @Bean
+    public UserDetailsService appUserDetailsService() {
+        return new AppUserServiceImp();
+    }
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
@@ -25,49 +31,73 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-    /* private final PasswordEncoder passwordEncoder;
+    @Bean
+    public DaoAuthenticationProvider authenticationProvider() {
+        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+        authProvider.setUserDetailsService(appUserDetailsService());
+        authProvider.setPasswordEncoder(passwordEncoder());
 
-    @Autowired
-    public WebSecurityConfig(PasswordEncoder passwordEncoder) {
-        this.passwordEncoder= passwordEncoder;
-    } */
-
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        // PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-        System.out.println("configureglobal called");
-        auth
-                .userDetailsService(appUserService)
-                .passwordEncoder(passwordEncoder());
+        return authProvider;
     }
+
+
+@Override
+protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+    auth.authenticationProvider(authenticationProvider());
+}
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
+                //available to all users
                 .antMatchers("/", "/index","/home").permitAll()
                 .antMatchers("/css/*","/js/*","/images/*").permitAll()
-                .antMatchers("/searchresults").permitAll()
-                .antMatchers("/register").permitAll()
-                //remove the following after testing:
-
+                .antMatchers("/register/**").permitAll()
+                .antMatchers("/placedetail/**").permitAll()
+//                .antMatchers("/searchresults").permitAll()
+                .antMatchers("/results/**").permitAll()
+                .antMatchers("/categories/**").permitAll()
+                //available to role: traveller
+//                .antMatchers("/tripmanager").permitAll()
+                .antMatchers("/tripmanager").hasAuthority("Host")
+                .antMatchers("/tripmanager/*").permitAll()
+                .antMatchers("/tripmanager/*/*").permitAll()
+                .antMatchers("/planner/**").permitAll()
+                //available to role: host
+                .antMatchers("/placemanager").permitAll()
+                .antMatchers("/addplace").permitAll()
+//                .antMatchers("/places/**").permitAll()
+                .antMatchers("/editprofile/").permitAll()
+                .antMatchers("/profileinfo").permitAll()
+                .antMatchers("/profilefavorites").permitAll()
+                .antMatchers("/profileratings").permitAll()
+                .antMatchers("/addplaceadmin").permitAll()
+                .antMatchers("/profileratings/**").permitAll()
+                .antMatchers("/editplaceadmin/{id}").permitAll()
+                .antMatchers("/edituseradmin/{id}").permitAll()
+                .antMatchers("/deleteplaceadmin/{id}").permitAll()
+                .antMatchers("/deleteuseradmin/{id}").permitAll()
+                .antMatchers("/profileratings").permitAll()
+                .antMatchers("/profilefavorites").permitAll()
+                .antMatchers("/adminplace").permitAll()
+                .antMatchers("/adminuser").permitAll()
+                .antMatchers("/adminallplaces/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login")
-                .usernameParameter("userName")
-                //.passwordParameter("password")
+                .loginProcessingUrl("/doLogin")
+        .defaultSuccessUrl("/home",true)
+        .failureUrl("/incorrectLogin")
                 .permitAll()
                 .and()
                 .logout()
+                .logoutUrl("/doLogout")
+                .logoutSuccessUrl("/home")
                 .permitAll();
 
     }
-
-//    @Bean
-//    public AuthenticationManager customAuthenticationManager() throws Exception {
-//        return authenticationManager();
-//    }
 
 }
 

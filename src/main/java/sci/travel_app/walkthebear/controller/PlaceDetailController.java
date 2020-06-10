@@ -50,7 +50,7 @@ public class PlaceDetailController {
         model.addAttribute("placeAverageRating", placeAverageRating);
 
         model.addAttribute("isAddedToFav", favoritesService.isAdded2(placeService.getPlaceById(id)));
-        //model.addAttribute("isAddedToList", unplannedPlacesListService.isAdded(placeService.getPlaceById(id), null));
+        model.addAttribute("isAddedToList", unplannedPlacesListService.isAdded(placeService.getPlaceById(id), null));
         return "placedetail";
     }
 
@@ -89,6 +89,7 @@ public class PlaceDetailController {
        unplannedPlacesListService.removeFromList(placeService.getPlaceById(id), unplannedPlacesListService.findByUser(null));
         return "redirect:/placedetail/" + id;
     }
+
     @GetMapping("/profileratings")
     public String getAllRated(Model model) {
         List<Rating> allRated = ratingService.findAll();
