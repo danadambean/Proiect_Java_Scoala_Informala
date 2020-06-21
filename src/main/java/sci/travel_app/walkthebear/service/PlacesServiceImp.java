@@ -8,6 +8,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import sci.travel_app.walkthebear.model.entities.AppUser;
 import sci.travel_app.walkthebear.model.entities.Place;
 import sci.travel_app.walkthebear.model.misc.Category;
 import sci.travel_app.walkthebear.repository.PlacesRepository;
@@ -41,6 +42,11 @@ public class PlacesServiceImp implements PlacesService {
         placesRepository.findAll().forEach(list::add);
         return list;
     }
+    public List<Place> getAllUserPlaces(AppUser user) {
+        List<Place> list = new ArrayList<>();
+        placesRepository.findAll().forEach(list::add);
+        return list;
+    }
 
     @Override
     public List<Place> getPlaceByCategory(Category category) {
@@ -51,6 +57,15 @@ public class PlacesServiceImp implements PlacesService {
 
     @Override
     public void addPlace(Place place) {
+        List<Place> list = (List<Place>) placesRepository.findByName(place.getName());
+        if (list.size() > 0) {
+            logger.log(Level.ERROR, "this place is already added ");
+        } else {
+            placesRepository.save(place);
+        }
+    }
+    @Override
+    public void addUserPlace(Place place, AppUser user) {
         List<Place> list = (List<Place>) placesRepository.findByName(place.getName());
         if (list.size() > 0) {
             logger.log(Level.ERROR, "this place is already added ");

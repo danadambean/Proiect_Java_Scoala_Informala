@@ -49,9 +49,9 @@
 <!--                       th:onclick='change(["Hotel", "Motel", "Hostel", "Guesthouse", "Camping", "Cabin"])'>Lodging-->
 <!--                <br>-->
                 <div>
-                      <select id='second' th:field="*{subcategory}">
+                      <select id='dropdown' th:field="*{subcategory}" th:value="${subcategory}">
                       </select>
-<!--                    <select id="drop-down" th:field="*{subcategory}"></select>-->
+<!--                   <select id="drop-down" th:field="*{subcategory}"></select>-->
                  </div>
 
 <!--               <div class=form_element>-->
