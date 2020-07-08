@@ -1,6 +1,7 @@
 package sci.travel_app.walkthebear.model.entities;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
 import sci.travel_app.walkthebear.model.misc.Category;
 import sci.travel_app.walkthebear.model.misc.SubCategory;
 
@@ -43,6 +44,13 @@ public class Place {
 //    @Type(type = "org.hibernate.type.BinaryType")
 //    private byte[] thumbnail;
     //Place galleryPic;
+    @Column(name = "THUMBNAIL", nullable = true)
+    private String thumbnailPath;
+    @Transient
+    private MultipartFile thumbnail;
+//    @Transient
+//    private String thumbnailImagePath;
+
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
     @Column(name = "date_created")
@@ -169,6 +177,22 @@ public class Place {
         this.name = name;
     }
 
+    public String getThumbnailPath() {
+        return thumbnailPath;
+    }
+
+    public void setThumbnailPath(String thumbnailPath) {
+        this.thumbnailPath = thumbnailPath;
+    }
+
+    public MultipartFile getThumbnail() {
+        return thumbnail;
+    }
+
+    public void setThumbnail(MultipartFile thumbnail) {
+        this.thumbnail = thumbnail;
+    }
+
 //    @Override
 //    public String toString() {
 //        return "Place{" +
@@ -193,5 +217,11 @@ public class Place {
     @Override
     public String toString() {
         return name + ", " + county  + ", " + city  ;
+    }
+
+    @Transient
+    public String getThumbnailImagePath(){
+        if (thumbnailPath == null || id == 0) return null;
+        return "/user-images/" + id + "/" + thumbnailPath;
     }
 }

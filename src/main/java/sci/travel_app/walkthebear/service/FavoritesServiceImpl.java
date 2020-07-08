@@ -7,7 +7,6 @@ import sci.travel_app.walkthebear.model.entities.Favorite;
 import sci.travel_app.walkthebear.model.entities.Place;
 import sci.travel_app.walkthebear.repository.FavoritesRepository;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -32,6 +31,7 @@ public class FavoritesServiceImpl implements FavoritesService{
      * @param place place added to favorites
      * @param user user that added place to favorites
      */
+    @Override
     public void addToFavorites (Place place, AppUser user){
      Favorite addMe = new Favorite();
      addMe.setPlace(place);
@@ -45,6 +45,7 @@ public class FavoritesServiceImpl implements FavoritesService{
      * @param place place added to favorites
      * @param user user that added place to favorites
      */
+    @Override
     public void removeFavorite (Place place, AppUser user){
       Favorite removeMe = favoritesRepository.findByPlaceAndUser(place,user);
       favoritesRepository.delete(removeMe);
@@ -55,6 +56,7 @@ public class FavoritesServiceImpl implements FavoritesService{
      * @param place place added to favorites
      * @return list of favorite objects
      */
+    @Override
     public List<Favorite> getFavsForPlace(Place place){
         return favoritesRepository.findByPlace(place);
     }
@@ -63,10 +65,13 @@ public class FavoritesServiceImpl implements FavoritesService{
      * checks if current user already added a place to favorites
      * @param place place to check if added
      * @param user current user
-     * @return
+     * @return true if current user has added place to favorites, false if the place is not added; also returns false if user is null
      */
+    @Override
     public boolean isAdded(Place place, AppUser user){
-        return favoritesRepository.findByPlaceAndUser(place, user) != null;
+        if(user == null) return false;
+        else
+          return favoritesRepository.findByPlaceAndUser(place, user) != null;
     }
     //not used
     public boolean isAdded2(Place place){
