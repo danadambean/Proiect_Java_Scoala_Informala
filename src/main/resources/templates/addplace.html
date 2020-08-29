@@ -49,9 +49,9 @@
 <!--                       th:onclick='change(["Hotel", "Motel", "Hostel", "Guesthouse", "Camping", "Cabin"])'>Lodging-->
 <!--                <br>-->
                 <div>
-                      <select id='second' th:field="*{subcategory}">
+                      <select id='dropdown' th:field="*{subcategory}" th:value="${subcategory}">
                       </select>
-<!--                    <select id="drop-down" th:field="*{subcategory}"></select>-->
+<!--                   <select id="drop-down" th:field="*{subcategory}"></select>-->
                  </div>
 
 <!--               <div class=form_element>-->
@@ -67,51 +67,51 @@
                 </div>
                 <div class=form_element>
                     <label>Name</label>
-                    <input type="text" maxlength="50" th:field="*{name}" id="name" placeholder="Name">
+                    <input type="text" maxlength="50" th:field="*{name}" id="name" placeholder="Name" required>
                     <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
                 </div>
                 <div class=form_element>
                     <label>County</label>
-                    <input type="text" maxlength="50" th:field="*{county}" id="county" placeholder="County">
+                    <input type="text" maxlength="50" th:field="*{county}" id="county" placeholder="County" required>
                     <span th:if="${#fields.hasErrors('county')}" th:errors="*{county}"></span>
                 </div>
                 <div class=form_element>
                     <label>City</label>
-                    <input type="text" maxlength="250" th:field="*{city}" id="city" placeholder="City">
+                    <input type="text" maxlength="250" th:field="*{city}" id="city" placeholder="City" required>
                     <span th:if="${#fields.hasErrors('city')}" th:errors="*{city}"></span>
                 </div>
                 <div class=form_element>
                     <label>Address</label>
-                    <input type="text" maxlength="250" th:field="*{address}" id="address" placeholder="Address">
+                    <input type="text" maxlength="250" th:field="*{address}" id="address" placeholder="Address" required>
                     <span th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></span>
                 </div>
                 <div class=form_element>
                     <label>GPS coordinates</label>
                     <input type="text" maxlength="250" th:field="*{coordinates}" id="coordinates"
-                           placeholder="GPS coordinates">
+                           placeholder="GPS coordinates" required>
                     <span th:if="${#fields.hasErrors('coordinates')}" th:errors="*{coordinates}"></span>
                 </div>
                 <div class=form_element>
                     <label>Working hours</label>
                     <input type="text" maxlength="250" th:field="*{workingHours}" id="workingHours"
-                           placeholder="Working hours">
+                           placeholder="Working hours" required>
                     <span th:if="${#fields.hasErrors('workingHours')}" th:errors="*{workingHours}"></span>
                 </div>
                 <div class=form_element>
                     <label>Email</label>
-                    <input type="text" maxlength="250" th:field="*{email}" id="email" placeholder="Email">
+                    <input type="text" maxlength="250" th:field="*{email}" id="email" placeholder="Email" required>
                     <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
                 </div>
                 <div class=form_element>
                     <label>Telephone</label>
-                    <input type="text" maxlength="250" th:field="*{phoneNumber}" id="phoneNumber" placeholder="Telephone">
+                    <input type="text" maxlength="250" th:field="*{phoneNumber}" id="phoneNumber" placeholder="Telephone" required>
                     <span th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></span>
                 </div>
 
                 <div class=form_element>
                     <label>Description</label>
                     <textarea rows="5" cols="50" maxlength="250" th:field="*{description}" id="description"
-                              placeholder="Description"></textarea>
+                              placeholder="Description" required></textarea>
                     <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span>
                 </div>
                 <div class=form_element>

@@ -68,6 +68,7 @@ protected void configure(AuthenticationManagerBuilder auth) throws Exception {
                 //available to role: host
                 .antMatchers("/placemanager").permitAll()
                 .antMatchers("/addplace").permitAll()
+                .antMatchers("/editplace/{id}").permitAll()
 //                .antMatchers("/places/**").permitAll()
                 .antMatchers("/editprofile/").permitAll()
                 .antMatchers("/profileinfo").permitAll()
