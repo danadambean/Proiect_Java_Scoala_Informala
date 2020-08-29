@@ -22,6 +22,7 @@ import javax.validation.Valid;
 
 ;import java.security.Principal;
 
+
 @Controller
 public class PlaceController {
 
@@ -45,18 +46,18 @@ public class PlaceController {
 //        return "placedetail";
 //    }
 
-    /* @PostMapping(value = "/addplace")
-      public String addNewPlace( @ModelAttribute Place place )
-      {
-      placesService.addPlace(place);
-          return "redirect:placemanager";
-      } */
+    /**
+     * Method used to populate "/placemanager" with the places specific to a logged user
+     * @param model
+     * @param principal
+     * @return "placemanager"
+     */
 
-//    @GetMapping("/placemanager")
-//    public String showPlaceManager(Model model, Principal principal) {
-//        model.addAttribute("placeSearch", placesService.getAllPlaces());
-//        return "placemanager";
-//    }
+    @GetMapping("/placemanager")
+    public String showPlaceManager(Model model, Principal principal) {
+        model.addAttribute("userPlaces", placesService.findPlaceByUser(appUserRepository.findByUserName(principal.getName())));
+        return "placemanager";
+    }
 
     @GetMapping("/addplace")
     public String showNewPlaceForm(Model model) {
@@ -66,21 +67,56 @@ public class PlaceController {
 
     @PostMapping("/addplace")
     public String addNewPlace(@Valid Place place, BindingResult result, Model model, RedirectAttributes redirectAttributes, Principal principal) {
-        AppUser currentUser = appUserRepository.findByUserName(principal.getName());
         if (result.hasErrors()) {
             return "addplace";
         }
 
-        placesService.addUserPlace(place, currentUser);
-        model.addAttribute("place", placesService.getAllUserPlaces(currentUser));
-        redirectAttributes.addFlashAttribute("place", place);
+        placesService.addUserPlace(place, appUserRepository.findByUserName(principal.getName()));
+        model.addAttribute("place", placesService.getAllPlaces());
         redirectAttributes.addFlashAttribute("message", "Place saved!");
+        logger.log(Level.INFO, "Place added : "+ place );
         return "redirect:placemanager";
     }
+    @GetMapping("/editplace/{id}")
+    public String showEditForm(@PathVariable("id") long id, Model model) {
+        Place place = placesService.getPlaceById(id);
+        // .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
 
-    @GetMapping("/category")
-    public String showPlacesByCategory(Model model, Category category) {
-        model.addAttribute("category", placesService.getPlaceByCategory(category));
-        return "categoryresults";
+        model.addAttribute("place", place);
+        return "editplace";
+    }
+    @PostMapping("/editplace/{id}")
+    public String editPlace(@PathVariable("id") long id, @Valid Place place,
+                              BindingResult result, Model model, Principal principal, RedirectAttributes redirectAttributes) {
+        if (result.hasErrors()) {
+            place.setId(id);
+            return "editplace";
+        }
+
+        placesService.updateUserPlace(place, appUserRepository.findByUserName(principal.getName()));
+        model.addAttribute("userPlaces", placesService.findPlaceByUser(appUserRepository.findByUserName(principal.getName())));
+        redirectAttributes.addFlashAttribute("message", "Place was updated");
+        logger.log(Level.INFO, "Updated place: ID "+id);
+        return "placemanager";
+    }
+
+    /**
+     * Method used to delete a place, specific to a logged user, by using the ID
+     * @param id - place ID
+     * @param model
+     * @param redirectAttributes
+     * @param principal
+     * @return "placemanager"
+     * @throws IllegalArgumentException
+     */
+    @GetMapping("/deleteplace/{id}")
+    public String erasePlace(@PathVariable("id") long id, Model model, RedirectAttributes redirectAttributes, Principal principal) throws IllegalArgumentException {
+        Place place = placesService.getPlaceById(id);
+        //   .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+        placesService.deletePlace(id);
+        model.addAttribute("userPlaces", placesService.findPlaceByUser(appUserRepository.findByUserName(principal.getName())));
+        redirectAttributes.addFlashAttribute("message", "Place was deleted");
+        logger.log(Level.INFO, "Deleted place: ID "+id);
+        return "placemanager";
     }
 }

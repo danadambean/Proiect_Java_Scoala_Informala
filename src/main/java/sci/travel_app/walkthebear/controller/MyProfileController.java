@@ -21,7 +21,6 @@ public class MyProfileController {
     private static org.apache.logging.log4j.Logger logger = LogManager.getLogger(MyProfileController.class);
 
 
-
     @GetMapping("/addplaceadmin")
     public String showNewPlaceFormAdmin(Model model) {
         model.addAttribute("place", new Place());
@@ -38,6 +37,13 @@ public class MyProfileController {
         model.addAttribute("place", placesService.getAllPlaces());
         return "redirect:adminplace";
     }
+
+    /**
+     *  Method is used to return all the places searched by certain name
+     * @param placeName
+     * @param model
+     * @return "adminplace"
+     */
     @GetMapping("/adminplace")
     public String showAdminPlace(@RequestParam(value = "placeSearch", required = false) String placeName, Model model) {
         model.addAttribute("placeSearch", placesService.getPlaceByName(placeName));
@@ -50,6 +56,7 @@ public class MyProfileController {
          mav.addObject("result", result);
          return mav;
      } */
+
     @GetMapping("/editplaceadmin/{id}")
     public String showUpdateForm(@PathVariable("id") long id, Model model) {
         Place place = placesService.getPlaceById(id);
@@ -71,6 +78,13 @@ public class MyProfileController {
         return "adminplace";
     }
 
+    /**
+     * Method used to delete a place from the database
+     * @param id - place ID
+     * @param model
+     * @return
+     * @throws IllegalArgumentException
+     */
     @GetMapping("/deleteplaceadmin/{id}")
     public String erasePlace(@PathVariable("id") long id, Model model) throws IllegalArgumentException {
         Place place = placesService.getPlaceById(id);

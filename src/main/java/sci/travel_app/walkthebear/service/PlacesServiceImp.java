@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import sci.travel_app.walkthebear.model.entities.AppUser;
+import sci.travel_app.walkthebear.model.entities.Itinerary;
 import sci.travel_app.walkthebear.model.entities.Place;
 import sci.travel_app.walkthebear.model.misc.Category;
 import sci.travel_app.walkthebear.repository.PlacesRepository;
@@ -26,6 +27,13 @@ public class PlacesServiceImp implements PlacesService {
     @Override
     public Place getPlaceById(long placeId) {
         Place place = placesRepository.findById(placeId);
+        return place;
+    }
+
+    @Override
+    public Place getUserPlaceById(long placeId, AppUser user) {
+        Place place = placesRepository.findById(placeId);
+        place.setUser(user);
         return place;
     }
 
@@ -66,6 +74,7 @@ public class PlacesServiceImp implements PlacesService {
     }
     @Override
     public void addUserPlace(Place place, AppUser user) {
+        place.setUser(user);
         List<Place> list = (List<Place>) placesRepository.findByName(place.getName());
         if (list.size() > 0) {
             logger.log(Level.ERROR, "this place is already added ");
@@ -79,14 +88,21 @@ public class PlacesServiceImp implements PlacesService {
     }
 
     @Override
+    public void updateUserPlace(Place place, AppUser user) {
+        place.setUser(user);
+        placesRepository.save(place);
+    }
+
+    @Override
     public void deletePlace(long placeId) {
 
         placesRepository.delete(getPlaceById(placeId));
     }
+    @Override
+    public List<Place> findPlaceByUser(AppUser user) {
+        return placesRepository.findPlaceByUser(user);
+    }
 
-    /* public List<Place> search(String keyword) {
-         return placesRepository.search(keyword);
-     } */
     @Override
     public Page<Place> getPaginatedPlaceList(Pageable pageable, Category category) {
 
