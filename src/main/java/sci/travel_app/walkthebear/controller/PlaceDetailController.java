@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import sci.travel_app.walkthebear.model.entities.AppUser;
 import sci.travel_app.walkthebear.model.entities.Place;
 import sci.travel_app.walkthebear.model.entities.Rating;
-import sci.travel_app.walkthebear.service.FavoritesServiceImpl;
-import sci.travel_app.walkthebear.service.PlacesServiceImp;
-import sci.travel_app.walkthebear.service.RatingServiceImpl;
-import sci.travel_app.walkthebear.service.UnplannedPlacesListService;
+import sci.travel_app.walkthebear.repository.AppUserRepository;
+import sci.travel_app.walkthebear.service.*;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -24,6 +24,8 @@ import java.util.logging.Logger;
 public class PlaceDetailController {
 
     @Autowired
+    private AppUserRepository userRepository;
+    @Autowired
     private RatingServiceImpl ratingService;
     @Autowired
     private PlacesServiceImp placeService;
@@ -31,6 +33,8 @@ public class PlaceDetailController {
     private FavoritesServiceImpl favoritesService;
     @Autowired
     private UnplannedPlacesListService unplannedPlacesListService;
+    @Autowired
+    private AppUserServiceImp appUserServiceImp;
 
     private static final Logger log = Logger.getLogger(String.valueOf(PlaceDetailController.class));
 
@@ -50,7 +54,7 @@ public class PlaceDetailController {
         model.addAttribute("placeAverageRating", placeAverageRating);
 
         model.addAttribute("isAddedToFav", favoritesService.isAdded2(placeService.getPlaceById(id)));
-        model.addAttribute("isAddedToList", unplannedPlacesListService.isAdded(placeService.getPlaceById(id), null));
+        //model.addAttribute("isAddedToList", unplannedPlacesListService.isAdded(placeService.getPlaceById(id), null));
         return "placedetail";
     }
 
@@ -65,8 +69,9 @@ public class PlaceDetailController {
     }
 
     @GetMapping(value="/placedetail/{id}/addtofavorites")
-    public String addToFavorites(@PathVariable("id") long id, Model model) {
-     favoritesService.addToFavorites(placeService.getPlaceById(id));
+    public String addToFavorites(@PathVariable("id") long id, Model model, Principal principal) {
+        AppUser currentUser = appUserServiceImp.findByUserName(principal.getName());
+        favoritesService.addToFavorites(placeService.getPlaceById(id), currentUser);
         return "redirect:/placedetail/" + id;
     }
     @GetMapping(value="/placedetail/{id}/removefromfavorites")
@@ -88,13 +93,6 @@ public class PlaceDetailController {
     public String removeFromUnplannedPlaces(@PathVariable("id") long id, Model model) {
        unplannedPlacesListService.removeFromList(placeService.getPlaceById(id), unplannedPlacesListService.findByUser(null));
         return "redirect:/placedetail/" + id;
-    }
-
-    @GetMapping("/profileratings")
-    public String getAllRated(Model model) {
-        List<Rating> allRated = ratingService.findAll();
-        model.addAttribute("allRated", allRated);
-        return "profileratings";
     }
 
 }

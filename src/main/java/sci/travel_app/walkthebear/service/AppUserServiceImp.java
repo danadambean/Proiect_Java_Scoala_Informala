@@ -44,6 +44,10 @@ public class AppUserServiceImp implements AppUserService {
         return user;
     }
 
+    public AppUser findByUserName(String username) {
+        return appUserRepository.findByUserName(username);
+    }
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         AppUser user = appUserRepository.findByUserName(username);
@@ -53,7 +57,5 @@ public class AppUserServiceImp implements AppUserService {
         }
 
         return new AppUserDetails(user);
-
     }
-
 }

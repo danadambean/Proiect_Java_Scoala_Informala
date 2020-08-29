@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import sci.travel_app.walkthebear.model.entities.AppUser;
 import sci.travel_app.walkthebear.model.entities.Favorite;
 import sci.travel_app.walkthebear.model.entities.Place;
+import sci.travel_app.walkthebear.repository.AppUserRepository;
 import sci.travel_app.walkthebear.repository.FavoritesRepository;
 
 import java.util.ArrayList;
@@ -16,6 +17,8 @@ public class FavoritesServiceImpl implements FavoritesService{
 
     @Autowired
     FavoritesRepository favoritesRepository;
+    @Autowired
+    private AppUserRepository userRepository;
 
     public List<Favorite> getAllFavorites(){
         List<Favorite> favorites = new ArrayList<>();
@@ -28,10 +31,10 @@ public class FavoritesServiceImpl implements FavoritesService{
 
     }
 
-    public void addToFavorites (Place place){
+    public void addToFavorites (Place place, AppUser user){
      Favorite addMe = new Favorite();
      addMe.setPlace(place);
-//     addMe.setUser();
+     addMe.setUser(user);
      addMe.setDateAdded(new Date());
      favoritesRepository.save(addMe);
     }
@@ -42,7 +45,13 @@ public class FavoritesServiceImpl implements FavoritesService{
     }
 
     public List<Favorite> getFavsForPlace(Place place){
+
         return favoritesRepository.findByPlace(place);
+    }
+
+    public List<Favorite> findByUser(long id) {
+
+        return favoritesRepository.findByUser(userRepository.findById(id));
     }
 
     public boolean isAdded(Place place, AppUser user){
@@ -50,6 +59,7 @@ public class FavoritesServiceImpl implements FavoritesService{
     }
 
     public boolean isAdded2(Place place){
+
         return favoritesRepository.findByPlace(place).size() > 0;
     }
 

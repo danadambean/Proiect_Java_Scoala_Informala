@@ -17,5 +17,7 @@ public interface RatingService {
 
     List<Rating> findAll();
 
+    //List<Rating> findByUser(AppUser user);
+
 }
 
