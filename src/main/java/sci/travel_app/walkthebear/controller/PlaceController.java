@@ -21,7 +21,7 @@ import sci.travel_app.walkthebear.service.UploadService;
 
 import javax.validation.Valid;
 
-;import java.io.IOException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -37,6 +37,19 @@ public class PlaceController {
     @Autowired
     private UploadService uploadService;
     private static org.apache.logging.log4j.Logger logger = LogManager.getLogger(PlaceController.class);
+//    @Autowired
+//    private RatingServiceImpl ratingService;
+
+
+//    //path example: http://localhost:8080/places/1
+//    @GetMapping(value="/places/{id}")
+//    public String getPlace(@PathVariable("id") long id, Model model) {
+//        Place place = placesService.getPlaceById(id);
+//        List<Rating> ratingList = ratingService.getAllRatingsOfPlaceById(id);
+//        model.addAttribute("place", place);
+//        model.addAttribute("ratingList", ratingList);
+//        return "placedetail";
+//    }
 
     /* @PostMapping(value = "/addplace")
       public String addNewPlace( @ModelAttribute Place place )
