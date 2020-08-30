@@ -17,7 +17,9 @@ public interface RatingService {
 
     List<Rating> findAll();
 
-    //List<Rating> findByUser(AppUser user);
+    List<Rating> getAllRatingsOfPlace(Place place);
+
+    List<Rating> getAllRatingsOfPlaceById(long id);
 
 }
 

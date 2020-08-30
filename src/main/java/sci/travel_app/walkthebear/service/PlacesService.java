@@ -12,8 +12,12 @@ public interface PlacesService {
     List<Place>  getPlaceByName(String name);
     List<Place> getAllPlaces();
     List<Place> getPlaceByCategory(Category category);
-    void addPlace(Place place);
+    Place addPlace(Place place);
     void updatePlace(Place place);
     void deletePlace(long placeId);
     Page<Place> getPaginatedPlaceList(Pageable pageable, Category category);
+    Page<Place> getPaginatedPlaceListByCategory(int pageNum, String sortField, String sortDir, Category category);
+    Page<Place> getPaginatedPlaceListByKeyword(int pageNum, String sortField, String sortDir, String keyword);
+    List <Place> latestPlaces();
+
 }
