@@ -13,24 +13,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import sci.travel_app.walkthebear.model.entities.AppUser;
 import sci.travel_app.walkthebear.model.entities.Place;
-import sci.travel_app.walkthebear.model.misc.Category;
 import sci.travel_app.walkthebear.repository.AppUserRepository;
 import sci.travel_app.walkthebear.service.PlacesServiceImp;
 import sci.travel_app.walkthebear.service.UploadService;
 
-
 import javax.validation.Valid;
-
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
+import java.security.Principal;
 import java.util.Objects;
-;import java.security.Principal;
+
+;
 
 
 @Controller
@@ -78,7 +71,7 @@ public class PlaceController {
     }
 
     @PostMapping("/addplace")
-    public String addNewPlace(@Valid Place place, BindingResult result, Model model, RedirectAttributes redirectAttributes, @RequestParam("thumbnail") MultipartFile multipartFile) throws IOException {
+    public String addNewPlace(@Valid Place place, BindingResult result, Model model, RedirectAttributes redirectAttributes, Principal principal, @RequestParam("thumbnail") MultipartFile multipartFile) throws IOException {
         if (result.hasErrors()) {
             return "addplace";
         }
@@ -108,32 +101,6 @@ public class PlaceController {
     }
     @GetMapping("/editplace/{id}")
     public String showEditForm(@PathVariable("id") long id, Model model) {
-     /*@GetMapping("/adminplace")
-     public String showAdminPlace(Model model, String placeName) {
-         model.addAttribute("placeSearch", placesService.getPlaceByName(placeName));
-         return "adminplace";
-     } */
-    @GetMapping("/adminplace")
-    public String showAdminPlace(@RequestParam (value = "placeSearch", required = false) String placeName, Model model) {
-        model.addAttribute("placeSearch", placesService.getPlaceByName(placeName));
-        return "adminplace";
-    }
-    /* @RequestMapping("/adminplace")
-     public ModelAndView search(@RequestParam String keyword) {
-         List<Place> result = placesService.search(keyword);
-         ModelAndView mav = new ModelAndView("search");
-         mav.addObject("result", result);
-         return mav;
-     } */
-
-    //not used
-//    @GetMapping("/category")
-//    public String showPlacesByCategory(Model model, Category category) {
-//        model.addAttribute("category", placesService.getPlaceByCategory(category));
-//        return "categoryresults";
-//    }
-    @GetMapping("/editplaceadmin/{id}")
-    public String showUpdateForm(@PathVariable("id") long id, Model model) {
         Place place = placesService.getPlaceById(id);
         // .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
 

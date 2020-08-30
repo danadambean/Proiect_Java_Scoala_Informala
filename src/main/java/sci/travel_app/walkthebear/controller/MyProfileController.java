@@ -6,7 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import sci.travel_app.walkthebear.data_utils.dto.AppUserDetails;
+import sci.travel_app.walkthebear.data_utils.AppUserDetails;
 import sci.travel_app.walkthebear.model.entities.AppUser;
 import sci.travel_app.walkthebear.model.entities.Favorite;
 import sci.travel_app.walkthebear.model.entities.Rating;
