@@ -40,9 +40,6 @@ public class MyProfileController {
     @Autowired
     private AppUserRepository appUserRepository;
     private static org.apache.logging.log4j.Logger logger = LogManager.getLogger(MyProfileController.class);
-    @Autowired
-    private PlacesServiceImp placesService;
-    private static org.apache.logging.log4j.Logger logger = LogManager.getLogger(MyProfileController.class);
 
 
     @GetMapping(value = "/profileinfo")
@@ -116,6 +113,13 @@ public class MyProfileController {
         Place place = placesService.getPlaceById(id);
         AppUser user = appUserServiceImp.findByUserName(principal.getName());
         favoritesService.removeFavorite(place, user);
+        List<Favorite> allFavorite = favoritesService.findByUser(user.getId());
+        model.addAttribute("allFavorite", allFavorite);
+        redirectAttributes.addFlashAttribute("message", "Favorite was deleted");
+
+        return "redirect:/profilefav";
+    }
+
 
     @GetMapping("/adminplace")
     public String showAdminPlace(Model model, String keyword){
@@ -125,12 +129,6 @@ public class MyProfileController {
             model.addAttribute("places", placesService.getAllPlaces());
         }
         return "adminplace";
-    }
-        List<Favorite> allFavorite = favoritesService.findByUser(user.getId());
-        model.addAttribute("allFavorite", allFavorite);
-        redirectAttributes.addFlashAttribute("message", "Favorite was deleted");
-
-        return "redirect:/profilefav";
     }
 
 
