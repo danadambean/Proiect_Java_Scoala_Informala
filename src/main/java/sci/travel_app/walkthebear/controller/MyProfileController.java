@@ -1,25 +1,8 @@
 package sci.travel_app.walkthebear.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import sci.travel_app.walkthebear.data_utils.AppUserDetails;
-import sci.travel_app.walkthebear.model.entities.AppUser;
-import sci.travel_app.walkthebear.model.entities.Favorite;
-import sci.travel_app.walkthebear.model.entities.Rating;
-import sci.travel_app.walkthebear.repository.AppUserRepository;
-import sci.travel_app.walkthebear.service.AppUserServiceImp;
-import sci.travel_app.walkthebear.service.FavoritesServiceImpl;
-import sci.travel_app.walkthebear.service.PlacesServiceImp;
-import sci.travel_app.walkthebear.service.RatingServiceImpl;
-
-import java.util.List;
-
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -27,9 +10,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import sci.travel_app.walkthebear.model.entities.Place;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import sci.travel_app.walkthebear.data_utils.AppUserDetails;
+import sci.travel_app.walkthebear.model.entities.*;
+import sci.travel_app.walkthebear.repository.AppUserRepository;
+import sci.travel_app.walkthebear.service.AppUserServiceImp;
+import sci.travel_app.walkthebear.service.FavoritesServiceImpl;
 import sci.travel_app.walkthebear.service.PlacesServiceImp;
+import sci.travel_app.walkthebear.service.RatingServiceImpl;
+
 import javax.validation.Valid;
+import java.security.Principal;
+import java.util.List;
 @Controller
 public class MyProfileController {
 
@@ -41,12 +33,14 @@ public class MyProfileController {
     private RatingServiceImpl ratingService;
     @Autowired
     private FavoritesServiceImpl favoritesService;
+    @Autowired
+    private PlacesServiceImp placesService;
+    private static org.apache.logging.log4j.Logger logger = LogManager.getLogger(MyProfileController.class);
+
 
     @GetMapping(value = "/profileinfo")
     public String userprofile(@AuthenticationPrincipal AppUserDetails currentUser, Model model){
-        AppUser appuser = userRepository.findByUserName(currentUser.getUsername());
-        System.out.println(currentUser);
-        AppUser user = appUserServiceImp.findById(appuser.getId());
+        AppUser user = appUserServiceImp.findById(appUserServiceImp.findByUserName(currentUser.getUsername()).getId());
         model.addAttribute("currentUser", user);
 
         //String name = principal.getName(); //get logged in username
@@ -55,9 +49,30 @@ public class MyProfileController {
         return "profileinfo";
     }
 
+    @GetMapping("/editprofile/{id}")
+    public String showEditProfileInfoForm(@PathVariable("id") long id, Model model, Principal principal) {
+        model.addAttribute("appUser", appUserServiceImp.findById(id));
+
+        return "editprofile";
+    }
+
+    @PostMapping("/editprofile/{id}/send")
+    public String changeProfileInfo(@PathVariable("id") long id, @Valid Principal principal, Model model, BindingResult result, RedirectAttributes redirectAttributes) {
+        if (result.hasErrors()) {
+            redirectAttributes.addFlashAttribute("message", "Could not update");
+            return "editprofile";
+        }
+
+        AppUser user = appUserServiceImp.findById(id);
+        model.addAttribute("appUser", user);
+        appUserServiceImp.update(user, id);
+
+        return "editprofile";
+    }
+
     @GetMapping("/profileratings")
     public String getAllRated(@AuthenticationPrincipal AppUserDetails currentUser, Model model) {
-        AppUser user = userRepository.findByUserName(currentUser.getUsername());
+        AppUser user = appUserServiceImp.findByUserName(currentUser.getUsername());
         //model.addAttribute("currentUser", user);
         List<Rating> allRated = ratingService.findByUser(user.getId());
         System.out.println(allRated);
@@ -65,19 +80,42 @@ public class MyProfileController {
         return "profileratings";
     }
 
+    //delete place from rating
+    @GetMapping("/profileratings/{id}/delete")
+    public String deleteRatings(@PathVariable(value = "id") long id, RedirectAttributes redirectAttributes, Model model, Principal principal) {
+
+        ratingService.deleteRating(id);
+
+        AppUser user = appUserServiceImp.findByUserName(principal.getName());
+        List<Favorite> allFavorite = favoritesService.findByUser(user.getId());
+        model.addAttribute("allFavorite", allFavorite);
+        redirectAttributes.addFlashAttribute("message", "Rating was deleted");
+
+        return "redirect:/profileratings";
+    }
+
     @GetMapping("/profilefav")
     public String getAllFavorites(@AuthenticationPrincipal AppUserDetails currentUser, Model model) {
-        AppUser user = userRepository.findByUserName(currentUser.getUsername());
+        AppUser user = appUserServiceImp.findByUserName(currentUser.getUsername());
         //model.addAttribute("currentUser", user);
         List<Favorite> allFavorite = favoritesService.findByUser(user.getId());
         System.out.println(allFavorite);
         model.addAttribute("allFavorite", allFavorite);
         return "profilefav";
     }
+    //delete place from favorite
+    @GetMapping("/profilefav/{id}/delete")
+    public String deleteFav(@PathVariable(value = "id") long id, RedirectAttributes redirectAttributes, Model model, Principal principal) {
+        Place place = placesService.getPlaceById(id);
+        AppUser user = appUserServiceImp.findByUserName(principal.getName());
+        favoritesService.removeFavorite(place, user);
 
-    @Autowired
-    private PlacesServiceImp placesService;
-    private static org.apache.logging.log4j.Logger logger = LogManager.getLogger(MyProfileController.class);
+        List<Favorite> allFavorite = favoritesService.findByUser(user.getId());
+        model.addAttribute("allFavorite", allFavorite);
+        redirectAttributes.addFlashAttribute("message", "Favorite was deleted");
+
+        return "redirect:/profilefav";
+    }
 
 
     @GetMapping("/addplaceadmin")
