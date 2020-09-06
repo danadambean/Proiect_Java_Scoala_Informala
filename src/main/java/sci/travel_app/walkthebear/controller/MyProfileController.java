@@ -2,6 +2,8 @@ package sci.travel_app.walkthebear.controller;
 
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.repository.query.Param;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,6 +37,8 @@ public class MyProfileController {
     private FavoritesServiceImpl favoritesService;
     @Autowired
     private PlacesServiceImp placesService;
+    @Autowired
+    private AppUserRepository appUserRepository;
     private static org.apache.logging.log4j.Logger logger = LogManager.getLogger(MyProfileController.class);
 
 
@@ -109,12 +113,22 @@ public class MyProfileController {
         Place place = placesService.getPlaceById(id);
         AppUser user = appUserServiceImp.findByUserName(principal.getName());
         favoritesService.removeFavorite(place, user);
-
         List<Favorite> allFavorite = favoritesService.findByUser(user.getId());
         model.addAttribute("allFavorite", allFavorite);
         redirectAttributes.addFlashAttribute("message", "Favorite was deleted");
 
         return "redirect:/profilefav";
+    }
+
+
+    @GetMapping("/adminplace")
+    public String showAdminPlace(Model model, String keyword){
+        if(keyword!=null) {
+            model.addAttribute("places", placesService.findByKeyword(keyword));
+        } else {
+            model.addAttribute("places", placesService.getAllPlaces());
+        }
+        return "adminplace";
     }
 
 
@@ -135,25 +149,6 @@ public class MyProfileController {
         return "redirect:adminplace";
     }
 
-    /**
-     *  Method is used to return all the places searched by certain name
-     * @param placeName
-     * @param model
-     * @return "adminplace"
-     */
-    @GetMapping("/adminplace")
-    public String showAdminPlace(@RequestParam(value = "placeSearch", required = false) String placeName, Model model) {
-        model.addAttribute("placeSearch", placesService.getPlaceByName(placeName));
-        return "adminplace";
-    }
-    /* @RequestMapping("/adminplace")
-     public ModelAndView search(@RequestParam String keyword) {
-         List<Place> result = placesService.search(keyword);
-         ModelAndView mav = new ModelAndView("search");
-         mav.addObject("result", result);
-         return mav;
-     } */
-
     @GetMapping("/editplaceadmin/{id}")
     public String showUpdateForm(@PathVariable("id") long id, Model model) {
         Place place = placesService.getPlaceById(id);
@@ -171,7 +166,7 @@ public class MyProfileController {
         }
 
         placesService.updatePlace(place);
-        model.addAttribute("place", placesService.getAllPlaces());
+        model.addAttribute("places", placesService.getAllPlaces());
         return "adminplace";
     }
 
@@ -190,4 +185,38 @@ public class MyProfileController {
         model.addAttribute("place", placesService.getAllPlaces());
         return "adminplace";
     }
+
+    @GetMapping("/adminuser")
+    public String showAdminUser(Model model, String keyword){
+        if(keyword!=null) {
+            model.addAttribute("users", appUserServiceImp.findUsersByKeyword(keyword));
+        } else {
+            model.addAttribute("users", appUserServiceImp.findAllUsers());
+        }
+        return "adminuser";
+    }
+
+
+    @GetMapping("/edituseradmin/{id}")
+    public String showUpdateUserForm(@PathVariable("id") long id, Model model) {
+        AppUser user = appUserServiceImp.findById(id);
+        // .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+
+        model.addAttribute("user", user);
+        return "edituseradmin";
+    }
+
+    @PostMapping("/edituseradmin/{id}")
+    public String changeUser(@PathVariable("id") long id, @Valid AppUser user,
+                             BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            user.setId(id);
+            return "edituseradmin";
+        }
+
+        appUserServiceImp.save(user);
+        model.addAttribute("users", appUserServiceImp.findAllUsers());
+        return "adminuser";
+    }
+
 }

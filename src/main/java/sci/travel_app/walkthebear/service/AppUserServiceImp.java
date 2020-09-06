@@ -10,6 +10,7 @@ import sci.travel_app.walkthebear.model.entities.AppUser;
 import sci.travel_app.walkthebear.repository.AppUserRepository;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class AppUserServiceImp implements AppUserService {
@@ -52,9 +53,19 @@ public class AppUserServiceImp implements AppUserService {
         }
         return appUser;
     }
-
+    @Override
     public AppUser findById(long id) {
         return appUserRepository.findById(id);
+    }
+
+    @Override
+    public List<AppUser> findAllUsers() {
+        return appUserRepository.findAll();
+    }
+
+    @Override
+    public List<AppUser> findUsersByKeyword(String keyword) {
+        return appUserRepository.findUsersByKeyword(keyword);
     }
 
     public AppUser findByUserName(String username) {
@@ -72,5 +83,6 @@ public class AppUserServiceImp implements AppUserService {
         return new AppUserDetails(user);
 
     }
+
 
 }
