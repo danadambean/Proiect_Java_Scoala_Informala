@@ -77,7 +77,6 @@ protected void configure(AuthenticationManagerBuilder auth) throws Exception {
                 .antMatchers("/addplaceadmin").permitAll()
                 .antMatchers("/profileratings/**").permitAll()
                 .antMatchers("/profilefav/**").permitAll()
-                .antMatchers("/profileinfodana/**").permitAll()
                 .antMatchers("/editplaceadmin/{id}").permitAll()
                 .antMatchers("/edituseradmin/{id}").permitAll()
                 .antMatchers("/deleteplaceadmin/{id}").permitAll()
