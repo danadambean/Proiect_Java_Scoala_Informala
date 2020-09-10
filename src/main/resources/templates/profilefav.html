@@ -4,7 +4,7 @@
 <head>
 
     <meta charset="utf-8">
-    <title>Profile Ratings</title>
+    <title>Profile favorites</title>
     <link rel="stylesheet" href="../static/css/profilefavorites.css" th:href="@{/css/profilefavorites.css}">
     <link rel="stylesheet" href="../static/css/fragments.css" th:href="@{/css/fragments.css}">
 
@@ -45,8 +45,8 @@
     <div th:insert="fragments :: alert"></div>
 
     <div class="container" id="container">
-        <button type="submit" class="containerback" ><a th:href="@{/profileinfo}">Back</a></button>
-        <button type="button" class="containerhome"><a th:href="@{/home}">Home</a></button>
+        <button type="submit" class="containerback" ><a  id="backlink" th:href="@{/profileinfo}">Back</a></button>
+        <button type="button" class="containerhome"><a id="homelink" th:href="@{/home}">Home</a></button>
 
     </div>
 
