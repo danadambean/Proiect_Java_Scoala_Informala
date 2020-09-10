@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="utf-8" />
@@ -29,7 +30,6 @@
 
         <div th:insert="fragments :: alert"></div>
 
-<!--
         <div sec:authorize="isAuthenticated()">
             This content is only shown to authenticated users.
             <span sec:authentication="principal.authorities">role</span>
@@ -40,7 +40,6 @@
         <div sec:authorize="hasRole('Host')">
             This content is only shown to users.
         </div>
--->
 
 
         

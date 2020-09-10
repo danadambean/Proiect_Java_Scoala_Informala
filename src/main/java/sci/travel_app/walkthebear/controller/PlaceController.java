@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import sci.travel_app.walkthebear.data_utils.UploadService;
 import sci.travel_app.walkthebear.model.entities.Place;
 import sci.travel_app.walkthebear.repository.AppUserRepository;
 import sci.travel_app.walkthebear.service.AppUserServiceImp;
 import sci.travel_app.walkthebear.service.PlacesServiceImp;
-import sci.travel_app.walkthebear.data_utils.UploadService;
 
 import javax.validation.Valid;
 import java.io.IOException;
@@ -35,6 +35,7 @@ public class PlaceController {
     private AppUserServiceImp appUserServiceImp;
 
     @Autowired
+
     private UploadService uploadService;
     private static org.apache.logging.log4j.Logger logger = LogManager.getLogger(PlaceController.class);
 
