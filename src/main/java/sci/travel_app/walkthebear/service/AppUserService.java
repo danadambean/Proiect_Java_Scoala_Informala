@@ -1,6 +1,5 @@
 package sci.travel_app.walkthebear.service;
 
-import org.springframework.data.repository.query.Param;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import sci.travel_app.walkthebear.model.entities.AppUser;
 
@@ -18,6 +17,9 @@ public interface AppUserService extends UserDetailsService {
     List<AppUser> findAllUsers();
 
     List<AppUser> findUsersByKeyword( String keyword);
+
+    public void deleteUser(AppUser user);
+
 
 //    AppUser findByUsername(String userName);
 

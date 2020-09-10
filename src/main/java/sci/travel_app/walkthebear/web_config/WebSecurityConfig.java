@@ -51,6 +51,7 @@ protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         http
                 .authorizeRequests()
                 //available to all users
+                .antMatchers("/home/*").permitAll()
                 .antMatchers("/", "/index","/home").permitAll()
                 .antMatchers("/css/*","/js/*","/images/*").permitAll()
                 .antMatchers("/register/**").permitAll()
@@ -88,7 +89,9 @@ protected void configure(AuthenticationManagerBuilder auth) throws Exception {
                 .antMatchers("/user-images/**").permitAll()
                 .antMatchers("/json-files/**").permitAll()
                 .antMatchers("/files/**").permitAll()
-                .antMatchers("/admin/**").permitAll()
+//                .antMatchers("/editratings/{id}").permitAll()
+                .antMatchers("/deleteratings/{id}").permitAll()
+                .antMatchers("/editratings/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()

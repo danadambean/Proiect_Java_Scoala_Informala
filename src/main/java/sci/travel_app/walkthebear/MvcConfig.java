@@ -40,12 +40,13 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.addViewController("/deleteplaceadmin/{id}").setViewName("deleteplaceadmin");
         registry.addViewController("/adminallplaces").setViewName("adminallplaces");
         registry.addViewController("/editplace/{id}").setViewName("editplace");
-        registry.addViewController("/admin").setViewName("admin");
+//        registry.addViewController("/editratings/{id}").setViewName("editratings/{id}");
+        registry.addViewController("/editratings/**").setViewName("/editratings/**");
+        registry.addViewController("/deleteratings/{id}").setViewName("deleteratings");
     }
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-//        Path uploadedImagesDir = Paths.get("./user-images");
         Path uploadedImagesDir = Paths.get("src/main/resources/static/files/img");
         String uploadedImagesPath = uploadedImagesDir.toFile().getAbsolutePath();
        registry.addResourceHandler("/user-images/**").addResourceLocations("file:/" + uploadedImagesPath + "/");
