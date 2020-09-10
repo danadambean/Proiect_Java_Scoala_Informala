@@ -5,31 +5,25 @@
     <!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css"> -->
     <title></title>
     <style>
-    body {padding: 20px;}
-    h2 {font-size:34px; color: #3374dc ;}
+<!--    body {padding: 20px;}-->
+<!--    h2 {font-size:34px; color: #3374dc ;}-->
 
 
+@font-face {
+  font-family: 'password';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://jsbin-user-assets.s3.amazonaws.com/rafaelcastrocouto/password.ttf);
+}
 
+input.key {
+  font-family: 'password';
+  width: 100px; height: 16px;
+}
 
     </style>
-    <script type="text/javascript">
-<!-- function dynInput(cbox) {-->
-<!--  if (cbox.checked) {-->
-<!--    var input = document.createElement("input");-->
-<!--    input.type = "text";-->
-<!--    var div = document.createElement("div");-->
-<!--    div.id = cbox.name;-->
-<!--    div.innerHTML = "New Password" + cbox.name;-->
-<!--    div.appendChild(input);-->
-<!--    document.getElementById("insertinputs").appendChild(div);-->
-<!--  } else {-->
-<!--    document.getElementById(cbox.name).remove();-->
-<!--  }-->
-<!--}-->
-
-
-
-    </script>
+    <link type="text/css" href="../static/css/manager.css" th:href="@{/css/manager.css}" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/fragments.css" th:href="@{/css/fragments.css}">
 </head>
 <body>
 <div align="center">
@@ -43,17 +37,9 @@
             <input type="text" th:field="*{userName}" id="name" placeholder="Name" required>
             <span th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"></span>
         </div>
-        <!--        <div>-->
-        <!--&lt;!&ndash;            <input type="checkbox" name="check1" onclick="dynInput(this);"/>&ndash;&gt;-->
-        <!--            &lt;!&ndash;            <p id="insertinputs"></p>&ndash;&gt;-->
-        <!--            <label class="label"  th:field="*{password"}>Password</label>-->
-        <!--            <div class="control">-->
-        <!--                <input class="input"  type="password" placeholder="Password" name="password">-->
-        <!--            </div>-->
-        <!--        </div>-->
         <div>
             <label for="password">Password</label>
-            <input type="password" th:field="*{password}" id="password" placeholder="Password" >
+            <input class="key" type="text" autocomplete="off" th:field="*{password}" id="password" placeholder="Password" required>
             <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
         </div>
 
@@ -64,10 +50,6 @@
         </div>
         <div>
             <label>Role</label>
-            <!--            <select id=role name=role>-->
-            <!--                <option th:each="role : ${T(sci.travel_app.walkthebear.model.misc.AppUserRole).values()}"-->
-            <!--                        th:value="${role}" th:text="${role.displayRole}"></option>-->
-            <!--            </select>-->
             <div th:each="role : ${T(sci.travel_app.walkthebear.model.misc.AppUserRole).values()}">
                 <input type="radio" th:field="*{role}" th:value="${role}">
                 <label th:for="${#ids.prev('role')}" th:text="${role.displayRole}">Role</label>

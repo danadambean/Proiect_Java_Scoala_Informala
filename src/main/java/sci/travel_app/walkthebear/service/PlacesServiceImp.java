@@ -20,7 +20,7 @@ import java.util.List;
 
 @Service
 public class PlacesServiceImp implements PlacesService {
-    private static org.apache.logging.log4j.Logger logger = LogManager.getLogger(PlacesServiceImp .class);
+    private static org.apache.logging.log4j.Logger logger = LogManager.getLogger(PlacesServiceImp.class);
     @Autowired
     private PlacesRepository placesRepository;
     @Autowired
@@ -29,9 +29,10 @@ public class PlacesServiceImp implements PlacesService {
     private FavoritesRepository favoritesRepository;
 
     /**
+     * Method searches for a place by ID
      *
-     * @param placeId
-     * @return
+     * @param placeId- unique ID used to identify the place
+     * @return - the place specific for the ID
      */
     @Override
     public Place getPlaceById(long placeId) {
@@ -39,10 +40,11 @@ public class PlacesServiceImp implements PlacesService {
     }
 
     /**
+     * Method searches for a place by ID that is added by a specific user
      *
-     * @param placeId
-     * @param user
-     * @return
+     * @param placeId - unique ID used to identify the place
+     * @param user    - user that added the place
+     * @return - place that was found
      */
     @Override
     public Place getUserPlaceById(long placeId, AppUser user) {
@@ -52,20 +54,22 @@ public class PlacesServiceImp implements PlacesService {
     }
 
     /**
+     * List of places with a certain name
      *
-     * @param placeName
-     * @return
+     * @param placeName - place name keyword
+     * @return - list of places by name
      */
     @Override
-    public List<Place>  getPlaceByName(String placeName) {
+    public List<Place> getPlaceByName(String placeName) {
         List<Place> list = new ArrayList<>();
         placesRepository.findByName(placeName).forEach(list::add);
         return list;
     }
 
     /**
+     * List of all the places in the data base
      *
-     * @return
+     * @return all places in the data base
      */
     @Override
     public List<Place> getAllPlaces() {
@@ -75,9 +79,10 @@ public class PlacesServiceImp implements PlacesService {
     }
 
     /**
+     * Creates a list of all places added by a user
      *
-     * @param user
-     * @return
+     * @param user- user that added the places
+     * @return List of all places added by a user
      */
     @Override
     public List<Place> getAllUserPlaces(AppUser user) {
@@ -87,9 +92,10 @@ public class PlacesServiceImp implements PlacesService {
     }
 
     /**
+     * Creates a list of all places specific to a category
      *
-     * @param category
-     * @return
+     * @param category - place category
+     * @return List of places by category
      */
     @Override
     public List<Place> getPlaceByCategory(Category category) {
@@ -99,9 +105,9 @@ public class PlacesServiceImp implements PlacesService {
     }
 
     /**
+     * Searches if a new place is already added and if not it saves it
      *
-     * @param place
-     * @return
+     * @param place - place object
      */
     @Override
     public Place addPlace(Place place) {
@@ -115,9 +121,10 @@ public class PlacesServiceImp implements PlacesService {
     }
 
     /**
+     * Saves a new place added by a specific user.
      *
-     * @param place
-     * @param user
+     * @param place - place object
+     * @param user  - user that added the place
      */
     @Override
     public Place addUserPlace(Place place, AppUser user) {
@@ -132,18 +139,64 @@ public class PlacesServiceImp implements PlacesService {
     }
 
     /**
+     * Updates the place and the pictures specific to it.
      *
-     * @param place
+     * @param place     - place object
+     * @param thumbnail - thumbnail path
+     * @param gallery1  - picture1 path
+     * @param gallery2  - picture2 path
+     * @param gallery3  - picture3 path
+     * @param gallery4  - picture4 path
+     * @param gallery5  - picture5 path
      */
+
+
     @Override
-    public void updatePlace(Place place) {
+    public void updatePlace(Place place, String thumbnail, String gallery1, String gallery2, String gallery3, String gallery4, String gallery5) {
+        if (!"".equals(thumbnail)) {
+            place.setThumbnailFileName(thumbnail);
+        } else {
+            place.setThumbnailFileName(place.getThumbnailFileName());
+        }
+        if (!"".equals(gallery1)) {
+            place.setGalleryImage1FileName(gallery1);
+        } else {
+            place.setGalleryImage1FileName(place.getGalleryImage1FileName());
+        }
+        if (!"".equals(gallery2)) {
+            place.setGalleryImage2FileName(gallery2);
+        } else {
+            place.setGalleryImage2FileName(place.getGalleryImage2FileName());
+        }
+        if (!"".equals(gallery3)) {
+            place.setGalleryImage3FileName(gallery3);
+        } else {
+            place.setGalleryImage3FileName(place.getGalleryImage3FileName());
+        }
+        if (!"".equals(gallery4)) {
+            place.setGalleryImage4FileName(gallery4);
+        } else {
+            place.setGalleryImage4FileName(place.getGalleryImage4FileName());
+        }
+        if (!"".equals(gallery5)) {
+            place.setGalleryImage5FileName(gallery5);
+        } else {
+            place.setGalleryImage5FileName(place.getGalleryImage5FileName());
+        }
         placesRepository.save(place);
     }
 
     /**
+     * Updates the place and place pictures added by an specific user
      *
-     * @param place
-     * @param user
+     * @param place     - place object
+     * @param user      - user that added the place
+     * @param thumbnail - thumbnail path
+     * @param gallery1  - picture1 path
+     * @param gallery2  - picture2 path
+     * @param gallery3  - picture3 path
+     * @param gallery4  - picture4 path
+     * @param gallery5  - picture5 path
      */
     @Override
     public void updateUserPlace(Place place, AppUser user, String thumbnail, String gallery1, String gallery2, String gallery3, String gallery4, String gallery5) {
@@ -182,8 +235,9 @@ public class PlacesServiceImp implements PlacesService {
     }
 
     /**
+     * Delets place
      *
-     * @param placeId
+     * @param placeId - unique ID specific to a place.
      */
     @Override
     public void deletePlace(long placeId) {
@@ -192,17 +246,30 @@ public class PlacesServiceImp implements PlacesService {
     }
 
     /**
+     * Finds all the places specific to a user
      *
-     * @param user
-     * @return
+     * @param user - user that added the place
+     * @return - list of  places added by the user
      */
     @Override
     public List<Place> findPlaceByUser(AppUser user) {
         return placesRepository.findPlaceByUser(user);
     }
 
+    /**
+     * Updates the photos specific to a place
+     *
+     * @param place     - place object
+     * @param thumbnail - thumbnail path
+     * @param gallery1  - picture1 path
+     * @param gallery2  - picture2 path
+     * @param gallery3  - picture3 path
+     * @param gallery4  - picture4 path
+     * @param gallery5  - picture5 path
+     */
+
     @Override
-    public void updatePhotos (Place place, String thumbnail, String gallery1, String gallery2, String gallery3, String gallery4, String gallery5) {
+    public void updatePhotos(Place place, String thumbnail, String gallery1, String gallery2, String gallery3, String gallery4, String gallery5) {
         Place placeBis = new Place();
         placeBis.setId(place.getId());
         placeBis.setName(place.getName());
@@ -251,21 +318,27 @@ public class PlacesServiceImp implements PlacesService {
 
         placesRepository.save(placeBis);
     }
-    @Override
-      public Boolean hasPic (String s){
-        if (!"".equals(s)){
-            return true;
-        }
-        else {
-            return false;
-        }
-      }
 
     /**
+     * Checks if an image is already added.
      *
-     * @param pageable
-     * @param category
-     * @return
+     * @param s
+     * @return - tru or false depending on the result
+     */
+    @Override
+    public Boolean hasPic(String s) {
+        if (!"".equals(s)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Implements pagination for place category
+     *
+     * @param category - place category
+     * @return places by category
      */
     @Override
     public Page<Place> getPaginatedPlaceList(Pageable pageable, Category category) {
@@ -274,12 +347,13 @@ public class PlacesServiceImp implements PlacesService {
     }
 
     /**
+     * Implements pagination for place list category
      *
-     * @param pageNum
-     * @param sortField
+     * @param pageNum   - page number
+     * @param sortField - stores information on how to sort           -
      * @param sortDir
-     * @param category
-     * @return
+     * @param category  - place category
+     * @return places by category
      */
     @Override
     public Page<Place> getPaginatedPlaceListByCategory(int pageNum, String sortField, String sortDir, Category category) {
@@ -293,35 +367,38 @@ public class PlacesServiceImp implements PlacesService {
     }
 
     /**
+     * Implements pagination for keyword search
      *
-     * @param pageNum
-     * @param sortField
+     * @param pageNum   - page number
+     * @param sortField - stores information on how to sort
      * @param sortDir
-     * @param keyword
-     * @return
+     * @param keyword   - keyword used for search
+     * @return - search results for the keyword
      */
     @Override
-    public Page<Place> getPaginatedPlaceListByKeyword(int pageNum, String sortField, String sortDir, String keyword){
+    public Page<Place> getPaginatedPlaceListByKeyword(int pageNum, String sortField, String sortDir, String keyword) {
         Pageable pageable = PageRequest.of(pageNum - 1, 5,
                 sortDir.equals("asc") ? Sort.by(sortField).ascending()
                         : Sort.by(sortField).descending()
         );
-        return placesRepository.findByNameContains(keyword,pageable);
+        return placesRepository.findByNameContains(keyword, pageable);
     }
 
     /**
+     * Find the last places saved
      *
-     * @return
+     * @return the latest places added
      */
     @Override
-    public List <Place> latestPlaces(){
+    public List<Place> latestPlaces() {
         return placesRepository.findAllByOrderByCreatedDesc();
     }
 
     /**
+     * Find place by keyword
      *
-     * @param keyword
-     * @return
+     * @param keyword - keyword used for search
+     * @return - all places that have the keyword in the name
      */
     @Override
     public List<Place> findByKeyword(String keyword) {
@@ -329,14 +406,15 @@ public class PlacesServiceImp implements PlacesService {
     }
 
     /**
+     * Finds the most popular places by checking the users favorite
      *
-     * @return
+     * @return -      most popular places
      */
     @Override
     public List<Place> mostPopularPlaces() {
         List<Long> placeId = favoritesRepository.getPlacesFromFav();
         List<Place> popularityClub = new ArrayList<>();
-        for (long id : placeId){
+        for (long id : placeId) {
             popularityClub.add(placesRepository.findById(id));
         }
         return popularityClub;
