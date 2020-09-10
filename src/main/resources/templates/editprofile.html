@@ -44,7 +44,7 @@ Authenticated user role:
   <div class="field">
     <label class="label" th:for="password"><b>New password</b></label>
     <div class="control">
-      <input class="input" type="password" placeholder="New password" th:field="*{password}">
+      <input class="input" type="password" placeholder="Enter old or a new password" th:field="*{password}" required>
     </div>
   </div>
 
@@ -60,14 +60,6 @@ Authenticated user role:
     <button type="cancel"><a th:href="@{/profileinfo}">Cancel</a></button>
   </div>
 
-<!--<div class="field is-grouped">
-  <div class="control">
-    <button class="button is-link">Apply</button>
-  </div>
-  <div class="control">
-    <button class="button is-link is-light" onclick="window.location.href = '/profileinfo'">Cancel</button>
-  </div>
-</div>-->
 </form>
 
 </body>

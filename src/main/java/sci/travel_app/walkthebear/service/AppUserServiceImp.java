@@ -45,7 +45,7 @@ public class AppUserServiceImp implements AppUserService {
     }
 
 
-    @Override
+   @Override
     public AppUser findByEmail(String s) throws UsernameNotFoundException {
         AppUser appUser = appUserRepository.findByEmail(s);
         if (appUser == null) {
@@ -83,6 +83,5 @@ public class AppUserServiceImp implements AppUserService {
         return new AppUserDetails(user);
 
     }
-
 
 }
