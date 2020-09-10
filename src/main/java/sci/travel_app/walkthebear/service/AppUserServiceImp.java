@@ -75,6 +75,7 @@ public class AppUserServiceImp implements AppUserService {
      * @return - user specific to an email address
      * @throws UsernameNotFoundException
      */
+
     @Override
     public AppUser findByEmail(String s) throws UsernameNotFoundException {
         AppUser appUser = appUserRepository.findByEmail(s);
@@ -152,6 +153,5 @@ public class AppUserServiceImp implements AppUserService {
         return new AppUserDetails(user);
 
     }
-
 
 }
