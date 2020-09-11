@@ -85,6 +85,7 @@ protected void configure(AuthenticationManagerBuilder auth) throws Exception {
                 .antMatchers("/json-files/**").permitAll()
                 .antMatchers("/files/**").permitAll()
                 .antMatchers("/editratings/**").hasAuthority("Admin")
+                .antMatchers("/editprofile/**").hasAnyAuthority("Host", "Admin", "Traveler")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
