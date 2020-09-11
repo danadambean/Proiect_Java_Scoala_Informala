@@ -2,6 +2,8 @@ package sci.travel_app.walkthebear.controller;
 
 
 import com.itextpdf.text.DocumentException;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
@@ -28,6 +30,8 @@ public class HomePageController {
     @Autowired
     private FileService fileService;
 
+    private static org.apache.logging.log4j.Logger logger = LogManager.getLogger(TripController.class);
+
     @GetMapping(value = "/")
     public String slashRedirect(){
         return "redirect:/home";
@@ -45,7 +49,7 @@ public class HomePageController {
         widget1.add(mostPopularPlaces.get(1));
         widget1.add(mostPopularPlaces.get(2));
         widget1.add(mostPopularPlaces.get(3));
-        //widget1.add(mostPopularPlaces.get(4));
+        widget1.add(mostPopularPlaces.get(4));
         model.addAttribute("widget1", widget1);
 
         List<Place> widget2 = new ArrayList<>();
@@ -76,7 +80,7 @@ public class HomePageController {
         String filepath =  "src/main/resources/static/files/pdf/" + file;
 
         fileService.createPdfList(placeService.mostPopularPlaces(), file, "Most popular places");
-
+        logger.log(Level.INFO, "created file: mostPopularList.pdf");
             InputStreamResource resource = new InputStreamResource(new FileInputStream(filepath));
             HttpHeaders headers = new HttpHeaders(); headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename="+file);
 
@@ -96,7 +100,7 @@ public class HomePageController {
         String filepath =  "src/main/resources/static/files/pdf/" + file;
 
         fileService.createPdfList(placeService.latestPlaces(), file, "Our newest places");
-
+        logger.log(Level.INFO, "created file: latestPlacesList.pdf");
         InputStreamResource resource = new InputStreamResource(new FileInputStream(filepath));
         HttpHeaders headers = new HttpHeaders(); headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename="+file);
 
