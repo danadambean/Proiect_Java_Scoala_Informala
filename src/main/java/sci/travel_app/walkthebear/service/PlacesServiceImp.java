@@ -139,51 +139,37 @@ public class PlacesServiceImp implements PlacesService {
     }
 
     /**
-     * Updates the place and the pictures specific to it.
-     *
-     * @param place     - place object
-     * @param thumbnail - thumbnail path
-     * @param gallery1  - picture1 path
-     * @param gallery2  - picture2 path
-     * @param gallery3  - picture3 path
-     * @param gallery4  - picture4 path
-     * @param gallery5  - picture5 path
+     *  Updates the place with new details
+     * @param place - place object
+     * @param id i unique ID for place
      */
 
-
     @Override
-    public void updatePlace(Place place, String thumbnail, String gallery1, String gallery2, String gallery3, String gallery4, String gallery5) {
-        if (!"".equals(thumbnail)) {
-            place.setThumbnailFileName(thumbnail);
-        } else {
-            place.setThumbnailFileName(place.getThumbnailFileName());
-        }
-        if (!"".equals(gallery1)) {
-            place.setGalleryImage1FileName(gallery1);
-        } else {
-            place.setGalleryImage1FileName(place.getGalleryImage1FileName());
-        }
-        if (!"".equals(gallery2)) {
-            place.setGalleryImage2FileName(gallery2);
-        } else {
-            place.setGalleryImage2FileName(place.getGalleryImage2FileName());
-        }
-        if (!"".equals(gallery3)) {
-            place.setGalleryImage3FileName(gallery3);
-        } else {
-            place.setGalleryImage3FileName(place.getGalleryImage3FileName());
-        }
-        if (!"".equals(gallery4)) {
-            place.setGalleryImage4FileName(gallery4);
-        } else {
-            place.setGalleryImage4FileName(place.getGalleryImage4FileName());
-        }
-        if (!"".equals(gallery5)) {
-            place.setGalleryImage5FileName(gallery5);
-        } else {
-            place.setGalleryImage5FileName(place.getGalleryImage5FileName());
-        }
-        placesRepository.save(place);
+    public void updatePlace(Place place, long id) {
+        Place savePlace = new Place();
+        savePlace.setUser(place.getUser());
+        savePlace.setId(place.getId());
+        savePlace.setName(place.getName());
+        savePlace.setCounty(place.getCounty());
+        savePlace.setCity(place.getCity());
+        savePlace.setAddress(place.getAddress());
+        savePlace.setCoordinates(place.getCoordinates());
+        savePlace.setPhoneNumber(place.getPhoneNumber());
+        savePlace.setEmail(place.getEmail());
+        savePlace.setCategory(place.getCategory());
+        savePlace.setSubcategory(place.getSubcategory());
+        savePlace.setWorkingHours(place.getWorkingHours());
+        savePlace.setDescription(place.getDescription());
+        savePlace.setCreated(place.getCreated());
+        savePlace.setThumbnailFileName(placesRepository.findById(id).getThumbnailFileName());
+        savePlace.setGalleryImage1FileName(placesRepository.findById(id).getThumbnailFileName());
+        savePlace.setGalleryImage2FileName(placesRepository.findById(id).getGalleryImage1FileName());
+        savePlace.setGalleryImage3FileName(placesRepository.findById(id).getGalleryImage2FileName());
+        savePlace.setGalleryImage4FileName(placesRepository.findById(id).getGalleryImage3FileName());
+        savePlace.setGalleryImage5FileName(placesRepository.findById(id).getGalleryImage4FileName());
+        savePlace.setGalleryImage5FileName(placesRepository.findById(id).getGalleryImage5FileName());
+
+        placesRepository.save(savePlace);
     }
 
     /**
@@ -191,12 +177,6 @@ public class PlacesServiceImp implements PlacesService {
      *
      * @param place     - place object
      * @param user      - user that added the place
-     * @param thumbnail - thumbnail path
-     * @param gallery1  - picture1 path
-     * @param gallery2  - picture2 path
-     * @param gallery3  - picture3 path
-     * @param gallery4  - picture4 path
-     * @param gallery5  - picture5 path
      */
     @Override
     public void updateUserPlace(Place place, AppUser user, long id) {
@@ -227,7 +207,7 @@ public class PlacesServiceImp implements PlacesService {
     }
 
     /**
-     * Delets place
+     * Finds a place object by ID and delets it
      *
      * @param placeId - unique ID specific to a place.
      */
@@ -315,7 +295,7 @@ public class PlacesServiceImp implements PlacesService {
      * Checks if an image is already added.
      *
      * @param s
-     * @return - tru or false depending on the result
+     * @return - true or false depending on the result
      */
     @Override
     public Boolean hasPic(String s) {

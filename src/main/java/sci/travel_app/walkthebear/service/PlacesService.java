@@ -19,25 +19,20 @@ public interface PlacesService {
 
     List<Place> getAllUserPlaces(AppUser user);
 
-    public Place addUserPlace(Place place, AppUser user);
 
     Place addUserPlace(Place place, AppUser user);
+
     List<Place> getPlaceByCategory(Category category);
 
     Place addPlace(Place place);
 
-    void updatePlace(Place place, String thumbnail, String gallery1, String gallery2,
-                     String gallery3, String gallery4, String gallery5);
+    void updatePlace(Place place, long id);
 
-    public void updateUserPlace(Place place, AppUser user, String thumbnail, String gallery1,
-                                String gallery2, String gallery3, String gallery4, String gallery5);
-
-    void updatePlace(Place place);
     void updateUserPlace(Place place, AppUser user, long id);
-    void deletePlace(long placeId);
-    List<Place> findPlaceByUser(AppUser user);
 
-    public List<Place> findPlaceByUser(AppUser user);
+    void deletePlace(long placeId);
+
+    List<Place> findPlaceByUser(AppUser user);
 
     Page<Place> getPaginatedPlaceList(Pageable pageable, Category category);
 
