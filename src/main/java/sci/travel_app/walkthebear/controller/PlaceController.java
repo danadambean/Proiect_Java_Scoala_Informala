@@ -63,9 +63,10 @@ public class PlaceController {
     public String addNewPlace(@Valid Place place, BindingResult result, Model model, Principal principal, RedirectAttributes redirectAttributes)
                               {
         if (result.hasErrors()) {
+            redirectAttributes.addFlashAttribute("message", "Place could noy be added!");
             return "addplace";
         }
-        Place savedPlace = placesService.addPlace(place);
+//        Place savedPlace = placesService.addPlace(place);
 
         placesService.addUserPlace(place, appUserRepository.findByUserName(principal.getName()));
         model.addAttribute("place", placesService.getAllPlaces());
@@ -94,21 +95,11 @@ public class PlaceController {
         placesService.updateUserPlace(place, appUserServiceImp.findByUserName(principal.getName()), id);
         model.addAttribute("place", placesService.getPlaceById(id));
         redirectAttributes.addFlashAttribute("message", "Place was updated");
-        logger.log(Level.INFO, "Updated place: ID " + id);
+        logger.log(Level.INFO, "Updated place: ID " +place + id );
 
         return "redirect:/placemanager";
     }
 
-    /**
-     * Method used to delete a place, specific to a logged user, by using the ID
-     *
-     * @param id                 - place ID
-     * @param model
-     * @param redirectAttributes
-     * @param principal
-     * @return "placemanager"
-     * @throws IllegalArgumentException
-     */
     @GetMapping("/deleteplace/{id}")
     public String erasePlace(@PathVariable("id") long id, Model model, RedirectAttributes redirectAttributes, Principal principal) throws IllegalArgumentException {
         Place place = placesService.getPlaceById(id);
@@ -116,7 +107,7 @@ public class PlaceController {
         placesService.deletePlace(id);
         model.addAttribute("userPlaces", placesService.findPlaceByUser(appUserServiceImp.findByUserName(principal.getName())));
         redirectAttributes.addFlashAttribute("message", "Place was deleted");
-        logger.log(Level.INFO, "Deleted place: ID " + id);
+        logger.log(Level.INFO, "Deleted place: ID " + place +id);
         return "placemanager";
     }
 

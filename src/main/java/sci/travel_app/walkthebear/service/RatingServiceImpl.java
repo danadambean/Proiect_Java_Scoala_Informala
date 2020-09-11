@@ -33,6 +33,7 @@ public class RatingServiceImpl implements RatingService {
     }
 
     /**
+     * Finds a rating by ID
      * finds a rating object by id
      * @param id of a rating object
      * @return a rating object
@@ -44,11 +45,12 @@ public class RatingServiceImpl implements RatingService {
     }
 
     /**
-     * creates a new rating object
-     * @param rating a new rating object
-     * @param place place that is rated
-     * @param user logged-in user
-     * @return rating object and saves it to repository
+     * Creates a new rating for a place
+     *
+     * @param rating - user rating for a place
+     * @param place  - the place the rating is for
+     * @param user   - the user that provides the rating
+     * @return - saves the rating for the place
      */
     @Override
     public Rating create(Rating rating, Place place, AppUser user) {
@@ -68,6 +70,12 @@ public class RatingServiceImpl implements RatingService {
         ratingRepository.delete(findById(id));
     }
 
+    /**
+     * Delete rating by admin
+     * Method is not used anymore
+     *
+     * @param rating - place rating
+     */
     @Override
     public void deleteRatingAdmin(Rating rating) {
         ratingRepository.delete(rating);
@@ -83,11 +91,23 @@ public class RatingServiceImpl implements RatingService {
         ratingRepository.save(findById(id));
     }
 
+    /**
+     * Find all ratings for a specific place
+     *
+     * @param place - rated place
+     * @return all ratings for a place
+     */
     @Override
     public List<Rating> getAllRatingsOfPlace(Place place) {
         return ratingRepository.findByPlace(place);
     }
 
+    /**
+     * Finds all ratings for a place using the ID
+     *
+     * @param id - place ID
+     * @return all the ratings for a specific place
+     */
     @Override
     public List<Rating> getAllRatingsOfPlaceById(long id) {
         return ratingRepository.findByPlace(placesRepository.findById(id));
@@ -111,8 +131,8 @@ public class RatingServiceImpl implements RatingService {
      */
 
     @Override
-    public boolean isAdded(Place place, AppUser user){
-        if(user == null) return false;
+    public boolean isAdded(Place place, AppUser user) {
+        if (user == null) return false;
         else
             return ratingRepository.findByPlaceAndUser(place, user) != null;
     }

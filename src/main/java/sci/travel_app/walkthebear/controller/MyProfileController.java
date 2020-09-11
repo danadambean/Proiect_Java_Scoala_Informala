@@ -218,6 +218,8 @@ public class MyProfileController {
     @GetMapping("/edituseradmin/{id}")
     public String showUpdateUserForm(@PathVariable("id") long id, Model model) {
         AppUser user = appUserServiceImp.findById(id);
+        // .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+
         model.addAttribute("user", user);
         return "edituseradmin";
     }

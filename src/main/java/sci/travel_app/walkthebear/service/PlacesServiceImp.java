@@ -295,7 +295,7 @@ public class PlacesServiceImp implements PlacesService {
      * Checks if an image is already added.
      *
      * @param s
-     * @return - tru or false depending on the result
+     * @return - true or false depending on the result
      */
     @Override
     public Boolean hasPic(String s) {
