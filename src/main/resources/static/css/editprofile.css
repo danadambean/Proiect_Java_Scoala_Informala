@@ -1,0 +1,84 @@
+body {
+    font-family: Helvetica, Arial, sans-serif;
+    background-color: #F0D873
+}
+
+.form {
+    margin-top: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 25em;
+}
+
+hr {
+    border: 1px solid #F06F6A;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+input {
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    padding: 6px 10px;
+    display: inline-block;
+
+}
+
+input[type=text],
+[type=password] {
+    width: 20em;
+}
+
+input:focus {
+    border: 2px solid #797BBD;
+}
+
+button {
+    height: 30px;
+    width: 80px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    border: none;
+    margin:10px;
+}
+
+.submit {
+    background-color: #6CBA87;
+}
+
+.submit:hover {
+    background-color: #34BA63;
+}
+
+.cancelbtn:hover {
+    background-color: #DEEFFA;
+}
+
+
+.container {
+    padding: 25px 40px 16px 40px;
+    background-color: #1F6E3A;
+    color: #F0F7FA;
+
+}
+
+
+a:link, a:visited {
+    text-decoration: none;
+    color: #1F6E3A;
+}
+a:hover, a:active {
+    text-decoration: none;
+    color: #103B1F;
+}
+
+span.psw {
+    float: right;
+    padding-top: 16px;
+}
+

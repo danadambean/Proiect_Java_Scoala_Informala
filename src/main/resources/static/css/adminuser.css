@@ -1,0 +1,74 @@
+
+
+
+
+.u_table {
+    border: 0px solid #69899F;
+  }
+.u_table th{
+    padding:15px;
+    color:#fff;
+    text-shadow:1px 1px 1px #568F23;
+    border-bottom:3px solid  #BED3AB;
+    background-color:rgb(20,184,152);
+    background:-webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0.02,rgb(20,184,152,1)),
+        color-stop(0.51, rgb(19,170,115,1) ),
+        color-stop( 0.87, rgb(17,185,110,1) )
+        );
+
+    -webkit-border-top-left-radius:5px;
+    -webkit-border-top-right-radius:5px;
+    -moz-border-radius:5px 5px 0px 0px;
+    border-top-left-radius:5px;
+    border-top-right-radius:5px;
+  }
+.u_table td{
+    width:100px;
+    padding:10px;
+    text-align:center;
+    vertical-align: middle;
+    background-color:#DEF3CA;
+    border: 1px solid #BED3AB;
+    -moz-border-radius:2px;
+    -webkit-border-radius:2px;
+    border-radius:2px;
+    color:#666;
+    text-shadow:1px 1px 1px #fff;
+
+  }
+
+  .container {
+     display:flex;
+     flex-direction:row;
+
+  button {
+      height: 30px;
+      width: 80px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      border: none;
+  }
+  .edit {
+      background-color: #6CBA87;
+  }
+
+  .edit:hover {
+      background-color: #34BA63;
+  }
+
+  .delete:hover {
+      background-color: #DEEFFA;
+  }
+  a:link, a:visited {
+      text-decoration: none;
+      color: #1F6E3A;
+  }
+  a:hover, a:active {
+      text-decoration: none;
+      color: #103B1F;
+  }

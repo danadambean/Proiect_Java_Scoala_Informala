@@ -57,7 +57,7 @@ protected void configure(AuthenticationManagerBuilder auth) throws Exception {
                 .antMatchers("/css/*","/js/*","/images/*").permitAll()
                 .antMatchers("/register/**").permitAll()
                 .antMatchers("/placedetail/*").permitAll()
-                .antMatchers("/placedetail/*/addtolist").hasAuthority("Traveler")
+                .antMatchers("/placedetail/*/addtolist").hasAnyAuthority("Traveler","Admin")
                 .antMatchers("/results/**").permitAll()
                 .antMatchers("/categories/**").permitAll()
                 .antMatchers("/tripmanager").hasAuthority("Traveler")
