@@ -1,0 +1,133 @@
+body {
+    font-family: Helvetica, Arial, sans-serif;
+    background: linear-gradient(#C9F0D9, white);
+}
+
+/* _______________________________ header start _________________________________ */
+
+/* _______________________________ header end _________________________________ */
+
+/* _______________________________ main start _________________________________ */
+
+.container {}
+
+#main_container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    padding-top: 10px;
+    padding-right: 30px;
+    padding-left: 50px;
+    pdding-bottom: 10px;
+}
+
+#name {}
+
+h2 {
+    font-size: 40px;
+}
+
+/*#form_container {
+    border: 1px solid gray;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}*/
+
+
+.table table-striped{
+    padding-top: 10px;
+    padding-right: 20px;
+    padding-left: 30px;
+    padding-bottom: 10px;
+}
+
+/*
+form {}
+
+.form_element {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+}
+
+.form_element label {
+    margin-right: 30px;
+
+}
+
+input {
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  padding: 6px 10px;
+}
+
+input:focus{
+    border: 2px solid #797BBD;
+}
+select {
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  padding: 6px 10px;
+}
+select:focus{
+border: 2px solid #797BBD;
+}
+
+button {
+    height: 30px;
+    width: 80px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    border: none;
+}
+#submit{
+    background-color: #6CBA87;
+}
+#submit:hover{
+    background-color: #34BA63;
+}
+
+#reset:hover{
+    background-color: #DEEFFA;
+}
+
+textarea {
+    resize: none;
+    width: 100%;
+    height: 150px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+     border-radius: 4px;
+     background-color: #f8f8f8;
+}
+ textarea:focus{
+ border: 2px solid #797BBD;
+ }
+
+a:link,
+a:visited {
+    text-decoration: none;
+    color: #1F6E3A;
+}
+
+a:hover,
+a:active {
+    text-decoration: none;
+    color: #103B1F;
+}
+*/
+
+/* _______________________________ main end _________________________________ */
+
+/* _______________________________ footer start _________________________________ */
+/*
+footer {
+    background-color: cadetblue;
+    height: 100px;
+}
+*/
+
+/* _______________________________ footer end _________________________________ */

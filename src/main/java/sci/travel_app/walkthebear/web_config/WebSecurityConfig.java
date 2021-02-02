@@ -50,6 +50,7 @@ protected void configure(AuthenticationManagerBuilder auth) throws Exception {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
+                //available to all users
                 .antMatchers("/home/*").authenticated()
                 .antMatchers("/home").permitAll()
                 .antMatchers("/", "/index","/home").permitAll()

@@ -1,0 +1,27 @@
+{
+  "Day 1": [
+    {
+      "hourId": 1,
+      "dailySchedule": {
+        "dayId": 1,
+        "itinerary": {
+          "itineraryId": 1,
+          "name": "Day 1",
+          "description": "Turnul cu ceas",
+          "user": {
+            "id": 28,
+            "userName": "danadd",
+            "password": "$2a$10$3rl6rZRakpT1lUqvRzpkferG0C.CoRlZbD/FvKxYwx9WxQkh9MEAO",
+            "email": "danadd@yahoo.com",
+            "role": "TRAVELER",
+            "created": "Sep 11, 2020, 3:00:00 AM"
+          },
+          "created": "Sep 11, 2020, 2:46:05 PM",
+          "startDate": "Sep 11, 2020"
+        },
+        "name": "Day 1"
+      },
+      "time": "10:00"
+    }
+  ]
+}
